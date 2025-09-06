@@ -1,0 +1,194 @@
+---
+// Testimonial section component based on AstroBackup testimonial.md
+
+const testimonialData = {
+  enable: true,
+  title: "见证卓越口碑",
+  subtitle: "客户见证",
+  cta_btn: {
+    enable: true,
+    label: "联系我们",
+    url: "/contact"
+  },
+  marquee: {
+    element_width: "29.25rem",
+    element_width_in_small_devices: "23rem",
+    pause_on_hover: true,
+    reverse: "",
+    duration: "50s"
+  },
+  list: [
+    {
+      enable: true,
+      rating: 5,
+      content: "第二次来到spark liang的预算管理课程，第一次听很蒙，因为很少去管这些财务的东西，一直在想怎么做好服务，提升业绩、培养更多的人，但却忘了一个非常重要的东西！【预算管理】。老板可以不会，也可以不是你做，但是老板一定要懂。降本增效这个词听了很久，但要真正实践，需要做出很多调整。今天不但要做好业绩，也要好好的做预算管理，让每一分钱发挥它最大的价值花，这个课程非常棒！谢谢spark liang",
+      customer: {
+        image: "/images/customers/avatar/annika teh.png",
+        name: "Annika Teh",
+        role: "CEO",
+        company: {
+          logo: "/images/customers/company-logo/anniks.png",
+          name: "Anniks Beauty"
+        }
+      }
+    },
+    {
+      enable: true,
+      rating: 5,
+      content: "quote of the day: \"企业做预算管理，不是为了榨干员工而是帮助他们实现梦想\" // 工作，只是她完成梦想的一个途径 // 好大的迭代、果然是2.0!之前上完还半懂不懂的难落地现在思绪完全清晰可以完整设好落地!",
+      customer: {
+        image: "/images/customers/avatar/Raymond.png",
+        name: "Raymond Lau",
+        role: "CEO",
+        company: {
+          logo: "/images/customers/company-logo/LWL concept.png",
+          name: "LWL CONCEPTS"
+        }
+      }
+    },
+    {
+      enable: true,
+      rating: 5,
+      content: "一直以为业绩越做越多就能为公司带来可观的利润，可是发现怎么明明业绩增长，但公司的利润却越来越少。这次来上课学会了如何用预算，管理团队来控制成本。制定好KPI来让整个团队降低成本增加效率。让公司的利润和团队个人的利益挂钩。",
+      customer: {
+        image: "/images/customers/avatar/ryan lee.png",
+        name: "Ryan Lee",
+        role: "CEO",
+        company: {
+          logo: "/images/customers/company-logo/Technitec.png",
+          name: "Technitec engineering"
+        }
+      }
+    },
+    {
+      enable: true,
+      rating: 5,
+      content: "通过这次Spark Liang的管理预算课程，我明白了预算管理对企业经营的重要性。预算不仅仅是简单的数字计划，更是对企业目标的明确拆解。课程让我理解了：预算＝定目标，目标主要包括收入、成本和利润。只有做好预算，并不是就能自动获得利润，关键还在于如何管理预算。真正的预算管理，是通过拆解目标，把任务落到具体执行层面，并结合合理的薪酬奖励机制，激励团队主动达成结果。这次学习让我意识到，利润是管理出来的，未来我会更加重视预算管理，通过科学的目标拆解和有效的激励措施，带领团队一起拿结果，创造更好的业绩",
+      customer: {
+        image: "/images/customers/avatar/ck chua.png",
+        name: "CK Chua",
+        role: "CEO",
+        company: {
+          logo: "/images/customers/company-logo/da seng.png",
+          name: "DA SENG RESTAURANT SB."
+        }
+      }
+    }
+  ]
+};
+---
+
+{testimonialData.enable && (
+  <section class="section pt-16 md:pt-28 bg-gradient-to-br from-theme-light to-border-default/20 overflow-hidden">
+    <div class="container">
+      <div class="text-center mb-16">
+        <h2 class="text-h2-md md:text-h2 font-secondary font-bold text-dark mb-4">{testimonialData.title}</h2>
+        <p class="text-lg text-secondary font-semibold">{testimonialData.subtitle}</p>
+      </div>
+      
+      <div class="marquee marquee-pause-on-hover mb-12" id="testimonialMarquee" style="--marquee-duration: 50s; --marquee-element-width: 29.25rem; --marquee-elements: {testimonialData.list.filter(testimonial => testimonial.enable).length * 2}">
+        <div class="marquee-content flex gap-8">
+          {testimonialData.list.filter(testimonial => testimonial.enable).map((testimonial) => (
+            <div class="bg-body rounded-2xl p-8 shadow-lg border border-border-default/10 flex-shrink-0" style="width: 29.25rem">
+              <div class="flex gap-1 mb-6">
+                {Array.from({length: testimonial.rating}).map(() => (
+                  <span class="text-yellow-400 text-xl">★</span>
+                ))}
+              </div>
+              
+              <div class="mb-8">
+                <p class="text-text-default leading-relaxed text-sm">{testimonial.content}</p>
+              </div>
+              
+              <div class="flex items-center gap-4">
+                <img 
+                  src={testimonial.customer.image} 
+                  alt={testimonial.customer.name}
+                  class="w-16 h-16 rounded-full object-cover border-4 border-secondary"
+                  loading="lazy"
+                />
+                <div class="flex-1">
+                  <h4 class="font-semibold text-dark text-lg mb-1">{testimonial.customer.name}</h4>
+                  <p class="text-text-default/70 text-sm mb-2">{testimonial.customer.role}</p>
+                  <div class="flex items-center gap-2">
+                    <img 
+                      src={testimonial.customer.company.logo} 
+                      alt={testimonial.customer.company.name}
+                      class="w-6 h-6 object-contain"
+                      loading="lazy"
+                    />
+                    <span class="text-xs text-text-default/50">{testimonial.customer.company.name}</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          ))}
+          
+          {/* Duplicate testimonials for seamless loop */}
+          {testimonialData.list.filter(testimonial => testimonial.enable).map((testimonial) => (
+            <div class="bg-body rounded-2xl p-8 shadow-lg border border-border-default/10 flex-shrink-0" style="width: 29.25rem">
+              <div class="flex gap-1 mb-6">
+                {Array.from({length: testimonial.rating}).map(() => (
+                  <span class="text-yellow-400 text-xl">★</span>
+                ))}
+              </div>
+              
+              <div class="mb-8">
+                <p class="text-text-default leading-relaxed text-sm">{testimonial.content}</p>
+              </div>
+              
+              <div class="flex items-center gap-4">
+                <img 
+                  src={testimonial.customer.image} 
+                  alt={testimonial.customer.name}
+                  class="w-16 h-16 rounded-full object-cover border-4 border-secondary"
+                  loading="lazy"
+                />
+                <div class="flex-1">
+                  <h4 class="font-semibold text-dark text-lg mb-1">{testimonial.customer.name}</h4>
+                  <p class="text-text-default/70 text-sm mb-2">{testimonial.customer.role}</p>
+                  <div class="flex items-center gap-2">
+                    <img 
+                      src={testimonial.customer.company.logo} 
+                      alt={testimonial.customer.company.name}
+                      class="w-6 h-6 object-contain"
+                      loading="lazy"
+                    />
+                    <span class="text-xs text-text-default/50">{testimonial.customer.company.name}</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+      
+      {testimonialData.cta_btn.enable && (
+        <div class="text-center">
+          <a href={testimonialData.cta_btn.url} class="inline-flex items-center justify-center px-8 py-4 bg-secondary text-primary font-semibold rounded-lg transition-all duration-300 hover:bg-secondary/90 hover:scale-105">
+            {testimonialData.cta_btn.label}
+          </a>
+        </div>
+      )}
+    </div>
+  </section>
+)}
+
+<script>
+  // Testimonial marquee functionality
+  document.addEventListener('DOMContentLoaded', function() {
+    const marquee = document.getElementById('testimonialMarquee');
+    const track = marquee?.querySelector('.marquee-content') as HTMLElement;
+    
+    if (marquee && track) {
+      // Pause on hover functionality
+      marquee.addEventListener('mouseenter', () => {
+        track.style.animationPlayState = 'paused';
+      });
+
+      marquee.addEventListener('mouseleave', () => {
+        track.style.animationPlayState = 'running';
+      });
+    }
+  });
+</script>

@@ -1,0 +1,100 @@
+---
+// About section component based on AstroBackup about-us.md
+
+const aboutData = {
+  enable: true,
+  title: "我们的使命是帮助企业实现<br/><span style='color: #b5a280; font-size: 1.2em;'>收入利润双增长</span>",
+  cta_btn: {
+    enable: true,
+    label: "了解更多",
+    url: "/about",
+  },
+  achievements: {
+    enable: true,
+    list: [
+      {
+        value: "18",
+        prepend_value: "",
+        append_value: "年+",
+        title: "专业认证",
+        description: "2008年获得大马证监会(SC)<br/>Capital Market Services License<br/>合法提供财务规划服务，18年迭代的方法论。"
+      },
+      {
+        value: "500",
+        prepend_value: "",
+        append_value: "+",
+        title: "跨行业案例",
+        description: "为500+企业落地利润系统，<br/>重塑盈利模式，经验全覆盖。<br/>您面临的挑战，我们早有成熟解决方案。"
+      },
+      {
+        value: "30",
+        prepend_value: "",
+        append_value: "%+",
+        title: "利润提升",
+        description: "导入利润预算系统后，<br/>客户实测业绩增幅。<br/>真实数据背书，效果经得起验证。"
+      }
+    ]
+  },
+  banner: {
+    enable: true,
+    image: {
+      src: "/images/about-us-banner.jpg",
+      alt: "MMC 关于我们"
+    }
+  }
+};
+---
+
+{aboutData.enable && (
+  <section class="section pt-16 md:pt-28 bg-body">
+    <div class="container">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center">
+        <div class="order-2 lg:order-1">
+          <h2 class="text-h2-md md:text-h2 font-secondary font-bold text-dark mb-8 leading-tight" set:html={aboutData.title}></h2>
+          
+          {aboutData.cta_btn.enable && (
+            <div class="mb-10">
+              <a href={aboutData.cta_btn.url} class="inline-flex items-center justify-center px-8 py-4 bg-secondary text-primary font-semibold rounded-lg transition-all duration-300 hover:bg-secondary/90 hover:scale-105">
+                {aboutData.cta_btn.label}
+              </a>
+            </div>
+          )}
+          
+          {aboutData.achievements.enable && (
+            <div class="space-y-6">
+              {aboutData.achievements.list.map((achievement) => (
+                <div class="bg-theme-light p-6 rounded-lg border-l-4 border-secondary transition-all duration-300 hover:translate-x-2 hover:shadow-lg">
+                  <div class="flex items-start gap-4">
+                    <div class="text-3xl md:text-4xl font-bold text-secondary flex-shrink-0">
+                      {achievement.prepend_value}
+                      <span class="text-dark">{achievement.value}</span>
+                      {achievement.append_value}
+                    </div>
+                    <div>
+                      <h4 class="text-lg md:text-xl font-bold text-dark mb-2">{achievement.title}</h4>
+                      <p class="text-text-default/80 text-sm leading-relaxed" set:html={achievement.description}></p>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
+        
+        {aboutData.banner.enable && (
+          <div class="order-1 lg:order-2">
+            <div class="relative">
+              <img 
+                src={aboutData.banner.image.src} 
+                alt={aboutData.banner.image.alt}
+                class="w-full h-auto rounded-2xl shadow-2xl"
+                loading="lazy"
+              />
+            </div>
+          </div>
+        )}
+      </div>
+    </div>
+  </section>
+)}
+

@@ -1,0 +1,25 @@
+---
+export interface Props {
+  title: string;
+  description?: string;
+}
+
+const { title, description = "MMC - 专业的现代化解决方案" } = Astro.props;
+
+import '../styles/globals.css';
+---
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content={description} />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+  </head>
+  <body class="bg-body font-primary text-text-default leading-normal">
+    <slot />
+  </body>
+</html>

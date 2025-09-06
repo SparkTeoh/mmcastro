@@ -1,0 +1,71 @@
+---
+// Services section component with MMC specific services
+
+// MMC Services data from AstroBackup
+const servicesData = {
+  enable: true,
+  title: "我们的核心服务",
+  subtitle: "专业的利润增长解决方案",
+  services: [
+    {
+      title: "企业内训",
+      subtitle: "Corporate Training",
+      description: "定制符合公司文化和战略的培训课程，提升团队的执行力与管理能力。",
+      icon: "🏢",
+      image: "/images/services/9.jpg"
+    },
+    {
+      title: "课程培训",
+      subtitle: "Training Courses",
+      description: "通过科学的预算制定和资金管理方法，帮助企业提升利润并实现战略目标。",
+      icon: "📚",
+      image: "/images/services/7.jpg"
+    },
+    {
+      title: "企业咨询服务",
+      subtitle: "Consulting Services",
+      description: "通过量身定制并与您的高管团队紧密合作，帮助企业将理论转化为实际操作。",
+      icon: "👥",
+      image: "/images/services/8.jpg"
+    }
+  ]
+};
+---
+
+<section class="section pt-16 md:pt-28 bg-theme-light">
+  <div class="container">
+    <div class="text-center mb-16">
+      <h2 class="text-h2-md md:text-h2 font-secondary font-bold text-dark mb-4">{servicesData.title}</h2>
+      <p class="text-lg text-text-default/80 max-w-2xl mx-auto">{servicesData.subtitle}</p>
+    </div>
+    
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
+      {servicesData.services.map((service, index) => (
+        <div class="bg-body rounded-2xl overflow-hidden shadow-lg transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl">
+          <div class="p-8">
+            <div class="flex items-start gap-4 mb-6">
+              <div class="text-4xl flex-shrink-0">{service.icon}</div>
+              <div class="flex-1">
+                <h3 class="text-h4 font-secondary font-bold text-dark mb-1">{service.title}</h3>
+                <span class="text-sm text-secondary font-medium">{service.subtitle}</span>
+              </div>
+            </div>
+            <p class="text-text-default/80 leading-relaxed mb-6">{service.description}</p>
+            <div class="h-48 mb-6 rounded-lg overflow-hidden">
+              <img src={service.image} alt={service.title} class="w-full h-full object-cover transition-transform duration-300 hover:scale-105" loading="lazy" />
+            </div>
+            <div>
+              <a href="/contact" class="inline-flex items-center justify-center px-6 py-3 bg-secondary text-primary font-semibold rounded-lg transition-all duration-300 hover:bg-secondary/90 hover:scale-105">了解更多</a>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+    
+    <div class="text-center bg-body rounded-2xl p-12 shadow-lg">
+      <p class="text-xl text-dark font-semibold mb-6">想了解更多服务吗？</p>
+      <a href="/contact" class="inline-flex items-center justify-center px-8 py-4 bg-secondary text-primary font-semibold rounded-lg transition-all duration-300 hover:bg-secondary/90 hover:scale-105">联系我们</a>
+    </div>
+  </div>
+</section>
+

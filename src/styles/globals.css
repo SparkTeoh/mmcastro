@@ -1,0 +1,110 @@
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Syne:wght@700&display=swap');
+
+:root {
+  --color-primary: #024340;
+  --color-secondary: #B4A180;
+  --font-primary: "DM Sans", sans-serif;
+  --font-secondary: "Syne", sans-serif;
+}
+
+html {
+  font-size: 16px;
+  font-feature-settings: "lnum" 1, "tnum" 1;
+}
+
+body {
+  @apply bg-body font-primary text-text-default leading-normal font-normal;
+  overscroll-behavior: none;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Global Section Spacing */
+main section {
+  @apply pt-16 md:pt-28;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  @apply font-secondary text-dark leading-snug font-bold tracking-wide;
+}
+
+h1, .h1 {
+  @apply text-h1-md md:text-h1;
+}
+
+h2, .h2 {
+  @apply text-h2-md md:text-h2;
+}
+
+h3, .h3 {
+  @apply text-h3-md md:text-h3;
+}
+
+h4, .h4 {
+  @apply text-h4;
+}
+
+h5, .h5 {
+  @apply text-h5;
+}
+
+h6, .h6 {
+  @apply text-h6;
+}
+
+b, strong {
+  @apply text-dark/80;
+}
+
+a {
+  @apply text-primary;
+}
+
+button:not(:disabled),
+[role="button"]:not(:disabled) {
+  cursor: pointer;
+}
+
+* {
+  @apply border-border-default;
+}
+
+/* Banner styles */
+.banner {
+  @apply relative pt-0;
+}
+
+.banner .banner-image {
+  @apply absolute bottom-0 left-0 -z-10 h-[112%] w-screen object-cover;
+}
+
+/* Marquee styles */
+.marquee {
+  --marquee-width: 100%;
+  @apply mx-auto w-[var(--marquee-width)] overflow-x-hidden;
+}
+
+.marquee.marquee-pause-on-hover .marquee-content:hover {
+  animation-play-state: paused;
+}
+
+.marquee-content {
+  animation: marquee var(--marquee-duration) linear infinite var(--marquee-reverse);
+}
+
+@keyframes marquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(calc(-1 * var(--marquee-element-width) * var(--marquee-elements)));
+  }
+}
+
+/* Fit To Screen */
+.fit-to-screen {
+  @apply flex flex-col justify-start min-h-[102vh];
+}
