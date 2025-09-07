@@ -163,39 +163,8 @@ import Layout from '../../layouts/Layout.astro';
       </div>
       
       <div class="container grid gap-x-10 gap-y-6 md:gap-y-8 lg:grid-cols-2 lg:place-items-center">
-        <!-- Left content - Image -->
-        <div class="has-animated-number relative lg:pt-8 pb-0">
-          <div class="relative z-10 mx-auto w-fit" data-aos="fade-up-sm">
-            <img
-              class="max-w-full md:max-w-lg"
-              src="/images/call-to-action/sparkliang.webp"
-              alt="专家顾问"
-            />
-            <!-- Experience badge -->
-            <div class="bg-primary absolute bottom-16 right-20 md:right-0">
-              <div class="py-2 ps-5 text-white">
-                <div class="relative flex items-stretch">
-                  <div class="text-h2 leading-tight font-bold text-inherit md:text-6xl">
-                    毛<small><small>利+</small></small>
-                  </div>
-                  <sup class="font-secondary top-0 -left-6 text-sm font-bold tracking-wider text-inherit">
-                    看得见的
-                  </sup>
-                </div>
-                <img
-                  class="pointer-events-none absolute inset-0 h-full w-full"
-                  src="/images/call-to-action/stats-block-bg.svg"
-                  alt="background pattern"
-                />
-              </div>
-            </div>
-          </div>
-          <!-- Background shape -->
-          <div class="bg-primary pointer-events-none absolute top-[calc(50%_-_42px)] left-1/2 h-[35.875rem] w-[35.875rem] -translate-x-1/2 rounded-full opacity-80" />
-        </div>
-        
-        <!-- Right content -->
-        <div class="lg:max-w-2xl pt-6 md:pt-8 lg:pt-0">
+        <!-- Left content - Text (mobile first, then right on desktop) -->
+        <div class="lg:max-w-2xl pt-6 md:pt-8 lg:pt-0 lg:order-2">
           <div data-aos="fade-up-sm" data-aos-offset="0">
             <h2 class="text-h3 text-inherit mb-6">
               透过我们服务<br />
@@ -271,6 +240,37 @@ import Layout from '../../layouts/Layout.astro';
               </span>
             </a>
           </div>
+        </div>
+        
+        <!-- Right content - Image (mobile second, then left on desktop) -->
+        <div class="has-animated-number relative lg:pt-8 pb-0 lg:order-1">
+          <div class="relative z-10 mx-auto w-fit" data-aos="fade-up-sm">
+            <img
+              class="max-w-full md:max-w-lg"
+              src="/images/call-to-action/sparkliang.webp"
+              alt="专家顾问"
+            />
+            <!-- Experience badge -->
+            <div class="bg-primary absolute bottom-16 right-20 md:right-0">
+              <div class="py-2 ps-5 text-white">
+                <div class="relative flex items-stretch">
+                  <div class="text-h2 leading-tight font-bold text-inherit md:text-6xl">
+                    毛<small><small>利+</small></small>
+                  </div>
+                  <sup class="font-secondary top-0 -left-6 text-sm font-bold tracking-wider text-inherit">
+                    看得见的
+                  </sup>
+                </div>
+                <img
+                  class="pointer-events-none absolute inset-0 h-full w-full"
+                  src="/images/call-to-action/stats-block-bg.svg"
+                  alt="background pattern"
+                />
+              </div>
+            </div>
+          </div>
+          <!-- Background shape -->
+          <div class="bg-primary pointer-events-none absolute top-[calc(50%_-_42px)] left-1/2 h-[35.875rem] w-[35.875rem] -translate-x-1/2 rounded-full opacity-80" />
         </div>
       </div>
     </div>
