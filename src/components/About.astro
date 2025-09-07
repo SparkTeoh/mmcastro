@@ -3,10 +3,10 @@
 
 const aboutData = {
   enable: true,
-  title: "我们的使命是帮助企业实现<br/><span style='color: #b5a280; font-size: 1.2em;'>收入利润双增长</span>",
+  title: "我们的使命是帮助企业实现<br/><span style='color: #B4A180; font-size: 1.2em;'>收入利润双增长</span>",
   cta_btn: {
     enable: true,
-    label: "了解更多",
+    label: "点击了解更多",
     url: "/about",
   },
   achievements: {
@@ -36,7 +36,7 @@ const aboutData = {
     ]
   },
   banner: {
-    enable: true,
+    enable: false,
     image: {
       src: "/images/about-us-banner.jpg",
       alt: "MMC 关于我们"
@@ -46,54 +46,64 @@ const aboutData = {
 ---
 
 {aboutData.enable && (
-  <section class="section pt-16 md:pt-28 bg-body">
-    <div class="container">
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center">
-        <div class="order-2 lg:order-1">
-          <h2 class="text-h2-md md:text-h2 font-secondary font-bold text-dark mb-8 leading-tight" set:html={aboutData.title}></h2>
-          
-          {aboutData.cta_btn.enable && (
-            <div class="mb-10">
-              <a href={aboutData.cta_btn.url} class="inline-flex items-center justify-center px-8 py-4 bg-secondary text-primary font-semibold rounded-lg transition-all duration-300 hover:bg-secondary/90 hover:scale-105">
+  <section>
+    <div class="container flex flex-col justify-start gap-8 md:gap-12">
+      {aboutData.title && (
+        <div class="flex flex-wrap items-center justify-between gap-6 overflow-x-hidden md:flex-nowrap">
+          <h2
+            data-aos="fade-right-sm"
+            class="text-h3 max-w-lg"
+            set:html={aboutData.title}
+          />
+          <div data-aos="fade-right-lg" data-aos-delay="200">
+            {aboutData.cta_btn?.enable && (
+              <a 
+                href={aboutData.cta_btn.url}
+                class="text-base-sm capitalize md:text-base text-primary hover:text-primary/80 transition-colors duration-300 underline"
+              >
                 {aboutData.cta_btn.label}
+                <svg class="inline-block ml-1 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 17L17 7M17 7H7M17 7V17"></path>
+                </svg>
               </a>
-            </div>
-          )}
-          
-          {aboutData.achievements.enable && (
-            <div class="space-y-6">
-              {aboutData.achievements.list.map((achievement) => (
-                <div class="bg-theme-light p-6 rounded-lg border-l-4 border-secondary transition-all duration-300 hover:translate-x-2 hover:shadow-lg">
-                  <div class="flex items-start gap-4">
-                    <div class="text-3xl md:text-4xl font-bold text-secondary flex-shrink-0">
-                      {achievement.prepend_value}
-                      <span class="text-dark">{achievement.value}</span>
-                      {achievement.append_value}
-                    </div>
-                    <div>
-                      <h4 class="text-lg md:text-xl font-bold text-dark mb-2">{achievement.title}</h4>
-                      <p class="text-text-default/80 text-sm leading-relaxed" set:html={achievement.description}></p>
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-          )}
-        </div>
-        
-        {aboutData.banner.enable && (
-          <div class="order-1 lg:order-2">
-            <div class="relative">
-              <img 
-                src={aboutData.banner.image.src} 
-                alt={aboutData.banner.image.alt}
-                class="w-full h-auto rounded-2xl shadow-2xl"
-                loading="lazy"
-              />
-            </div>
+            )}
           </div>
-        )}
-      </div>
+        </div>
+      )}
+      {aboutData.achievements && aboutData.achievements.enable && (
+        <div class="has-animated-number grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+          {aboutData.achievements.list.map((item, index) => (
+            <div
+              data-aos="fade-up-sm"
+              data-aos-delay={index * 200}
+              class="to-primary/5 space-y-4 bg-gradient-to-b from-white px-8 py-10">
+              {item.value && (
+                <h3 class="relative">
+                  <span class="text-h2 md:text-h1 from-primary bg-gradient-to-b via-white via-80% to-transparent bg-clip-text text-transparent has-gradients-text">
+                    {item.prepend_value}
+                    {item.value}
+                    {item.append_value}
+                  </span>
+                </h3>
+              )}
+              {item.description && <p class="text-text-default/80" set:html={item.description} />}
+            </div>
+          ))}
+        </div>
+      )}
+      {aboutData.banner && aboutData.banner.enable && aboutData.banner.image.src && (
+        <div
+          data-aos="fade-up-sm"
+          data-aos-delay="300"
+          class="flex items-center justify-center">
+          <img
+            src={aboutData.banner.image.src}
+            alt={aboutData.banner.image.alt}
+            class="!h-[300px] w-full origin-center object-cover md:!h-[500px] rounded-lg"
+            loading="lazy"
+          />
+        </div>
+      )}
     </div>
   </section>
 )}

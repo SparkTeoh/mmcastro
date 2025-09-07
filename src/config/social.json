@@ -1,0 +1,28 @@
+{
+  "main": [
+    {
+      "enable": true,
+      "label": "facebook",
+      "icon": "/images/general-icon/facebook.svg",
+      "url": "https://www.facebook.com/mmc"
+    },
+    {
+      "enable": false,
+      "label": "twitter",
+      "icon": "/images/general-icon/twitter.svg",
+      "url": "https://twitter.com/mmc"
+    },
+    {
+      "enable": true,
+      "label": "instagram",
+      "icon": "/images/general-icon/instagram.svg",
+      "url": "https://www.instagram.com/mmc"
+    },
+    {
+      "enable": true,
+      "label": "linkedin",
+      "icon": "/images/general-icon/linkedin.svg",
+      "url": "https://www.linkedin.com/company/mmc"
+    }
+  ]
+}

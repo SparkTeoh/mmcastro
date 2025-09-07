@@ -1,13 +1,24 @@
 ---
 // Hero section component with slider functionality
 
-// Slider data from AstroBackup home-banner.md
+// Updated slider data with new hero images
 const sliderData = [
+  {
+    enable: true,
+    title: "公司越做越大，利润却越做越薄？",
+    description: "增长≠盈利，失控的成本和现金流正在吃掉你的利润。你需要的不只是努力，而是一套以利润为目标的经营系统。",
+    background_image: "/images/banner/Hero1.webp",
+    button: {
+      enable: true,
+      label: "解锁利润增长",
+      url: "/contact"
+    }
+  },
   {
     enable: true,
     title: "团队大了，却没人关心利润？",
     description: "问题不在员工，而在机制。利润预算系统，让团队'自动盯利润'",
-    background_image: "/images/banner/5.jpg",
+    background_image: "/images/banner/Hero2.webp",
     button: {
       enable: true,
       label: "打造积极团队",
@@ -18,43 +29,10 @@ const sliderData = [
     enable: true,
     title: "你的组织架构，是增长引擎还是绊脚石？",
     description: "混乱的架构会让扩张变成灾难。利润预算系统不仅是财务系统，更是增长型组织设计图，让每个人在正确的位置，为利润目标发力。",
-    background_image: "/images/banner/6.jpg",
+    background_image: "/images/banner/Hero3.webp",
     button: {
       enable: true,
       label: "重构增长架构",
-      url: "/contact"
-    }
-  },
-  {
-    enable: true,
-    title: "公司越做越大，利润却越做越薄？",
-    description: "增长≠盈利，失控的成本和现金流正在吃掉你的利润。你需要的不只是努力，而是一套以利润为目标的经营系统。",
-    background_image: "/images/banner/7.jpg",
-    button: {
-      enable: true,
-      label: "解锁利润增长",
-      url: "/contact"
-    }
-  },
-  {
-    enable: true,
-    title: "利润增长停滞？MMC预算管理，助您精准破局",
-    description: "当传统方法失效，MMC以利润为导向的预算体系，将成为您企业突破困局、实现跨越式发展的关键。",
-    background_image: "/images/banner/6.jpg",
-    button: {
-      enable: true,
-      label: "联系我们",
-      url: "/contact"
-    }
-  },
-  {
-    enable: true,
-    title: "500+ 跨行业案例",
-    description: "让我们的专家顾问团队，带您了解如何实施以利润为导向的预算体系，助您实现战略目标，推动可持续增长。",
-    background_image: "/images/banner/11.jpg",
-    button: {
-      enable: true,
-      label: "联系我们",
       url: "/contact"
     }
   }
@@ -64,30 +42,58 @@ const sliderData = [
 <section class="banner">
   <div class="hero-slider relative h-screen overflow-hidden" id="heroSlider">
     {sliderData.filter(slide => slide.enable).map((slide, index) => (
-      <div class={`slide absolute inset-0 bg-cover bg-center bg-no-repeat transition-opacity duration-1000 ${index === 0 ? 'opacity-100' : 'opacity-0'}`} style={`background-image: url('${slide.background_image}')`}>
-        <div class="absolute inset-0 bg-black/50"></div>
-        <div class="container relative z-10 flex h-full items-center">
-          <div class="w-full max-w-4xl text-white">
-            <h1 class="mb-6 text-h1-sm md:text-h1 font-secondary font-bold leading-tight" set:html={slide.title}></h1>
-            <p class="mb-8 text-lg md:text-xl leading-relaxed opacity-90 max-w-3xl">{slide.description}</p>
-            {slide.button.enable && (
-              <div class="flex flex-wrap gap-4">
-                <a href={slide.button.url} class="inline-flex items-center justify-center px-8 py-4 bg-secondary text-primary font-semibold rounded-lg transition-all duration-300 hover:bg-secondary/90 hover:scale-105">{slide.button.label}</a>
-              </div>
-            )}
+      <div class={`slide absolute inset-0 transition-opacity duration-1000 ${index === 0 ? 'opacity-100' : 'opacity-0'}`}>
+        <!-- Background Image with Blur Effect -->
+        <div class="absolute inset-0 bg-cover bg-center bg-no-repeat" style={`background-image: url('${slide.background_image}')`}>
+          <div class="absolute inset-0 backdrop-blur-sm"></div>
+        </div>
+        
+        <!-- Dark Teal Overlay -->
+        <div class="absolute inset-0 bg-gradient-to-r from-teal-900/80 via-teal-800/70 to-transparent"></div>
+        
+        <!-- Content Container -->
+        <div class="container mx-auto px-4 relative z-10 flex h-full items-center">
+          <div class="w-full">
+            <div class="max-w-2xl ml-0 mr-auto">
+              <!-- Main Title -->
+              <h1 class="mb-6 text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight" set:html={slide.title}></h1>
+              
+              <!-- Description -->
+              <p class="mb-10 text-lg md:text-xl text-white/90 leading-relaxed">{slide.description}</p>
+              
+              <!-- Call to Action Button -->
+              {slide.button.enable && (
+                <div class="flex flex-wrap gap-4">
+                  <a href={slide.button.url} class="group inline-flex items-center justify-center px-8 py-4 bg-transparent border-2 border-white text-white font-semibold rounded-full transition-all duration-300 hover:bg-white hover:text-teal-900 hover:scale-105">
+                    <span class="mr-3">{slide.button.label}</span>
+                    <svg class="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
+                    </svg>
+                  </a>
+                </div>
+              )}
+            </div>
           </div>
         </div>
       </div>
     ))}
     
-    <!-- Navigation arrows -->
-    <button class="slider-nav prev absolute left-8 top-1/2 -translate-y-1/2 z-20 w-12 h-12 bg-secondary/80 text-primary rounded-full flex items-center justify-center text-2xl font-bold transition-all duration-300 hover:bg-secondary hover:scale-110" id="prevSlide">&larr;</button>
-    <button class="slider-nav next absolute right-8 top-1/2 -translate-y-1/2 z-20 w-12 h-12 bg-secondary/80 text-primary rounded-full flex items-center justify-center text-2xl font-bold transition-all duration-300 hover:bg-secondary hover:scale-110" id="nextSlide">&rarr;</button>
+    <!-- Navigation arrows with modern styling -->
+    <button class="slider-nav prev absolute left-6 top-1/2 -translate-y-1/2 z-20 w-14 h-14 bg-white/20 backdrop-blur-sm text-white rounded-full flex items-center justify-center text-xl font-bold transition-all duration-300 hover:bg-white/30 hover:scale-110" id="prevSlide">
+      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+      </svg>
+    </button>
+    <button class="slider-nav next absolute right-6 top-1/2 -translate-y-1/2 z-20 w-14 h-14 bg-white/20 backdrop-blur-sm text-white rounded-full flex items-center justify-center text-xl font-bold transition-all duration-300 hover:bg-white/30 hover:scale-110" id="nextSlide">
+      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+      </svg>
+    </button>
     
-    <!-- Slide indicators -->
+    <!-- Slide indicators with modern styling -->
     <div class="slider-indicators absolute bottom-8 left-1/2 -translate-x-1/2 z-20 flex gap-3">
       {sliderData.filter(slide => slide.enable).map((_, index) => (
-        <button class={`indicator w-3 h-3 rounded-full transition-all duration-300 ${index === 0 ? 'bg-secondary' : 'bg-white/50'} hover:bg-secondary`} data-slide={index}></button>
+        <button class={`indicator w-3 h-3 rounded-full transition-all duration-300 ${index === 0 ? 'bg-white' : 'bg-white/50'} hover:bg-white hover:scale-125`} data-slide={index}></button>
       ))}
     </div>
   </div>
@@ -124,11 +130,11 @@ const sliderData = [
       });
       indicators.forEach((indicator, i) => {
         if (i === index) {
-          indicator.classList.add('bg-secondary');
+          indicator.classList.add('bg-white');
           indicator.classList.remove('bg-white/50');
         } else {
           indicator.classList.add('bg-white/50');
-          indicator.classList.remove('bg-secondary');
+          indicator.classList.remove('bg-white');
         }
       });
       currentSlide = index;

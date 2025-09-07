@@ -1,0 +1,110 @@
+---
+// AboutUs component based on AstroBackup about-us.md
+
+const aboutUsData = {
+  enable: true,
+  title: "我们的使命是帮助企业实现<br/><span style='color: #B4A180; font-size: 1.2em;'>收入利润双增长</span>",
+  cta_btn: {
+    enable: true,
+    label: "了解更多关于我们",
+    url: "/about",
+  },
+  achievements: {
+    enable: true,
+    list: [
+      {
+        value: "18",
+        prepend_value: "",
+        append_value: "年+",
+        title: "专业认证",
+        description: "2008年获得大马证监会(SC)<br/>Capital Market Services License<br/>合法提供财务规划服务，18年迭代的方法论。"
+      },
+      {
+        value: "500",
+        prepend_value: "",
+        append_value: "+",
+        title: "跨行业案例",
+        description: "为500+企业落地利润系统，<br/>重塑盈利模式，经验全覆盖。<br/>您面临的挑战，我们早有成熟解决方案。"
+      },
+      {
+        value: "30",
+        prepend_value: "",
+        append_value: "%+",
+        title: "利润提升",
+        description: "导入利润预算系统后，<br/>客户实测业绩增幅。<br/>真实数据背书，效果经得起验证。"
+      }
+    ]
+  },
+  banner: {
+    enable: false,
+    image: {
+      src: "/images/about-us-banner.jpg",
+      alt: "MMC 关于我们"
+    }
+  }
+};
+---
+
+{aboutUsData.enable && (
+  <section>
+    <div class="container flex flex-col justify-start gap-12 md:gap-16">
+      {aboutUsData.title && (
+        <div class="flex flex-wrap items-center justify-between gap-6 overflow-x-hidden md:flex-nowrap">
+          <h2
+            data-aos="fade-right-sm"
+            class="text-h3 max-w-lg"
+            set:html={aboutUsData.title}
+          />
+          <div data-aos="fade-right-lg" data-aos-delay="200">
+            {aboutUsData.cta_btn?.enable && (
+              <a 
+                href={aboutUsData.cta_btn.url}
+                class="text-base-sm capitalize md:text-base text-primary hover:text-primary/80 transition-colors duration-300 underline"
+              >
+                {aboutUsData.cta_btn.label}
+                <svg class="inline-block ml-1 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 17L17 7M17 7H7M17 7V17"></path>
+                </svg>
+              </a>
+            )}
+          </div>
+        </div>
+      )}
+      {aboutUsData.achievements && aboutUsData.achievements.enable && (
+        <div class="has-animated-number grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+          {aboutUsData.achievements.list.map((item, index) => (
+            <div
+              data-aos="fade-up-sm"
+              data-aos-delay={index * 200}
+              class="to-primary/5 space-y-4 bg-gradient-to-b from-white px-8 py-10 rounded-lg shadow-sm border border-gray-100">
+              {item.value && (
+                <h3 class="relative">
+                  <span class="text-h2 md:text-h1 from-primary bg-gradient-to-b via-white via-80% to-transparent bg-clip-text text-transparent has-gradients-text">
+                    {item.prepend_value}
+                    {item.value}
+                    {item.append_value}
+                  </span>
+                </h3>
+              )}
+              {item.description && <p class="text-text-default/80" set:html={item.description} />}
+            </div>
+          ))}
+        </div>
+      )}
+      {aboutUsData.banner && aboutUsData.banner.enable && aboutUsData.banner.image.src && (
+        <div
+          data-aos="fade-up-sm"
+          data-aos-delay="300"
+          class="flex items-center justify-center">
+          <img
+            src={aboutUsData.banner.image.src}
+            alt={aboutUsData.banner.image.alt}
+            class="!h-[300px] w-full origin-center object-cover md:!h-[500px] rounded-lg"
+            loading="lazy"
+          />
+        </div>
+      )}
+    </div>
+  </section>
+)}
+

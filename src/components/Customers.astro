@@ -1,0 +1,125 @@
+---
+// Customer logos section component with marquee scrolling
+const customerLogos = [
+  {
+    name: "RakanJaya",
+    logo: "/images/customers/company-logo/rakan jaya.webp",
+    alt: "RakanJaya"
+  },
+  {
+    name: "Salamku Grocery",
+    logo: "/images/customers/company-logo/salamku.webp", 
+    alt: "Salamku Grocery"
+  },
+  {
+    name: "Teck Guan Group",
+    logo: "/images/customers/company-logo/Teck Guan.webp",
+    alt: "Teck Guan Group"
+  },
+  {
+    name: "Anniks Beauty",
+    logo: "/images/customers/company-logo/anniks.webp",
+    alt: "Anniks Beauty"
+  },
+  {
+    name: "LWL CONCEPTS",
+    logo: "/images/customers/company-logo/LWL.webp",
+    alt: "LWL CONCEPTS"
+  }
+];
+
+// Marquee configuration
+const marqueeConfig = {
+  elementWidth: "11.25rem",
+  elementWidthSmall: "7.5rem", 
+  pauseOnHover: false,
+  reverse: "",
+  duration: "20s"
+};
+---
+
+<section class="py-16 bg-white">
+  <div class="container mx-auto px-4">
+    <!-- Section Content -->
+    <div class="flex flex-col lg:flex-row items-center justify-between gap-8 lg:gap-12">
+      <!-- Left side - Text content -->
+      <div class="flex-1 text-center lg:text-left">
+        <div class="shrink-0 opacity-80 md:w-80">
+          <p class="font-medium">
+            他们选择了MMC预算管理课程 ｜
+          </p>
+          <p>
+            与这些具有前瞻视野的企业一同，掌握驱动利润增长的预算罗盘。
+          </p>
+        </div>
+      </div>
+      
+      <!-- Right side - Customer logos marquee -->
+      <div class="flex-1 w-full">
+        <div class="relative flex items-center overflow-hidden before:absolute before:top-0 before:left-0 before:z-10 before:h-full before:w-20 before:bg-gradient-to-r before:from-white before:to-transparent after:absolute after:top-0 after:right-0 after:h-full after:w-20 after:bg-gradient-to-l after:from-white after:to-transparent before:md:w-32 after:md:w-32">
+          <div 
+            class="marquee"
+            style={`--marquee-elements:${customerLogos.length};--marquee-element-width-responsive:calc(${marqueeConfig.elementWidthSmall} / var(--marquee-elements) * ${customerLogos.length});--marquee-element-width:calc(${marqueeConfig.elementWidth} / var(--marquee-elements) * ${customerLogos.length});--marquee-duration:${marqueeConfig.duration};--marquee-reverse:${marqueeConfig.reverse};`}>
+            <div class="marquee-content flex items-center">
+              {customerLogos.map((customer) => (
+                <div class="min-w-[var(--marquee-element-width-responsive)] px-0 md:min-w-[var(--marquee-element-width)] md:px-4">
+                  <div class="px-4 flex items-center justify-center">
+                    <div class="w-full h-20 flex items-center justify-center">
+                      <img 
+                        src={customer.logo} 
+                        alt={customer.alt}
+                        class="max-w-full max-h-full object-contain"
+                        loading="lazy"
+                      />
+                    </div>
+                  </div>
+                </div>
+              ))}
+              {customerLogos.map((customer) => (
+                <div 
+                  class="min-w-[var(--marquee-element-width-responsive)] px-0 md:min-w-[var(--marquee-element-width)] md:px-4"
+                  aria-hidden="true">
+                  <div class="px-4 flex items-center justify-center">
+                    <div class="w-full h-20 flex items-center justify-center">
+                      <img 
+                        src={customer.logo} 
+                        alt={customer.alt}
+                        class="max-w-full max-h-full object-contain"
+                        loading="lazy"
+                      />
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  /* Marquee styles based on AstroBackup */
+  .marquee {
+    --marquee-width: 100%;
+    @apply mx-auto w-[var(--marquee-width)] overflow-x-hidden;
+  }
+
+  .marquee-content {
+    animation: marquee var(--marquee-duration) linear infinite var(--marquee-reverse);
+  }
+
+  @keyframes marquee {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(calc(-1 * var(--marquee-element-width) * var(--marquee-elements)));
+    }
+  }
+
+  .container {
+    max-width: 1200px;
+  }
+</style>

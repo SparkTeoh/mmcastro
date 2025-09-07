@@ -1,0 +1,189 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Navigation from '../../components/Navigation.astro';
+import Footer from '../../components/Footer.astro';
+import CallToAction from '../../components/CallToAction.astro';
+
+// 六大服务数据
+const servicesData = {
+  enable: true,
+  title: "我们的服务",
+  subtitle: "透过预算管理帮助企业实现收入利润双增长",
+  services: [
+    {
+      title: "年度经营预算与战略蓝图<br><small>(Annual Budgeting & Strategic Blueprint)</small>",
+      description: "帮您企业\"先画图，再建屋子\"。我们将预算从一个财务部门的任务，升级为整个公司的战略管理工具。通过制定收入、成本、现金三大核心目标，让您的企业告别\"拍脑袋\"决策，为下一年的\"收入利润双增长\"画出清晰的作战地图。",
+      coreSolution: "目标不清晰、战略缺失、凭感觉经营的根源问题。",
+      icon: "/images/services/icon/infographic.svg",
+      image: "/images/services/service1.webp",
+      link: "/services/annual-budgeting"
+    },
+    {
+      title: "收入增长引擎设计<br><small>(Revenue Growth Engine Design)</small>",
+      description: "增长不能靠运气。我们带您深入\"切市场\"，通过分析客户、产品和渠道，设计差异化的竞争策略。我们将宏大的收入目标，层层分解（细分收入）到每个团队、每个负责人头上，打造一台可预测、可持续的增长引擎。",
+      coreSolution: "业绩增长乏力、市场被动、销售目标无法落地。",
+      icon: "/images/services/icon/task.svg",
+      image: "/images/services/service2.webp",
+      link: "/services/revenue-growth"
+    },
+    {
+      title: "利润结构优化与成本管控<br><small>(Profit Structure Optimization & Cost Control)</small>",
+      description: "忙了半天不赚钱？问题出在利润结构。我们帮您精准分析变动成本与固定成本，找到提升毛利的关键杠杆。通过建立全员成本意识和管控机制，让您的团队不仅会\"开源\"，更懂得如何\"节流\"，实现利润最大化。",
+      coreSolution: "营收高但利润低、\"毛利薄如纸\"、成本失控。",
+      icon: "/images/services/icon/leader-board.svg",
+      image: "/images/services/service3.webp",
+      link: "/services/profit-optimization"
+    },
+    {
+      title: "经营激励与绩效系统<br><small>(Performance-based Incentive System)</small>",
+      description: "预算不是老板一个人的事。我们为您设计一套将预算目标与薪酬奖励紧密挂钩的激励系统。从一线员工的超额奖励到管理层的花红分润，让每个员工都从\"为老板打工\"变成\"为自己的钱包奋斗\"，彻底激活团队的内在动力。",
+      coreSolution: "员工动力不足、团队文化安逸、\"平均主义\"大锅饭。",
+      icon: "/images/services/icon/infographic.svg",
+      image: "/images/services/service1.webp",
+      link: "/services/performance-incentive"
+    },
+    {
+      title: "现金流管理与资金效率<br><small>(Cash Flow Management & Capital Efficiency)</small>",
+      description: "利润是观点，现金是事实。我们帮您建立强大的现金流预测和管理能力，优化应收账款和库存周转。同时，教您善用\"金融杠杆\"，用最少的本金撬动最大的生意，让您的资金效率倍增，企业走得更稳、更远。",
+      coreSolution: "公司账面有利润但没现金、资金周转困难、盲目投资。",
+      icon: "/images/services/icon/task.svg",
+      image: "/images/services/service2.webp",
+      link: "/services/cash-flow"
+    },
+    {
+      title: "经营复盘与落地执行系统<br><small>(Business Review & Execution System)</small>",
+      description: "再好的蓝图也需要\"施工管理\"。我们帮您建立一套从每日、每周到每月的经营复盘（检查改进）机制。通过可视化的数据看板和结构化的会议流程，确保战略不跑偏，问题能及时发现，让整个团队朝着既定预算目标高效执行。",
+      coreSolution: "战略无法落地、会议效率低下、缺乏过程管理和问责机制。",
+      icon: "/images/services/icon/leader-board.svg",
+      image: "/images/services/service3.webp",
+      link: "/services/business-review"
+    }
+  ]
+};
+---
+
+<Layout title="我们的服务 - MMC">
+  <Navigation />
+  <main>
+    <!-- Hero Section -->
+    <section class="bg-theme-dark pt-24 pb-6 md:pt-32 md:pb-8">
+      <div class="container">
+        <!-- 标题部分 -->
+        <div class="text-center max-w-4xl mx-auto mb-8">
+          <span class="mb-4 inline-block rounded-full border px-6 py-2 border-white/10 bg-white/10 text-white text-sm font-medium">
+            我们的服务
+          </span>
+          <h1 class="text-h1 text-white mb-6">
+            透过<span class="text-gold">预算管理</span><br />
+            帮助企业实现收入利润双增长
+          </h1>
+          <p class="text-lg text-white/80 leading-relaxed">
+            我们提供六大核心服务，从战略规划到执行落地，全方位助力企业实现可持续增长
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="bg-gray-100 pt-12 md:pt-16">
+      <div class="container">
+        <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+            {servicesData.services.map((service, index) => (
+              <div class="bg-white box-shadow-primary overflow-visible rounded-lg">
+                <div class="relative">
+                  {service.image && (
+                    <img
+                      src={service.image}
+                      alt={`${service.title} 服务图片`}
+                      width="416"
+                      height="288"
+                      class="h-64 w-full min-w-full object-cover rounded-t-lg"
+                    />
+                  )}
+                  {service.icon && (
+                    <div class="bg-primary absolute -bottom-8 left-6 flex h-16 w-16 items-center justify-center rounded-full fill-white transition duration-300 shadow-lg">
+                      <img
+                        alt="服务图标"
+                        src={service.icon}
+                        width="32"
+                        height="32"
+                        class="h-8 w-8 text-white transition duration-300"
+                        style="filter: brightness(0) invert(1);"
+                      />
+                    </div>
+                  )}
+                </div>
+                <div class="px-6 pt-12 pb-8 overflow-visible">
+                  {service.title && (
+                    <div class="mb-4">
+                      <h3 class="text-h4 text-theme-dark mb-3 leading-tight" set:html={service.title} />
+                      <div class="h-1 w-12 bg-primary rounded-full"></div>
+                    </div>
+                  )}
+                  
+                  {service.description && (
+                    <p class="text-text-default/80 mb-4 leading-relaxed text-sm" set:html={service.description} />
+                  )}
+                  
+                  {service.coreSolution && (
+                    <div class="bg-blue-50 border-l-4 border-primary p-4 mb-6 rounded-r-lg">
+                      <h4 class="text-sm font-semibold text-primary mb-2">核心解决：</h4>
+                      <p class="text-sm text-text-default/70" set:html={service.coreSolution} />
+                    </div>
+                  )}
+                  
+                  <a 
+                    href={service.link} 
+                    class="inline-flex items-center px-4 py-2 bg-primary text-white rounded-lg font-medium hover:bg-primary/90 transition-all duration-300 hover:scale-105 shadow-md text-sm"
+                  >
+                    了解更多
+                    <svg class="inline-block ml-2 h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                    </svg>
+                  </a>
+                </div>
+              </div>
+            ))}
+        </div>
+      </div>
+      
+      <!-- CTA Section within Services -->
+      <div class="mt-16">
+        <CallToAction />
+      </div>
+    </section>
+  </main>
+  <Footer />
+</Layout>
+
+<style>
+  .box-shadow-primary {
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  }
+  
+  .btn-primary {
+    background-color: #3b82f6;
+    color: white;
+    border: 2px solid #3b82f6;
+  }
+  
+  .btn-primary:hover {
+    background-color: #2563eb;
+    border-color: #2563eb;
+  }
+  
+  .btn-outline-transparent {
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    color: white;
+    background: transparent;
+  }
+  
+  .btn-outline-transparent:hover {
+    border-color: white;
+    background: rgba(255, 255, 255, 0.1);
+  }
+  
+  .text-gold {
+    color: #B4A180;
+  }
+</style>

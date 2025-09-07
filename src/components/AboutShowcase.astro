@@ -1,0 +1,136 @@
+---
+// AboutShowcase component - Scrolling image gallery with mixed sizes
+
+const showcaseData = {
+  enable: true,
+  marquee: {
+    element_width: "25rem",
+    element_width_in_small_devices: "18.75rem",
+    pause_on_hover: false,
+    reverse: "",
+    duration: "50s"
+  },
+  list: [
+    {
+      src: "/images/about-us/showcase/jing er.webp",
+      size: "large" // 大图 (垂直)
+    },
+    {
+      src: "/images/about-us/showcase/summer2.webp",
+      size: "small" // 小图 (方形)
+    },
+    {
+      src: "/images/about-us/showcase/kaelyn.webp",
+      size: "large" // 大图 (垂直)
+    },
+    {
+      src: "/images/about-us/showcase/spark1.webp",
+      size: "small" // 小图 (方形)
+    },
+    {
+      src: "/images/about-us/showcase/summer.webp",
+      size: "large" // 大图 (垂直)
+    },
+    {
+      src: "/images/about-us/showcase/zoe.webp",
+      size: "small" // 小图 (方形)
+    }
+  ]
+};
+---
+
+{showcaseData.enable && (
+  <section class="overflow-hidden">
+    {/* Image Gallery Section - Scrolling with vertical and square sizes */}
+    {showcaseData.list && showcaseData.marquee && (
+      <div class="relative overflow-hidden">
+        <div class="flex items-center gap-4 animate-marquee">
+          {showcaseData.list.map((item, index) => (
+            <div class={`flex-shrink-0 ${
+              item.size === "large" 
+                ? "w-64 lg:w-80" // Vertical portrait
+                : "w-64 lg:w-64" // Square
+            }`}>
+              <img
+                class={`w-full object-cover ${
+                  item.size === "large" 
+                    ? "h-80 lg:h-96" // Taller for vertical
+                    : "h-64 lg:h-64" // Square height
+                }`}
+                src={item.src}
+                alt={`Team member ${index + 1}`}
+                loading="lazy"
+              />
+            </div>
+          ))}
+          {/* Duplicate for seamless loop */}
+          {showcaseData.list.map((item, index) => (
+            <div class={`flex-shrink-0 ${
+              item.size === "large" 
+                ? "w-64 lg:w-80" // Vertical portrait
+                : "w-64 lg:w-64" // Square
+            }`}>
+              <img
+                class={`w-full object-cover ${
+                  item.size === "large" 
+                    ? "h-80 lg:h-96" // Taller for vertical
+                    : "h-64 lg:h-64" // Square height
+                }`}
+                src={item.src}
+                alt={`Team member ${index + 1}`}
+                loading="lazy"
+              />
+            </div>
+          ))}
+        </div>
+      </div>
+    )}
+  </section>
+)}
+
+<style>
+  @keyframes marquee {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-50%);
+    }
+  }
+  
+  .animate-marquee {
+    animation: marquee 30s linear infinite;
+    width: calc(200% + 1rem);
+  }
+  
+  .animate-marquee:hover {
+    animation-play-state: paused;
+  }
+  
+  /* Responsive adjustments for vertical and square layout */
+  @media (max-width: 768px) {
+    .animate-marquee {
+      width: calc(200% + 0.5rem);
+    }
+    
+    /* Adjust sizes for mobile - keep vertical and square proportions */
+    .w-80 {
+      width: 14rem; /* Vertical on mobile */
+    }
+    
+    .w-64 {
+      width: 12rem; /* Square on mobile */
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .w-80 {
+      width: 12rem; /* Smaller vertical on small mobile */
+    }
+    
+    .w-64 {
+      width: 10rem; /* Smaller square on small mobile */
+    }
+  }
+</style>
+

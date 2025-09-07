@@ -1,164 +1,216 @@
 ---
-// Footer component
+import SocialComponent from "./Social.astro";
+import social from "../config/social.json";
+
+// Footer menu data
+const quickLinks = [
+  { name: "关于我们", url: "/about" },
+  { name: "联系我们", url: "/contact" },
+  { name: "服务项目", url: "/services" },
+  { name: "客户见证", url: "/testimonials" },
+  { name: "团队介绍", url: "/team" }
+];
+
+const resources = [
+  { name: "常见问题", url: "/faq" },
+  { name: "案例研究", url: "/case-studies" }
+];
+
+const legal = [
+  { name: "服务条款", url: "/terms" },
+  { name: "隐私政策", url: "/privacy" }
+];
+
+const footerMenu = [
+  { name: "服务条款", url: "/terms" },
+  { name: "隐私政策", url: "/privacy" }
+];
 ---
 
-<footer class="footer">
-  <div class="footer-container">
-    <div class="footer-content">
-      <div class="footer-section">
-        <h3 class="footer-title">MMC</h3>
-        <p class="footer-desc">
-          专业的现代化解决方案提供商，致力于为客户创造价值。
-        </p>
+<footer class="bg-theme-dark relative text-white">
+  <!-- Background Patterns -->
+  <div class="pointer-events-none absolute top-0 left-0 z-10 h-40 w-44 opacity-30 md:opacity-100">
+    <img
+      class="h-full w-full object-cover"
+      src="/images/footer/footer-bg-pattern-1-fixed.svg"
+      alt="pattern"
+    />
+  </div>
+  <div class="pointer-events-none absolute top-0 right-0 z-10 h-40 w-40 opacity-30 md:opacity-100">
+    <img
+      class="h-full w-full object-cover"
+      src="/images/footer/footer-bg-pattern-2-fixed.svg"
+      alt="pattern"
+    />
+  </div>
+
+  <div class="container">
+    <div class="grid pt-8 md:pt-16 lg:grid-cols-2 xl:grid-cols-3">
+      <!-- Logo, Description and Social -->
+      <div class="flex flex-col gap-y-5 lg:pe-10">
+        <div>
+          <div class="text-2xl font-bold text-gold">MMC FP Sdn Bhd</div>
+          <p class="text-white text-sm opacity-90">199701019804 (0435301-X)</p>
+        </div>
+        <div class="text-sm opacity-90 space-y-3">
+          <div class="space-y-2">
+            <div>
+              <p class="font-medium text-base">地址:</p>
+              <p class="ml-2 text-base">59.20, Exchange 106,<br>Tun Razak Exchange (TRX),<br>55188 Kuala Lumpur</p>
+            </div>
+            <div>
+              <p class="font-medium text-base">CMSL:</p>
+              <p class="ml-2 text-base">eCMSL/A0224/2008</p>
+            </div>
+          </div>
+        </div>
+        <SocialComponent
+          layout="dark"
+          class="mt-5 gap-1"
+          list={social.main}
+        />
       </div>
-      
-      <div class="footer-section">
-        <h4>服务</h4>
-        <ul class="footer-links">
-          <li><a href="/services">创新解决方案</a></li>
-          <li><a href="/services">专业咨询</a></li>
-          <li><a href="/services">技术支持</a></li>
-          <li><a href="/services">定制服务</a></li>
-        </ul>
-      </div>
-      
-      <div class="footer-section">
-        <h4>公司</h4>
-        <ul class="footer-links">
-          <li><a href="/about">关于我们</a></li>
-          <li><a href="/team">团队介绍</a></li>
-          <li><a href="/careers">加入我们</a></li>
-          <li><a href="/news">新闻动态</a></li>
-        </ul>
-      </div>
-      
-      <div class="footer-section">
-        <h4>联系方式</h4>
-        <div class="contact-info">
-          <p>📧 contact@mmc.com</p>
-          <p>📱 +86 400-123-4567</p>
-          <p>📍 中国 上海市</p>
+
+      <!-- Quick Links, Resources, Legal -->
+      <div class="col-span-2 mt-10 grid gap-y-10 md:grid-cols-3 xl:mt-0 xl:ml-5">
+        <!-- Quick Links -->
+        <div class="border-white/10 md:border-l md:px-8 lg:px-8 xl:px-14">
+          <h3 class="text-h5 mb-6 text-inherit">快速链接</h3>
+          <ul class="flex flex-col gap-y-1.5">
+            {quickLinks.map((menu) => (
+              <li class="inline-block">
+                <a
+                  class="inline-block py-px text-inherit opacity-90 duration-300 hover:underline focus:underline"
+                  href={menu.url}
+                >
+                  {menu.name}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <!-- Resources and Legal -->
+        <div class="col-span-2 border-white/10 md:border-l md:pl-8 lg:pl-8 xl:pl-14">
+          <div class="grid gap-y-10 md:grid-cols-2">
+            <div>
+              <h3 class="text-h5 mb-6 text-inherit">资源</h3>
+              <ul class="flex flex-col gap-2">
+                {resources.map((menu) => (
+                  <li class="inline-block">
+                    <a
+                      class="inline-block py-px text-inherit opacity-90 duration-300 hover:underline focus:underline"
+                      href={menu.url}
+                    >
+                      {menu.name}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div class="border-white/10 md:border-l md:pl-8 lg:pl-8 xl:pl-14">
+              <h3 class="text-h5 mb-6 text-inherit">法律</h3>
+              <ul class="flex flex-col gap-2">
+                {legal.map((menu) => (
+                  <li class="inline-block">
+                    <a
+                      class="inline-block py-px text-inherit opacity-90 duration-300 hover:underline focus:underline"
+                      href={menu.url}
+                    >
+                      {menu.name}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
         </div>
       </div>
     </div>
-    
-    <div class="footer-bottom">
-      <div class="footer-copyright">
-        <p>&copy; 2024 MMC. 保留所有权利。</p>
-      </div>
-      <div class="footer-social">
-        <a href="#" class="social-link">微信</a>
-        <a href="#" class="social-link">微博</a>
-        <a href="#" class="social-link">LinkedIn</a>
-      </div>
+  </div>
+
+  <!-- Footer Menu & Copyright -->
+  <div class="bg-white/5 py-7 text-sm md:text-base">
+    <div class="container flex flex-wrap justify-between gap-x-8 gap-y-6">
+      <ul class="has-list has-list-dot flex flex-wrap gap-y-2 md:flex-nowrap">
+        {footerMenu.map((menu) => (
+          <li class="inline-block">
+            <a
+              class="inline-block py-px text-inherit opacity-90 duration-300 hover:underline focus:underline"
+              href={menu.url}
+            >
+              {menu.name}
+            </a>
+          </li>
+        ))}
+      </ul>
+      <ul class="has-list has-list-slash prose-a:text-inherit flex flex-wrap gap-y-2">
+        <li class="prose-a:underline-offset-2 prose-a:underline prose-a:hover:no-underline inline-block opacity-90">
+          <span>版权所有 2025</span>
+        </li>
+        <li class="prose-a:underline-offset-2 prose-a:underline prose-a:hover:no-underline inline-block opacity-90">
+          <span>MMC FP Sdn Bhd 保留所有权利</span>
+        </li>
+      </ul>
     </div>
   </div>
 </footer>
 
 <style>
-  .footer {
-    background: #1f2937;
-    color: white;
-    padding: 3rem 0 1rem;
+  .bg-theme-dark {
+    background-color: #024340;
   }
-
-  .footer-container {
+  
+  .text-primary {
+    color: #024340;
+  }
+  
+  .text-gold {
+    color: #B4A180;
+  }
+  
+  .text-h5 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    line-height: 1.75rem;
+  }
+  
+  .has-list-dot li:not(:last-child)::after {
+    content: "•";
+    margin: 0 0.5rem;
+    opacity: 0.5;
+  }
+  
+  .has-list-slash li:not(:last-child)::after {
+    content: "/";
+    margin: 0 0.5rem;
+    opacity: 0.5;
+  }
+  
+  .container {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 0 2rem;
+    padding: 0 1rem;
   }
-
-  .footer-content {
-    display: grid;
-    grid-template-columns: 2fr 1fr 1fr 1.5fr;
-    gap: 3rem;
-    margin-bottom: 2rem;
-  }
-
-  .footer-title {
-    font-size: 1.5rem;
-    font-weight: bold;
-    color: #fbbf24;
-    margin-bottom: 1rem;
-  }
-
-  .footer-desc {
-    color: #d1d5db;
-    line-height: 1.6;
-    max-width: 300px;
-  }
-
-  .footer-section h4 {
-    font-size: 1.125rem;
-    font-weight: 600;
-    margin-bottom: 1rem;
-    color: white;
-  }
-
-  .footer-links {
-    list-style: none;
-  }
-
-  .footer-links li {
-    margin-bottom: 0.5rem;
-  }
-
-  .footer-links a {
-    color: #d1d5db;
-    text-decoration: none;
-    transition: color 0.3s ease;
-  }
-
-  .footer-links a:hover {
-    color: #fbbf24;
-  }
-
-  .contact-info p {
-    color: #d1d5db;
-    margin-bottom: 0.5rem;
-  }
-
-  .footer-bottom {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding-top: 2rem;
-    border-top: 1px solid #374151;
-  }
-
-  .footer-copyright p {
-    color: #9ca3af;
-    font-size: 0.875rem;
-  }
-
-  .footer-social {
-    display: flex;
-    gap: 1rem;
-  }
-
-  .social-link {
-    color: #d1d5db;
-    text-decoration: none;
-    padding: 0.5rem;
-    border-radius: 4px;
-    transition: all 0.3s ease;
-  }
-
-  .social-link:hover {
-    color: #fbbf24;
-    background: rgba(251, 191, 36, 0.1);
-  }
-
-  @media (max-width: 768px) {
-    .footer-content {
-      grid-template-columns: 1fr;
-      gap: 2rem;
+  
+  @media (min-width: 768px) {
+    .container {
+      padding: 0 2rem;
     }
-
-    .footer-bottom {
-      flex-direction: column;
-      gap: 1rem;
-      text-align: center;
+  }
+  
+  @media (min-width: 1024px) {
+    .container {
+      padding: 0 3rem;
     }
+  }
+  
+  /* Social media icon styling to match AstroBackup */
+  .social-icon {
+    filter: brightness(0) saturate(100%) invert(100%) sepia(0%) saturate(0%) hue-rotate(0deg) brightness(100%) contrast(100%);
+  }
+  
+  .social-icon:hover {
+    filter: brightness(0) saturate(100%) invert(15%) sepia(100%) saturate(2000%) hue-rotate(180deg) brightness(80%) contrast(120%);
   }
 </style>

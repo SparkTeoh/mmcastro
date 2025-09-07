@@ -1,0 +1,39 @@
+---
+// AboutBanner component - Text content only
+
+const bannerData = {
+  enable: true,
+  title: "我们相信，真正的好企业：<br/><span style='font-size: 1.2em; color: #B4A180;'>在成就客户与团队中，<br/>赢取利润。</span>",
+  subtitle: "我们不仅仅是顾问，更是您的增长合伙人",
+  description: "这正是我们的使命所在。在MMC，我们不仅仅是追求收入与利润的双增长，我们致力于将这个理念系统化。<br /><br />我们为您企业安装一套<strong>预算管理系统</strong>，它的核心，就是让员工能像老板一样关心利润。因为在这套系统里，<strong>成就客户</strong>会被清晰地衡量，<strong>成就团队</strong>则与公平、丰厚的回报直接挂钩。<br /><br />我们用最科学的财务蓝图，去打造一个让老板安心、让团队为共同目标而战的<strong>好企业</strong>。我们是您的增长合伙人，更是您实现这一企业理想的同行者。",
+  button: {
+    enable: true
+  }
+};
+---
+
+{bannerData.enable && (
+  <section class="bg-white pt-20 md:pt-24">
+    <div class="container mx-auto px-4 py-4 md:py-8">
+      {/* Text Section - Responsive layout */}
+      <div class="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6 lg:gap-8 lg:min-h-[300px]">
+        <div class="flex-1 max-w-2xl lg:flex lg:items-center">
+          {bannerData.title && (
+            <h2
+              class="text-h3-md md:text-h3 font-bold leading-tight text-dark break-words"
+              set:html={bannerData.title}
+            />
+          )}
+        </div>
+        {bannerData.description && (
+          <div class="flex-1 max-w-2xl lg:flex lg:items-center">
+            <p
+              set:html={bannerData.description}
+              class="text-text-default leading-normal text-base opacity-80"
+            />
+          </div>
+        )}
+      </div>
+    </div>
+  </section>
+)}

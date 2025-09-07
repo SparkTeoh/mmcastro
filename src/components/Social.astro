@@ -1,0 +1,58 @@
+---
+interface SocialLink {
+  enable: boolean;
+  label: string;
+  icon: string;
+  url: string;
+}
+
+interface Props {
+  list: SocialLink[];
+  layout?: "dark" | "modern" | "light" | "minimal";
+  class?: string;
+}
+
+const { list, layout = "dark", class: className } = Astro.props;
+
+// Filter enabled social links
+const enabledSocials = list.filter((social) => social.enable);
+---
+
+{
+  enabledSocials.length > 0 && (
+    <ul class={`flex flex-wrap items-center gap-1 ${className || ""}`}>
+      {enabledSocials.map((social) => (
+        <li>
+          <a
+            aria-label={social.label}
+            href={social.url}
+            target="_blank"
+            rel="noopener noreferrer nofollow"
+            class={`
+              group relative flex items-center justify-center transition duration-300
+              ${layout === "dark" 
+                ? "bg-theme-dark/5 via-theme-dark bg-gradient-to-b from-white/[2.5%] to-transparent text-white h-12 w-12 group-hover:text-primary" 
+                : layout === "modern"
+                ? "bg-gray-100 hover:bg-primary/10 text-primary h-12 w-12 rounded-full"
+                : "text-primary h-12 w-12"
+              }
+            `}
+          >
+            <span class="sr-only">{social.label}</span>
+            {social.icon && (
+              <img
+                src={social.icon}
+                alt={social.label}
+                class={`
+                  has-inherited-colors relative z-10 transition duration-300
+                  ${layout === "dark" ? "h-6 w-6 social-icon" : layout === "modern" ? "h-5 w-5" : "h-4 w-4"}
+                `}
+                style={layout === "modern" ? "filter: brightness(0) saturate(100%) invert(8%) sepia(15%) saturate(2847%) hue-rotate(160deg) brightness(95%) contrast(95%);" : ""}
+              />
+            )}
+          </a>
+        </li>
+      ))}
+    </ul>
+  )
+}

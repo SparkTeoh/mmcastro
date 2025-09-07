@@ -1,71 +1,121 @@
 ---
-// Services section component with MMC specific services
+// Services section component based on AstroBackup design
 
-// MMC Services data from AstroBackup
+// MMC Services data matching AstroBackup structure
 const servicesData = {
   enable: true,
   title: "我们的核心服务",
-  subtitle: "专业的利润增长解决方案",
+  subtitle: "我们的服务",
   services: [
     {
-      title: "企业内训",
-      subtitle: "Corporate Training",
+      title: "企业内训<br><small>(Corporate Training)</small>",
       description: "定制符合公司文化和战略的培训课程，提升团队的执行力与管理能力。",
-      icon: "🏢",
-      image: "/images/services/9.jpg"
+      icon: "/images/services/icon/infographic.svg",
+      image: "/images/services/service3.webp",
+      link: "/services/corporate-training"
     },
     {
-      title: "课程培训",
-      subtitle: "Training Courses",
+      title: "课程培训<br><small>(Training Courses)</small>",
       description: "通过科学的预算制定和资金管理方法，帮助企业提升利润并实现战略目标。",
-      icon: "📚",
-      image: "/images/services/7.jpg"
+      icon: "/images/services/icon/task.svg",
+      image: "/images/services/service1.webp",
+      link: "/services/training-course"
     },
     {
-      title: "企业咨询服务",
-      subtitle: "Consulting Services",
+      title: "企业咨询服务<br><small>(Consulting Services)</small>",
       description: "通过量身定制并与您的高管团队紧密合作，帮助企业将理论转化为实际操作。",
-      icon: "👥",
-      image: "/images/services/8.jpg"
+      icon: "/images/services/icon/leader-board.svg",
+      image: "/images/services/service2.webp",
+      link: "/services/management-consulting"
     }
   ]
 };
 ---
 
-<section class="section pt-16 md:pt-28 bg-theme-light">
-  <div class="container">
-    <div class="text-center mb-16">
-      <h2 class="text-h2-md md:text-h2 font-secondary font-bold text-dark mb-4">{servicesData.title}</h2>
-      <p class="text-lg text-text-default/80 max-w-2xl mx-auto">{servicesData.subtitle}</p>
-    </div>
-    
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
-      {servicesData.services.map((service, index) => (
-        <div class="bg-body rounded-2xl overflow-hidden shadow-lg transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl">
-          <div class="p-8">
-            <div class="flex items-start gap-4 mb-6">
-              <div class="text-4xl flex-shrink-0">{service.icon}</div>
-              <div class="flex-1">
-                <h3 class="text-h4 font-secondary font-bold text-dark mb-1">{service.title}</h3>
-                <span class="text-sm text-secondary font-medium">{service.subtitle}</span>
-              </div>
+{
+  servicesData.enable && (
+    <section class="overflow-hidden">
+      <div class="flex flex-col justify-start gap-12 md:gap-16 bg-theme-dark py-16 md:py-28">
+        <div class="container">
+          <div class="flex flex-col flex-wrap justify-between gap-8 lg:flex-row lg:items-center">
+            <div class="shrink-0 lg:max-w-2xl">
+              {servicesData.subtitle && (
+                <span class="mb-2.5 inline-block rounded-full border px-5 py-px border-white/5 bg-white/5 text-white">
+                  {servicesData.subtitle}
+                </span>
+              )}
+              {servicesData.title && (
+                <h2 class="text-h3 text-white">
+                  {servicesData.title}
+                </h2>
+              )}
             </div>
-            <p class="text-text-default/80 leading-relaxed mb-6">{service.description}</p>
-            <div class="h-48 mb-6 rounded-lg overflow-hidden">
-              <img src={service.image} alt={service.title} class="w-full h-full object-cover transition-transform duration-300 hover:scale-105" loading="lazy" />
-            </div>
+            
             <div>
-              <a href="/contact" class="inline-flex items-center justify-center px-6 py-3 bg-secondary text-primary font-semibold rounded-lg transition-all duration-300 hover:bg-secondary/90 hover:scale-105">了解更多</a>
+              <a href="/services/" class="relative flex items-center">
+                <span class="btn btn-outline btn-outline-transparent has-text-flip-animation before:btn before:btn-outline-transparent after:btn after:btn-outline-transparent" data-content="了解我们的服务">
+                  了解我们的服务
+                </span>
+                <span class="icon">
+                  <svg class="h-4 w-4 text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 17L17 7M17 7H7M17 7V17"></path>
+                  </svg>
+                </span>
+              </a>
             </div>
           </div>
         </div>
-      ))}
-    </div>
-    
-    <div class="text-center bg-body rounded-2xl p-12 shadow-lg">
-      <p class="text-xl text-dark font-semibold mb-6">想了解更多服务吗？</p>
-      <a href="/contact" class="inline-flex items-center justify-center px-8 py-4 bg-secondary text-primary font-semibold rounded-lg transition-all duration-300 hover:bg-secondary/90 hover:scale-105">联系我们</a>
-    </div>
-  </div>
-</section>
+        
+        <div class="has-light-shape relative after:absolute after:inset-x-0 after:h-screen after:w-full after:top-[17.0625rem] after:bg-stone-50 after:md:top-[18rem] pb-4">
+          <div class="relative z-10 container">
+            <div class="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+              {servicesData.services.map((service, index) => (
+                <div class="bg-white box-shadow-primary overflow-visible">
+                  <div class="relative">
+                    {service.image && (
+                      <img
+                        src={service.image}
+                        alt={`Image about ${service.title}`}
+                        width="416"
+                        height="288"
+                        class="h-72 w-full min-w-full object-cover"
+                      />
+                    )}
+                    {service.icon && (
+                      <div class="bg-primary absolute -bottom-9 left-8 flex h-20 w-20 items-center justify-center rounded-full fill-white transition duration-300">
+                        <img
+                          alt="icon"
+                          src={service.icon}
+                          width="40"
+                          height="40"
+                          class="h-10 w-10 text-white transition duration-300"
+                          style="filter: brightness(0) invert(1);"
+                        />
+                      </div>
+                    )}
+                  </div>
+                  <div class="px-8 pt-16 pb-10 overflow-visible">
+                    {service.title && (
+                      <div class="mb-4">
+                        <h3 class="text-h4 opacity-80 mb-2" set:html={service.title} />
+                        <div class="h-1 w-10 bg-primary"></div>
+                      </div>
+                    )}
+                    {service.description && <p set:html={service.description} />}
+                    <a href={service.link} class="inline-flex items-center mt-8 px-4 py-2 bg-secondary text-white rounded-lg font-semibold hover:bg-secondary/90 transition-all duration-300 hover:scale-105 shadow-md">
+                      了解更多
+                      <svg class="inline-block ml-2 h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                      </svg>
+                    </a>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  )
+}
 

@@ -1,0 +1,127 @@
+---
+// HowItWorks section component based on AstroBackup design
+
+// MMC How It Works data
+const howItWorksData = {
+  enable: true,
+  title: "MMC利润增长四步法",
+  subtitle: "我们的方法论",
+  list: [
+    {
+      title: "第一步：【蓝图设计】制定利润目标",
+      description: `
+        <h2 style="color: #b5a280; font-size: 1.25rem; font-weight: 600; margin-bottom: 1rem;">核心动作：先算后做</h2>
+        <p style="color: #666; line-height: 1.6;">我们不从"感觉"出发，而是从"终点"开始。运用我们独有的财务模型，与您一起精准测算出新一年的收入、成本、现金流三大核心目标，共同绘制出一张清晰可见、切实可行的年度利润蓝图。</p>
+      `,
+      image: "/images/how-it-works/蓝图.webp",
+      number: "01"
+    },
+    {
+      title: "第二步：【责任到人】拆解目标与KPI",
+      description: `
+        <h2 style="color: #b5a280; font-size: 1.25rem; font-weight: 600; margin-bottom: 1rem;">核心动作：千斤重担人人挑</h2>
+        <p style="color: #666; line-height: 1.6;">一张再好的蓝图，也需要一支强大的施工队。我们将教您如何科学地将公司级的利润蓝图，拆解为每个部门、每个岗位的具体KPI。确保公司从上到下，人人有指标，事事有归属，将所有人的力量聚焦于同一个利润目标。</p>
+      `,
+      image: "/images/how-it-works/责任.webp",
+      number: "02"
+    },
+    {
+      title: "第三步：【系统激励】绑定薪酬与奖励",
+      description: `
+        <h2 style="color: #b5a280; font-size: 1.25rem; font-weight: 600; margin-bottom: 1rem;">核心动作：为结果付薪</h2>
+        <p style="color: #666; line-height: 1.6;">打造一个自动自发的"赚钱"团队，关键在于"<strong>分钱</strong>的艺术"。我们帮您设计一套透明、公平、且极具煽动性的薪酬奖励系统，将个人和团队的收入与KPI完成度强力挂钩。员工不再是为老板打工，而是为自己的钱包而战。</p>
+      `,
+      image: "/images/how-it-works/激励.webp",
+      number: "03"
+    },
+    {
+      title: "第四步：【循环优化】复盘与调整",
+      description: `
+        <h2 style="color: #b5a280; font-size: 1.25rem; font-weight: 600; margin-bottom: 1rem;">核心动作：持续迭代</h2>
+        <p style="color: #666; line-height: 1.6;">市场在变，计划也要跟着变。我们提供一套简单高效的复盘机制（日报、周会、月度分析），帮助您和团队持续追踪结果、发现问题、快速调整行动。这确保您的利润蓝图始终保持活力，形成一个不断增长、自我优化的良性循环。</p>
+      `,
+      image: "/images/how-it-works/优化.webp",
+      number: "04"
+    }
+  ]
+};
+---
+
+{
+  howItWorksData.enable && (
+    <section class="relative">
+      {/* Background Pattern */}
+      <div class="pointer-events-none absolute top-0 left-0 -z-10 h-[47rem] w-full">
+        <div class="relative h-full w-full">
+          <img
+            class="h-full w-full object-cover md:object-left-top"
+            src="/images/how-it-works/how-it-work-line.svg"
+            alt="pattern"
+          />
+          <div class="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-white"></div>
+        </div>
+      </div>
+      <div class="container">
+        {/* Header */}
+        <div class="mx-auto shrink-0 text-center lg:max-w-2xl mb-12 md:mb-16">
+          {howItWorksData.subtitle && (
+            <span class="bg-primary/5 border-secondary text-primary mb-2.5 inline-block rounded-full border px-5 py-px">
+              {howItWorksData.subtitle}
+            </span>
+          )}
+          {howItWorksData.title && (
+            <h2 class="text-h3 text-inherit mt-4" style="color: #002528; font-size: 1.5rem;">
+              {howItWorksData.title}
+            </h2>
+          )}
+        </div>
+        
+        {/* Steps */}
+        <div class="mt-12 grid space-y-10 md:mt-16">
+          {howItWorksData.list.map((item, index) => (
+            <div class="border-secondary grid gap-5 border bg-white md:min-h-[27.75rem] lg:sticky lg:top-[calc(6vh_+_5rem)] lg:grid-cols-12">
+              {/* Text Content */}
+              <div class={`
+                px-8 py-10 md:flex md:flex-col md:justify-center md:px-16 md:py-16 lg:col-span-7
+                ${index % 2 === 0 ? 'order-1' : 'order-1 lg:order-2'}
+              `}>
+                {item.number && (
+                  <span class="text-h2 from-primary font-secondary relative mb-5 inline-block bg-gradient-to-b via-white via-90% to-transparent bg-clip-text leading-tight font-bold text-transparent md:text-[4.0625rem]/none">
+                    {item.number}
+                  </span>
+                )}
+                {item.title && (
+                  <h3 class="text-h4 mb-8" set:html={item.title} />
+                )}
+                {item.description && (
+                  <div class="prose-styles" set:html={item.description} />
+                )}
+              </div>
+
+              {/* Images */}
+              <div class={`
+                relative overflow-hidden px-10 lg:col-span-5
+                ${index % 2 === 0 ? 'order-2' : 'order-2 lg:order-1'}
+              `}>
+                {/* Step Background Pattern */}
+                <div class="absolute inset-0 opacity-50">
+                  <img
+                    class="h-full w-full object-cover"
+                    src="/images/how-it-works/how-it-work-curl.svg"
+                    alt="step pattern"
+                  />
+                </div>
+                <img
+                  class="translate-centered absolute h-full w-full object-contain z-10"
+                  src={item.image}
+                  height={444}
+                  alt={`${item.title}图片`}
+                />
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  )
+}

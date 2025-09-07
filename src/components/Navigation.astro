@@ -6,7 +6,9 @@
   <nav class="nav">
     <div class="nav-container">
       <div class="nav-logo">
-        <a href="/">MMC</a>
+        <a href="/">
+          <img src="/images/logo/MMCLOGO.png" alt="MMC Logo" class="logo-image" />
+        </a>
       </div>
       <ul class="nav-menu">
         <li><a href="/">首页</a></li>
@@ -44,10 +46,19 @@
   }
 
   .nav-logo a {
-    font-size: 1.5rem;
-    font-weight: bold;
     text-decoration: none;
-    color: #2563eb;
+    display: flex;
+    align-items: center;
+  }
+
+  .logo-image {
+    height: 60px;
+    width: auto;
+    transition: transform 0.3s ease;
+  }
+
+  .logo-image:hover {
+    transform: scale(1.05);
   }
 
   .nav-menu {

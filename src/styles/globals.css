@@ -14,17 +14,19 @@
 html {
   font-size: 16px;
   font-feature-settings: "lnum" 1, "tnum" 1;
+  overflow-x: hidden;
 }
 
 body {
   @apply bg-body font-primary text-text-default leading-normal font-normal;
   overscroll-behavior: none;
   -webkit-overflow-scrolling: touch;
+  overflow-x: hidden;
 }
 
 /* Global Section Spacing */
 main section {
-  @apply pt-16 md:pt-28;
+  @apply pt-12 md:pt-20;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -53,6 +55,23 @@ h5, .h5 {
 
 h6, .h6 {
   @apply text-h6;
+}
+
+/* Utility Classes */
+.translate-centered {
+  @apply absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2;
+}
+
+.prose-styles {
+  @apply prose prose-lg max-w-none;
+}
+
+.prose-styles h2 {
+  @apply text-xl font-semibold mb-4;
+}
+
+.prose-styles p {
+  @apply text-gray-600 leading-relaxed;
 }
 
 b, strong {
@@ -92,6 +111,7 @@ button:not(:disabled),
 }
 
 .marquee-content {
+  display: flex;
   animation: marquee var(--marquee-duration) linear infinite var(--marquee-reverse);
 }
 
@@ -107,4 +127,119 @@ button:not(:disabled),
 /* Fit To Screen */
 .fit-to-screen {
   @apply flex flex-col justify-start min-h-[102vh];
+}
+
+/* Primary Gradient Text */
+.has-gradients-text {
+  @apply from-primary bg-gradient-to-b via-white via-90% to-transparent bg-clip-text text-transparent;
+}
+
+/* Animated Number */
+.has-animated-number {
+  /* This class is used for number animation containers */
+}
+
+/* Text Highlight */
+.has-text-highlight > strong {
+  @apply text-primary relative inline-block;
+}
+
+.has-text-highlight > strong svg {
+  @apply absolute bottom-full left-1/2 h-[2rem] w-[4.1875rem] -translate-x-1/2 content-[""];
+}
+
+/* Match Brand Color */
+.match-brand-color {
+  @apply fill-primary;
+}
+
+.match-brand-color *[fill*="#2562FF"] {
+  @apply !fill-primary;
+}
+
+.match-brand-color *[stroke*="#2562FF"] {
+  @apply !stroke-primary;
+}
+
+.match-brand-color *[stop-color="#2562FF"] {
+  stop-color: var(--color-primary) !important;
+}
+
+/* Ensure meteor colors are not overridden */
+.meteor-color {
+  stop-color: inherit !important;
+}
+
+.meteor-color[stop-color="#00BFFF"] {
+  stop-color: #00BFFF !important;
+}
+
+.meteor-color[stop-color="#2562FF"] {
+  stop-color: #2562FF !important;
+}
+
+/* Services Section Styles */
+.has-light-shape {
+  position: relative;
+}
+
+.box-shadow-primary {
+  box-shadow: 0 10px 30px rgba(2, 67, 64, 0.1);
+}
+
+/* Button Styles */
+.btn {
+  @apply inline-flex items-center justify-center px-6 py-3 rounded-lg font-semibold transition-all duration-300;
+}
+
+.btn-outline {
+  @apply border-2 bg-transparent;
+}
+
+.btn-outline-primary {
+  @apply border-primary text-primary hover:bg-primary hover:text-white;
+}
+
+.btn-outline-transparent {
+  @apply border-white/20 text-white hover:bg-white hover:text-dark;
+}
+
+.has-text-flip-animation {
+  position: relative;
+  overflow: hidden;
+}
+
+.has-text-flip-animation::before,
+.has-text-flip-animation::after {
+  content: attr(data-content);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.3s ease;
+}
+
+.has-text-flip-animation::before {
+  transform: translateY(0);
+}
+
+.has-text-flip-animation::after {
+  transform: translateY(100%);
+}
+
+.has-text-flip-animation:hover::before {
+  transform: translateY(-100%);
+}
+
+.has-text-flip-animation:hover::after {
+  transform: translateY(0);
+}
+
+/* Icon styles */
+.icon {
+  @apply ml-2 flex items-center justify-center;
 }

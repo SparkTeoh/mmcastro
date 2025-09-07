@@ -1,0 +1,116 @@
+---
+// AboutPrinciple component - Philosophy and statistics section
+// Based on AstroBackup Achievements section design
+---
+
+<section>
+  <div class="bg-theme-light relative py-12 md:py-20">
+    <div class="container grid gap-x-10 gap-y-10 overflow-hidden md:gap-y-20 lg:grid-cols-2 lg:place-items-center">
+      <div class="lg:max-w-2xl">
+        <div data-aos="fade-up-sm">
+          {/* Subtitle */}
+          <span class="bg-primary/5 border-secondary text-primary mb-2.5 inline-block rounded-full border px-5 py-px">
+            我们的理念
+          </span>
+          {/* Main Title */}
+          <h2 class="text-h3 text-inherit">
+            用数字驱动增长，用系统锁定利润
+          </h2>
+        </div>
+        {/* Description */}
+        <div data-aos="fade-up-sm" data-aos-delay="200" class="mt-6">
+          <p class="text-text-default">
+            我们坚信，每一个伟大的商业决策，都源于科学的测算而非模糊的感觉。我们的专家团队，依托超过18年的持牌经验，为您带来的不仅是跨行业的深刻洞见，更是一套经过500家企业验证的、可落地的利润增长系统。
+          </p>
+        </div>
+        {/* Features List */}
+        <div class="divide-border-default/35 mt-8 divide-y md:mt-12">
+          {/* Feature 1 */}
+          <div data-aos="fade-up-sm" data-aos-offset="0" data-aos-delay="150" class="mt-5 flex items-center justify-start gap-x-6 py-1.5 pt-5">
+            <div class="group-hover/item:bg-primary bg-primary/5 flex h-14 w-14 shrink-0 items-center justify-center rounded-lg transition duration-300">
+              <img
+                src="/images/icons/svg/analytics.svg"
+                alt="Analytics icon"
+                class="h-7 w-7 transition"
+              />
+            </div>
+            <div>
+              <h3 class="text-h5 mb-px">数据决策，告别感觉</h3>
+              <p class="text-sm">我们教您看懂并运用企业最核心的财务数据，让每一次投入、每一次扩张，都有据可依，有果可期</p>
+            </div>
+          </div>
+          
+          {/* Feature 2 */}
+          <div data-aos="fade-up-sm" data-aos-offset="0" data-aos-delay="300" class="mt-5 flex items-center justify-start gap-x-6 py-1.5 pt-5">
+            <div class="group-hover/item:bg-primary bg-primary/5 flex h-14 w-14 shrink-0 items-center justify-center rounded-lg transition duration-300">
+              <img
+                src="/images/icons/svg/expertise.svg"
+                alt="Expertise icon"
+                class="h-7 w-7 transition"
+              />
+            </div>
+            <div>
+              <h3 class="text-h5 mb-px">系统落地，而非空谈</h3>
+              <p class="text-sm">我们的专业不仅在于财务规划，更在于将复杂的财务逻辑，转化为每个行业、每个团队都能执行的简单动作与系统。</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      {/* Right Column - Statistics */}
+      <div class="has-animated-number max-w-lg" data-aos="fade-left-sm">
+        {/* Stat 1 */}
+        <div class="grid grid-cols-2 gap-0">
+          <div class="flex flex-col py-7 items-end">
+            <div class="has-gradients-text text-h3 md:text-h2 font-secondary relative mb-2 inline-flex place-items-stretch overflow-hidden leading-tight font-bold">
+              98%
+            </div>
+            <h3 class="text-h6 font-medium opacity-80">客户推荐率</h3>
+          </div>
+          <div class="flex items-center py-7 opacity-80 ml-4 border-l pl-4">
+            <p class="max-w-52 text-sm">我们的客户不仅对成果高度满意，更愿意将我们推荐给他们的企业家朋友。</p>
+          </div>
+        </div>
+        
+        {/* Stat 2 */}
+        <div class="grid grid-cols-2 gap-0 border-t">
+          <div class="flex flex-col py-7 order-2 ml-4 border-l pl-4">
+            <div class="has-gradients-text text-h3 md:text-h2 font-secondary relative mb-2 inline-flex place-items-stretch overflow-hidden leading-tight font-bold">
+              500+
+            </div>
+            <h3 class="text-h6 font-medium opacity-80">企业成功部署</h3>
+          </div>
+          <div class="flex items-center py-7 opacity-80 order-1 justify-end text-end">
+            <p class="max-w-52 text-sm">超过500家企业已成功安装并运行我们的 Profit OS™ 利润操作系统。</p>
+          </div>
+        </div>
+        
+        {/* Stat 3 */}
+        <div class="grid grid-cols-2 gap-0 border-t">
+          <div class="flex flex-col py-7 items-end">
+            <div class="has-gradients-text text-h3 md:text-h2 font-secondary relative mb-2 inline-flex place-items-stretch overflow-hidden leading-tight font-bold">
+              18+
+            </div>
+            <h3 class="text-h6 font-medium opacity-80">持牌经验</h3>
+          </div>
+          <div class="flex items-center py-7 opacity-80 ml-4 border-l pl-4">
+            <p class="max-w-52 text-sm">自2008年起获大马证监会(SC)认证，超过18年的专业财务规划与企业咨询经验。</p>
+          </div>
+        </div>
+        
+        {/* Stat 4 */}
+        <div class="grid grid-cols-2 gap-0 border-t">
+          <div class="flex flex-col py-7 order-2 ml-4 border-l pl-4">
+            <div class="has-gradients-text text-h3 md:text-h2 font-secondary relative mb-2 inline-flex place-items-stretch overflow-hidden leading-tight font-bold">
+              30%+
+            </div>
+            <h3 class="text-h6 font-medium opacity-80">平均利润增长</h3>
+          </div>
+          <div class="flex items-center py-7 opacity-80 order-1 justify-end text-end">
+            <p class="max-w-52 text-sm">这是我们的客户在导入系统后，所实现的经过验证的平均利润增长。</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

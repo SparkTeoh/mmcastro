@@ -1,0 +1,27 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navigation from '../components/Navigation.astro';
+import AboutBanner from '../components/AboutBanner.astro';
+import AboutShowcase from '../components/AboutShowcase.astro';
+import AboutPrinciple from '../components/AboutPrinciple.astro';
+import AboutTeam from '../components/AboutTeam.astro';
+import CallToAction from '../components/CallToAction.astro';
+import Footer from '../components/Footer.astro';
+// import LineAnimation from '../components/LineAnimation.astro'; // Temporarily disabled
+---
+
+<Layout title="关于我们 - MMC 财务规划" description="了解MMC财务规划的专业团队和使命，我们致力于帮助企业实现收入利润双增长。">
+  <Navigation />
+  <main>
+    <AboutBanner />
+    <AboutShowcase />
+    <AboutPrinciple />
+    <AboutTeam />
+    <CallToAction />
+  </main>
+  <!-- LineAnimation temporarily disabled -->
+  <!-- <div class="relative">
+    <LineAnimation />
+  </div> -->
+  <Footer />
+</Layout>
