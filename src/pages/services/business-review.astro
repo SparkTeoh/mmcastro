@@ -1,0 +1,299 @@
+---
+import Layout from '../../layouts/Layout.astro';
+  import Navigation from '../../components/Navigation.astro';
+  import Footer from '../../components/Footer.astro';
+  import HowItWorks from '../../components/HowItWorks.astro';
+---
+
+<Layout title="经营复盘与落地执行系统 - MMC" description="让战略不再停留在纸上。建立一套说到做到的执行文化，通过结构化的复盘体系和可视化管理，确保目标高效落地。">
+  <Navigation />
+  
+  <main>
+    <!-- Page Title -->
+    <div class="container text-center pt-32 pb-8">
+      <h1 class="text-4xl md:text-5xl font-bold text-primary mb-4">经营复盘与落地执行系统</h1>
+    </div>
+
+    <!-- Navigation Breadcrumb -->
+    <nav class="container pb-8">
+      <div class="flex items-center justify-center space-x-2 text-sm">
+        <div class="bg-white rounded-lg px-4 py-2 shadow-sm border border-gray-100">
+          <a href="/" class="text-primary hover:text-secondary transition-colors">主页</a>
+          <span class="text-gray-400 mx-2">/</span>
+          <a href="/services" class="text-primary hover:text-secondary transition-colors">服务</a>
+          <span class="text-gray-400 mx-2">/</span>
+          <span class="text-text-default">经营复盘与落地执行系统</span>
+        </div>
+      </div>
+    </nav>
+
+  <!-- Hero Section with Image and Overlay Text -->
+  <section class="relative">
+    <div class="container">
+      <div class="relative pt-8 sm:pt-72 md:pt-[20.0625rem]">
+        <!-- Background Image -->
+        <img
+          data-aos="fade-up-sm"
+          data-aos-delay="200"
+          src="/images/services/service1.webp"
+          alt="Team collaboration meeting"
+          class="!h-52 max-h-full w-full object-cover sm:absolute sm:top-0 sm:left-0 sm:-z-10 sm:!h-[36.0625rem]"
+          onerror="this.style.display='none'"
+        />
+        
+        <!-- White Text Box Overlay -->
+        <div
+          data-aos-delay="300"
+          data-aos="fade-up-sm"
+          data-aos-offset="0"
+          class="box-shadow-primary bg-white px-5 py-7 sm:mx-16 sm:max-w-4xl md:px-10 md:py-14 lg:ml-24"
+        >
+          <h2 class="text-h4 md:text-h3 text-primary mb-5">
+            让战略不再停留在纸上。建立一套"说到做到"的执行文化。
+          </h2>
+          <p class="text-text-default leading-relaxed mb-6">
+            再好的预算蓝图，如果缺乏持续的追踪和调整，也无法变成现实。我们帮您建立一套从上到下的经营复盘"节奏"，将年度目标拆解到每月、每周、每日的行动中。通过结构化的会议和可视化的数据看板，让管理层能实时掌握经营动态，及时发现问题、解决问题，确保整个组织高效、精准地向着目标前进。
+          </p>
+          <a
+            class="relative mt-8 flex items-center"
+            href="/contact"
+          >
+            <span class="btn btn-outline btn-outline-primary has-text-flip-animation before:btn before:btn-outline-primary after:btn after:btn-outline-primary">
+              点击预约60分钟战略通话
+            </span>
+            <span class="icon">
+              <svg class="h-4 w-4 text-white" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+              </svg>
+            </span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Service Details Section -->
+  <section class="overflow-hidden py-16 md:py-24">
+    <div class="container">
+      <div class="flex flex-wrap items-center justify-between gap-6 overflow-x-hidden lg:flex-nowrap">
+        <div class="lg:max-w-lg" data-aos="fade-right-sm">
+          <h2 class="text-h3 text-primary font-bold mb-6">
+            您是否正面临这些挑战？
+          </h2>
+        </div>
+        <div
+          data-aos="fade-right-sm"
+          data-aos-delay="200"
+          class="opacity-80 lg:max-w-md xl:max-w-3xl text-text-default leading-relaxed text-lg">
+          <ul class="space-y-3 list-disc list-inside">
+            <li>年初定的目标，到年中就没人再提，年底才发现差距巨大。</li>
+            <li>会议又长又乱，变成了"抱怨大会"和"故事会"，没有实际产出。</li>
+            <li>各部门之间协同不畅，出现问题时互相推诿。</li>
+            <li>管理者深陷日常琐事，无法抽身进行战略思考和过程管理。</li>
+            <li>缺乏有效的问责机制，事情做了就是做了，做得好坏没人追踪。</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Our Method Section -->
+  <section class="py-16 bg-theme-light">
+    <div class="container">
+      <div class="text-center mb-12">
+        <h2 class="text-h3 text-primary font-bold mb-6">我们的方法：如何为您"保障落地"</h2>
+      </div>
+      
+      <div class="grid md:grid-cols-2 gap-8">
+        <!-- Method 1 -->
+        <div class="bg-white p-8 rounded-lg shadow-lg" data-aos="fade-up-sm" data-aos-delay="100">
+          <h3 class="text-xl font-semibold text-primary mb-4">经营会议体系搭建</h3>
+          <p class="text-gray-600 leading-relaxed">
+            我们为您设计一套标准化的会议体系，包括<strong>月度经营分析会、周度业绩检讨会、每日站会</strong>，明确会议目的、流程和参与人。
+          </p>
+        </div>
+
+        <!-- Method 2 -->
+        <div class="bg-white p-8 rounded-lg shadow-lg" data-aos="fade-up-sm" data-aos-delay="200">
+          <h3 class="text-xl font-semibold text-primary mb-4">管理仪表盘 (Dashboard) 设计</h3>
+          <p class="text-gray-600 leading-relaxed">
+            我们帮您筛选出最重要的过程指标，并将其可视化，让经营状况一目了然。
+          </p>
+        </div>
+
+        <!-- Method 3 -->
+        <div class="bg-white p-8 rounded-lg shadow-lg" data-aos="fade-up-sm" data-aos-delay="300">
+          <h3 class="text-xl font-semibold text-primary mb-4">目标拆解与责任分配 (OKR/KPI)</h3>
+          <p class="text-gray-600 leading-relaxed">
+            我们引导您将预算目标层层拆解到部门和个人，形成清晰的责任矩阵，让"人人头上有指标"。
+          </p>
+        </div>
+
+        <!-- Method 4 -->
+        <div class="bg-white p-8 rounded-lg shadow-lg" data-aos="fade-up-sm" data-aos-delay="400">
+          <h3 class="text-xl font-semibold text-primary mb-4">问题解决与复盘文化植入</h3>
+          <p class="text-gray-600 leading-relaxed">
+            我们培训您的团队如何进行有效的复盘，不是追究责任，而是分析根本原因，找到改进方案，形成持续优化的闭环。
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- How It Works Section -->
+  <HowItWorks />
+
+  <!-- Benefits Section with Image -->
+  <section class="mt-auto overflow-hidden">
+    <div class="bg-theme-light relative pt-6 md:pt-8 pb-0">
+      <!-- Background shapes -->
+      <div class="pointer-events-none absolute top-0 right-0 z-10 h-40 w-28 opacity-30 md:opacity-100 lg:left-0">
+        <img
+          class="match-brand-color text-primary h-full w-full origin-bottom-right object-cover"
+          src="/images/shapes/cta-shape-one.svg"
+          alt="pattern"
+        />
+      </div>
+      <div class="pointer-events-none absolute right-0 bottom-0 z-10 h-40 w-44 opacity-30 max-lg:hidden md:opacity-100">
+        <img
+          class="match-brand-color text-primary h-full w-full origin-bottom-right object-cover"
+          src="/images/shapes/cta-shape-two.svg"
+          alt="pattern"
+        />
+      </div>
+      
+      <div class="container grid gap-x-10 gap-y-6 md:gap-y-8 lg:grid-cols-2 lg:place-items-center">
+        <!-- Left content - Image -->
+        <div class="has-animated-number relative lg:pt-8 pb-0">
+          <div class="relative z-10 mx-auto w-fit" data-aos="fade-up-sm">
+            <img
+              class="max-w-full md:max-w-lg"
+              src="/images/call-to-action/sparkliang.webp"
+              alt="专家顾问"
+            />
+            <!-- Experience badge -->
+            <div class="bg-primary absolute bottom-16 right-20 md:right-0">
+              <div class="py-2 ps-5 text-white">
+                <div class="relative flex items-stretch">
+                  <div class="text-h2 leading-tight font-bold text-inherit md:text-6xl">
+                    利<small><small>润+</small></small>
+                  </div>
+                  <sup class="font-secondary top-0 -left-6 text-sm font-bold tracking-wider text-inherit">
+                    不用靠猜的
+                  </sup>
+                </div>
+                <img
+                  class="pointer-events-none absolute inset-0 h-full w-full"
+                  src="/images/call-to-action/stats-block-bg.svg"
+                  alt="background pattern"
+                />
+              </div>
+            </div>
+          </div>
+          <!-- Background shape -->
+          <div class="bg-primary pointer-events-none absolute top-[calc(50%_-_42px)] left-1/2 h-[35.875rem] w-[35.875rem] -translate-x-1/2 rounded-full opacity-80" />
+        </div>
+        
+        <!-- Right content -->
+        <div class="lg:max-w-2xl pt-6 md:pt-8 lg:pt-0">
+          <div data-aos="fade-up-sm" data-aos-offset="0">
+            <h2 class="text-h3 text-inherit mb-6">
+              透过我们服务<br />
+              您将获得什么？
+            </h2>
+          </div>
+          
+          <!-- Benefits List -->
+          <div class="mt-8 space-y-4" data-aos="fade-up-sm" data-aos-delay="200">
+            <div class="flex items-start">
+              <svg class="w-6 h-6 mr-3 mt-0.5 flex-shrink-0" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="12.5" cy="12.5" r="12.5" fill="white" />
+                <path fill-rule="evenodd" clip-rule="evenodd"
+                  d="M12.5 0C5.59659 0 0 5.59659 0 12.5C0 19.4034 5.59659 25 12.5 25C19.4034 25 25 19.4034 25 12.5C25 5.59659 19.4034 0 12.5 0ZM17.9182 10.3864C18.018 10.2723 18.0939 10.1395 18.1416 9.99565C18.1892 9.85182 18.2077 9.6999 18.1958 9.54885C18.1839 9.39779 18.1419 9.25064 18.0722 9.11605C18.0026 8.98147 17.9068 8.86216 17.7904 8.76516C17.674 8.66816 17.5394 8.59541 17.3944 8.55121C17.2495 8.507 17.0972 8.49223 16.9465 8.50776C16.7957 8.52329 16.6496 8.5688 16.5168 8.64163C16.3839 8.71445 16.2669 8.81312 16.1727 8.93182L11.2864 14.7943L8.75795 12.2648C8.54363 12.0578 8.25659 11.9432 7.95864 11.9458C7.66068 11.9484 7.37567 12.0679 7.16498 12.2786C6.95429 12.4893 6.83478 12.7743 6.83219 13.0723C6.8296 13.3702 6.94414 13.6573 7.15114 13.8716L10.5602 17.2807C10.6719 17.3923 10.8056 17.4794 10.9527 17.5364C11.0999 17.5935 11.2574 17.6193 11.4151 17.6121C11.5728 17.6049 11.7272 17.565 11.8686 17.4948C12.0101 17.4247 12.1353 17.3258 12.2364 17.2045L17.9182 10.3864Z"
+                  fill="#024340" />
+              </svg>
+              <div>
+                <span class="text-text-default font-medium">一套高效运转的管理节奏：</span>
+                <span class="text-text-default">让战略落地成为一种习惯。</span>
+              </div>
+            </div>
+            <div class="flex items-start">
+              <svg class="w-6 h-6 mr-3 mt-0.5 flex-shrink-0" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="12.5" cy="12.5" r="12.5" fill="white" />
+                <path fill-rule="evenodd" clip-rule="evenodd"
+                  d="M12.5 0C5.59659 0 0 5.59659 0 12.5C0 19.4034 5.59659 25 12.5 25C19.4034 25 25 19.4034 25 12.5C25 5.59659 19.4034 0 12.5 0ZM17.9182 10.3864C18.018 10.2723 18.0939 10.1395 18.1416 9.99565C18.1892 9.85182 18.2077 9.6999 18.1958 9.54885C18.1839 9.39779 18.1419 9.25064 18.0722 9.11605C18.0026 8.98147 17.9068 8.86216 17.7904 8.76516C17.674 8.66816 17.5394 8.59541 17.3944 8.55121C17.2495 8.507 17.0972 8.49223 16.9465 8.50776C16.7957 8.52329 16.6496 8.5688 16.5168 8.64163C16.3839 8.71445 16.2669 8.81312 16.1727 8.93182L11.2864 14.7943L8.75795 12.2648C8.54363 12.0578 8.25659 11.9432 7.95864 11.9458C7.66068 11.9484 7.37567 12.0679 7.16498 12.2786C6.95429 12.4893 6.83478 12.7743 6.83219 13.0723C6.8296 13.3702 6.94414 13.6573 7.15114 13.8716L10.5602 17.2807C10.6719 17.3923 10.8056 17.4794 10.9527 17.5364C11.0999 17.5935 11.2574 17.6193 11.4151 17.6121C11.5728 17.6049 11.7272 17.565 11.8686 17.4948C12.0101 17.4247 12.1353 17.3258 12.2364 17.2045L17.9182 10.3864Z"
+                  fill="#024340" />
+              </svg>
+              <div>
+                <span class="text-text-default font-medium">更强的团队执行力和协同能力：</span>
+                <span class="text-text-default">确保各项任务按时按质完成。</span>
+              </div>
+            </div>
+            <div class="flex items-start">
+              <svg class="w-6 h-6 mr-3 mt-0.5 flex-shrink-0" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="12.5" cy="12.5" r="12.5" fill="white" />
+                <path fill-rule="evenodd" clip-rule="evenodd"
+                  d="M12.5 0C5.59659 0 0 5.59659 0 12.5C0 19.4034 5.59659 25 12.5 25C19.4034 25 25 19.4034 25 12.5C25 5.59659 19.4034 0 12.5 0ZM17.9182 10.3864C18.018 10.2723 18.0939 10.1395 18.1416 9.99565C18.1892 9.85182 18.2077 9.6999 18.1958 9.54885C18.1839 9.39779 18.1419 9.25064 18.0722 9.11605C18.0026 8.98147 17.9068 8.86216 17.7904 8.76516C17.674 8.66816 17.5394 8.59541 17.3944 8.55121C17.2495 8.507 17.0972 8.49223 16.9465 8.50776C16.7957 8.52329 16.6496 8.5688 16.5168 8.64163C16.3839 8.71445 16.2669 8.81312 16.1727 8.93182L11.2864 14.7943L8.75795 12.2648C8.54363 12.0578 8.25659 11.9432 7.95864 11.9458C7.66068 11.9484 7.37567 12.0679 7.16498 12.2786C6.95429 12.4893 6.83478 12.7743 6.83219 13.0723C6.8296 13.3702 6.94414 13.6573 7.15114 13.8716L10.5602 17.2807C10.6719 17.3923 10.8056 17.4794 10.9527 17.5364C11.0999 17.5935 11.2574 17.6193 11.4151 17.6121C11.5728 17.6049 11.7272 17.565 11.8686 17.4948C12.0101 17.4247 12.1353 17.3258 12.2364 17.2045L17.9182 10.3864Z"
+                  fill="#024340" />
+              </svg>
+              <div>
+                <span class="text-text-default font-medium">一个能自我修正的组织：</span>
+                <span class="text-text-default">能够快速响应变化，并从错误中学习。</span>
+              </div>
+            </div>
+            <div class="flex items-start">
+              <svg class="w-6 h-6 mr-3 mt-0.5 flex-shrink-0" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="12.5" cy="12.5" r="12.5" fill="white" />
+                <path fill-rule="evenodd" clip-rule="evenodd"
+                  d="M12.5 0C5.59659 0 0 5.59659 0 12.5C0 19.4034 5.59659 25 12.5 25C19.4034 25 25 19.4034 25 12.5C25 5.59659 19.4034 0 12.5 0ZM17.9182 10.3864C18.018 10.2723 18.0939 10.1395 18.1416 9.99565C18.1892 9.85182 18.2077 9.6999 18.1958 9.54885C18.1839 9.39779 18.1419 9.25064 18.0722 9.11605C18.0026 8.98147 17.9068 8.86216 17.7904 8.76516C17.674 8.66816 17.5394 8.59541 17.3944 8.55121C17.2495 8.507 17.0972 8.49223 16.9465 8.50776C16.7957 8.52329 16.6496 8.5688 16.5168 8.64163C16.3839 8.71445 16.2669 8.81312 16.1727 8.93182L11.2864 14.7943L8.75795 12.2648C8.54363 12.0578 8.25659 11.9432 7.95864 11.9458C7.66068 11.9484 7.37567 12.0679 7.16498 12.2786C6.95429 12.4893 6.83478 12.7743 6.83219 13.0723C6.8296 13.3702 6.94414 13.6573 7.15114 13.8716L10.5602 17.2807C10.6719 17.3923 10.8056 17.4794 10.9527 17.5364C11.0999 17.5935 11.2574 17.6193 11.4151 17.6121C11.5728 17.6049 11.7272 17.565 11.8686 17.4948C12.0101 17.4247 12.1353 17.3258 12.2364 17.2045L17.9182 10.3864Z"
+                  fill="#024340" />
+              </svg>
+              <div>
+                <span class="text-text-default font-medium">一个被解放出来的管理者：</span>
+                <span class="text-text-default">从"救火队员"转变为"战略指挥官"。</span>
+              </div>
+            </div>
+          </div>
+          
+          <!-- CTA Button -->
+          <div data-aos="fade-up-sm" data-aos-delay="300">
+            <a
+              href="/contact"
+              class="relative mt-8 flex items-center"
+            >
+              <span class="btn btn-outline btn-outline-primary has-text-flip-animation before:btn before:btn-outline-primary after:btn after:btn-outline-primary">
+                点击预约60分钟战略通话
+              </span>
+              <span class="icon">
+                <svg class="h-4 w-4 text-white" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+                </svg>
+              </span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  
+  <Footer />
+</Layout>
+
+<script>
+  // Initialize AOS (Animate On Scroll) library
+  document.addEventListener("DOMContentLoaded", async () => {
+    // @ts-ignore
+    const AOS = await import("aos");
+    
+    AOS.init({
+      duration: 500,
+      easing: "ease-out",
+      disable: "mobile", // Disable on mobile for better performance
+      once: true, // Animate only once
+      throttleDelay: 99,
+      debounceDelay: 50,
+    });
+  });
+</script>
+

@@ -1,0 +1,299 @@
+---
+import Layout from '../../layouts/Layout.astro';
+  import Navigation from '../../components/Navigation.astro';
+  import Footer from '../../components/Footer.astro';
+  import HowItWorks from '../../components/HowItWorks.astro';
+---
+
+<Layout title="年度经营预算与战略蓝图 - MMC" description="告别凭感觉经营，让企业增长从偶然变为必然。科学的年度预算规划，将模糊愿景转化为清晰的收入、成本、现金三大目标。">
+  <Navigation />
+  
+  <main>
+    <!-- Page Title -->
+    <div class="container text-center pt-32 pb-8">
+      <h1 class="text-4xl md:text-5xl font-bold text-primary mb-4">年度经营预算与战略蓝图</h1>
+    </div>
+
+    <!-- Navigation Breadcrumb -->
+    <nav class="container pb-8">
+      <div class="flex items-center justify-center space-x-2 text-sm">
+        <div class="bg-white rounded-lg px-4 py-2 shadow-sm border border-gray-100">
+          <a href="/" class="text-primary hover:text-secondary transition-colors">主页</a>
+          <span class="text-gray-400 mx-2">/</span>
+          <a href="/services" class="text-primary hover:text-secondary transition-colors">服务</a>
+          <span class="text-gray-400 mx-2">/</span>
+          <span class="text-text-default">年度经营预算与战略蓝图</span>
+        </div>
+      </div>
+    </nav>
+
+  <!-- Hero Section with Image and Overlay Text -->
+  <section class="relative">
+    <div class="container">
+      <div class="relative pt-8 sm:pt-72 md:pt-[20.0625rem]">
+        <!-- Background Image -->
+        <img
+          data-aos="fade-up-sm"
+          data-aos-delay="200"
+          src="/images/services/service1.webp"
+          alt="Team collaboration meeting"
+          class="!h-52 max-h-full w-full object-cover sm:absolute sm:top-0 sm:left-0 sm:-z-10 sm:!h-[36.0625rem]"
+          onerror="this.style.display='none'"
+        />
+        
+        <!-- White Text Box Overlay -->
+        <div
+          data-aos-delay="300"
+          data-aos="fade-up-sm"
+          data-aos-offset="0"
+          class="box-shadow-primary bg-white px-5 py-7 sm:mx-16 sm:max-w-4xl md:px-10 md:py-14 lg:ml-24"
+        >
+          <h2 class="text-h4 md:text-h3 text-primary mb-5">
+            告别凭感觉经营，让企业增长从偶然变为必然。
+          </h2>
+          <p class="text-text-default leading-relaxed mb-6">
+            多数企业在年底时感到迷茫：明年的目标该定多少？方向在哪里？我们认为，预算不应只是财务部门的数字游戏，而是企业CEO的“年度作战地图”。它将模糊的愿景转化为清晰的收入、成本、现金三大目标，让您的每一次决策都有据可依，带领团队朝着同一个方向精准发力。
+          </p>
+          <a
+            class="relative mt-8 flex items-center"
+            href="/contact"
+          >
+            <span class="btn btn-outline btn-outline-primary has-text-flip-animation before:btn before:btn-outline-primary after:btn after:btn-outline-primary">
+              点击预约60分钟战略通话
+            </span>
+            <span class="icon">
+              <svg class="h-4 w-4 text-white" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+              </svg>
+            </span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Service Details Section -->
+  <section class="overflow-hidden py-16 md:py-24">
+    <div class="container">
+      <div class="flex flex-wrap items-center justify-between gap-6 overflow-x-hidden lg:flex-nowrap">
+        <div class="lg:max-w-lg" data-aos="fade-right-sm">
+          <h2 class="text-h3 text-primary font-bold mb-6">
+            您是否正面临这些挑战？
+          </h2>
+        </div>
+        <div
+          data-aos="fade-right-sm"
+          data-aos-delay="200"
+          class="opacity-80 lg:max-w-md xl:max-w-3xl text-text-default leading-relaxed text-lg">
+          <ul class="space-y-3 list-disc list-inside">
+            <li>每到年底就为明年的目标设定而头疼，缺乏科学依据。</li>
+            <li>公司有愿景，但无法转化为各部门可执行的行动计划。</li>
+            <li>团队成员对公司目标理解不一，力量无法拧成一股绳。</li>
+            <li>面对新的投资或支出机会时，难以判断是否"划算"。</li>
+            <li>总是被动应对市场变化，缺乏前瞻性的战略布局。</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Our Method Section -->
+  <section class="py-16 bg-theme-light">
+    <div class="container">
+      <div class="text-center mb-12">
+        <h2 class="text-h3 text-primary font-bold mb-6">我们的方法：如何为您"画图"</h2>
+      </div>
+      
+      <div class="grid md:grid-cols-2 gap-8">
+        <!-- Method 1 -->
+        <div class="bg-white p-8 rounded-lg shadow-lg" data-aos="fade-up-sm" data-aos-delay="100">
+          <h3 class="text-xl font-semibold text-primary mb-4">高层战略共识会</h3>
+          <p class="text-gray-600 leading-relaxed">
+            我们引导您的核心管理团队，共同明确公司下一年度的经营总目标（收入增长率、目标利润额等）。
+          </p>
+        </div>
+
+        <!-- Method 2 -->
+        <div class="bg-white p-8 rounded-lg shadow-lg" data-aos="fade-up-sm" data-aos-delay="200">
+          <h3 class="text-xl font-semibold text-primary mb-4">三大目标制定</h3>
+          <p class="text-gray-600 leading-relaxed">
+            我们协助您将总目标分解为清晰的收入目标、成本目标、现金目标，并建立它们之间的逻辑关系。
+          </p>
+        </div>
+
+        <!-- Method 3 -->
+        <div class="bg-white p-8 rounded-lg shadow-lg" data-aos="fade-up-sm" data-aos-delay="300">
+          <h3 class="text-xl font-semibold text-primary mb-4">预算模型搭建</h3>
+          <p class="text-gray-600 leading-relaxed">
+            我们为您构建一套符合您业务特性的预算管理模型，确保每一项预算都有负责人、有标准、可追踪。
+          </p>
+        </div>
+
+        <!-- Method 4 -->
+        <div class="bg-white p-8 rounded-lg shadow-lg" data-aos="fade-up-sm" data-aos-delay="400">
+          <h3 class="text-xl font-semibold text-primary mb-4">资源配置规划</h3>
+          <p class="text-gray-600 leading-relaxed">
+            基于预算目标，我们帮您规划人、财、物等关键资源的投入计划，确保"好钢用在刀刃上"。
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- How It Works Section -->
+  <HowItWorks />
+
+  <!-- Benefits Section with Image -->
+  <section class="mt-auto overflow-hidden">
+    <div class="bg-theme-light relative pt-6 md:pt-8 pb-0">
+      <!-- Background shapes -->
+      <div class="pointer-events-none absolute top-0 right-0 z-10 h-40 w-28 opacity-30 md:opacity-100 lg:left-0">
+        <img
+          class="match-brand-color text-primary h-full w-full origin-bottom-right object-cover"
+          src="/images/shapes/cta-shape-one.svg"
+          alt="pattern"
+        />
+      </div>
+      <div class="pointer-events-none absolute right-0 bottom-0 z-10 h-40 w-44 opacity-30 max-lg:hidden md:opacity-100">
+        <img
+          class="match-brand-color text-primary h-full w-full origin-bottom-right object-cover"
+          src="/images/shapes/cta-shape-two.svg"
+          alt="pattern"
+        />
+      </div>
+      
+      <div class="container grid gap-x-10 gap-y-6 md:gap-y-8 lg:grid-cols-2 lg:place-items-center">
+        <!-- Left content - Image -->
+        <div class="has-animated-number relative lg:pt-8 pb-0">
+          <div class="relative z-10 mx-auto w-fit" data-aos="fade-up-sm">
+            <img
+              class="max-w-full md:max-w-lg"
+              src="/images/call-to-action/sparkliang.webp"
+              alt="专家顾问"
+            />
+            <!-- Experience badge -->
+            <div class="bg-primary absolute bottom-16 right-20 md:right-0">
+              <div class="py-2 ps-5 text-white">
+                <div class="relative flex items-stretch">
+                  <div class="text-h2 leading-tight font-bold text-inherit md:text-6xl">
+                    利<small><small>润+</small></small>
+                  </div>
+                  <sup class="font-secondary top-0 -left-6 text-sm font-bold tracking-wider text-inherit">
+                    不用靠猜的
+                  </sup>
+                </div>
+                <img
+                  class="pointer-events-none absolute inset-0 h-full w-full"
+                  src="/images/call-to-action/stats-block-bg.svg"
+                  alt="background pattern"
+                />
+              </div>
+            </div>
+          </div>
+          <!-- Background shape -->
+          <div class="bg-primary pointer-events-none absolute top-[calc(50%_-_42px)] left-1/2 h-[35.875rem] w-[35.875rem] -translate-x-1/2 rounded-full opacity-80" />
+        </div>
+        
+        <!-- Right content -->
+        <div class="lg:max-w-2xl pt-6 md:pt-8 lg:pt-0">
+          <div data-aos="fade-up-sm" data-aos-offset="0">
+            <h2 class="text-h3 text-inherit mb-6">
+              透过我们服务<br />
+              您将获得什么？
+            </h2>
+          </div>
+          
+          <!-- Benefits List -->
+          <div class="mt-8 space-y-4" data-aos="fade-up-sm" data-aos-delay="200">
+            <div class="flex items-start">
+              <svg class="w-6 h-6 mr-3 mt-0.5 flex-shrink-0" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="12.5" cy="12.5" r="12.5" fill="white" />
+                <path fill-rule="evenodd" clip-rule="evenodd"
+                  d="M12.5 0C5.59659 0 0 5.59659 0 12.5C0 19.4034 5.59659 25 12.5 25C19.4034 25 25 19.4034 25 12.5C25 5.59659 19.4034 0 12.5 0ZM17.9182 10.3864C18.018 10.2723 18.0939 10.1395 18.1416 9.99565C18.1892 9.85182 18.2077 9.6999 18.1958 9.54885C18.1839 9.39779 18.1419 9.25064 18.0722 9.11605C18.0026 8.98147 17.9068 8.86216 17.7904 8.76516C17.674 8.66816 17.5394 8.59541 17.3944 8.55121C17.2495 8.507 17.0972 8.49223 16.9465 8.50776C16.7957 8.52329 16.6496 8.5688 16.5168 8.64163C16.3839 8.71445 16.2669 8.81312 16.1727 8.93182L11.2864 14.7943L8.75795 12.2648C8.54363 12.0578 8.25659 11.9432 7.95864 11.9458C7.66068 11.9484 7.37567 12.0679 7.16498 12.2786C6.95429 12.4893 6.83478 12.7743 6.83219 13.0723C6.8296 13.3702 6.94414 13.6573 7.15114 13.8716L10.5602 17.2807C10.6719 17.3923 10.8056 17.4794 10.9527 17.5364C11.0999 17.5935 11.2574 17.6193 11.4151 17.6121C11.5728 17.6049 11.7272 17.565 11.8686 17.4948C12.0101 17.4247 12.1353 17.3258 12.2364 17.2045L17.9182 10.3864Z"
+                  fill="#024340" />
+              </svg>
+              <div>
+                <span class="text-text-default font-medium">一份清晰的年度作战蓝图：</span>
+                <span class="text-text-default">包含明确的财务目标和实现路径。</span>
+              </div>
+            </div>
+            <div class="flex items-start">
+              <svg class="w-6 h-6 mr-3 mt-0.5 flex-shrink-0" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="12.5" cy="12.5" r="12.5" fill="white" />
+                <path fill-rule="evenodd" clip-rule="evenodd"
+                  d="M12.5 0C5.59659 0 0 5.59659 0 12.5C0 19.4034 5.59659 25 12.5 25C19.4034 25 25 19.4034 25 12.5C25 5.59659 19.4034 0 12.5 0ZM17.9182 10.3864C18.018 10.2723 18.0939 10.1395 18.1416 9.99565C18.1892 9.85182 18.2077 9.6999 18.1958 9.54885C18.1839 9.39779 18.1419 9.25064 18.0722 9.11605C18.0026 8.98147 17.9068 8.86216 17.7904 8.76516C17.674 8.66816 17.5394 8.59541 17.3944 8.55121C17.2495 8.507 17.0972 8.49223 16.9465 8.50776C16.7957 8.52329 16.6496 8.5688 16.5168 8.64163C16.3839 8.71445 16.2669 8.81312 16.1727 8.93182L11.2864 14.7943L8.75795 12.2648C8.54363 12.0578 8.25659 11.9432 7.95864 11.9458C7.66068 11.9484 7.37567 12.0679 7.16498 12.2786C6.95429 12.4893 6.83478 12.7743 6.83219 13.0723C6.8296 13.3702 6.94414 13.6573 7.15114 13.8716L10.5602 17.2807C10.6719 17.3923 10.8056 17.4794 10.9527 17.5364C11.0999 17.5935 11.2574 17.6193 11.4151 17.6121C11.5728 17.6049 11.7272 17.565 11.8686 17.4948C12.0101 17.4247 12.1353 17.3258 12.2364 17.2045L17.9182 10.3864Z"
+                  fill="#024340" />
+              </svg>
+              <div>
+                <span class="text-text-default font-medium">一个上下同欲的核心团队：</span>
+                <span class="text-text-default">所有人对目标和自己的责任一清二楚。</span>
+              </div>
+            </div>
+            <div class="flex items-start">
+              <svg class="w-6 h-6 mr-3 mt-0.5 flex-shrink-0" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="12.5" cy="12.5" r="12.5" fill="white" />
+                <path fill-rule="evenodd" clip-rule="evenodd"
+                  d="M12.5 0C5.59659 0 0 5.59659 0 12.5C0 19.4034 5.59659 25 12.5 25C19.4034 25 25 19.4034 25 12.5C25 5.59659 19.4034 0 12.5 0ZM17.9182 10.3864C18.018 10.2723 18.0939 10.1395 18.1416 9.99565C18.1892 9.85182 18.2077 9.6999 18.1958 9.54885C18.1839 9.39779 18.1419 9.25064 18.0722 9.11605C18.0026 8.98147 17.9068 8.86216 17.7904 8.76516C17.674 8.66816 17.5394 8.59541 17.3944 8.55121C17.2495 8.507 17.0972 8.49223 16.9465 8.50776C16.7957 8.52329 16.6496 8.5688 16.5168 8.64163C16.3839 8.71445 16.2669 8.81312 16.1727 8.93182L11.2864 14.7943L8.75795 12.2648C8.54363 12.0578 8.25659 11.9432 7.95864 11.9458C7.66068 11.9484 7.37567 12.0679 7.16498 12.2786C6.95429 12.4893 6.83478 12.7743 6.83219 13.0723C6.8296 13.3702 6.94414 13.6573 7.15114 13.8716L10.5602 17.2807C10.6719 17.3923 10.8056 17.4794 10.9527 17.5364C11.0999 17.5935 11.2574 17.6193 11.4151 17.6121C11.5728 17.6049 11.7272 17.565 11.8686 17.4948C12.0101 17.4247 12.1353 17.3258 12.2364 17.2045L17.9182 10.3864Z"
+                  fill="#024340" />
+              </svg>
+              <div>
+                <span class="text-text-default font-medium">一个科学的决策工具：</span>
+                <span class="text-text-default">快速判断各项经营活动的投入产出比。</span>
+              </div>
+            </div>
+            <div class="flex items-start">
+              <svg class="w-6 h-6 mr-3 mt-0.5 flex-shrink-0" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="12.5" cy="12.5" r="12.5" fill="white" />
+                <path fill-rule="evenodd" clip-rule="evenodd"
+                  d="M12.5 0C5.59659 0 0 5.59659 0 12.5C0 19.4034 5.59659 25 12.5 25C19.4034 25 25 19.4034 25 12.5C25 5.59659 19.4034 0 12.5 0ZM17.9182 10.3864C18.018 10.2723 18.0939 10.1395 18.1416 9.99565C18.1892 9.85182 18.2077 9.6999 18.1958 9.54885C18.1839 9.39779 18.1419 9.25064 18.0722 9.11605C18.0026 8.98147 17.9068 8.86216 17.7904 8.76516C17.674 8.66816 17.5394 8.59541 17.3944 8.55121C17.2495 8.507 17.0972 8.49223 16.9465 8.50776C16.7957 8.52329 16.6496 8.5688 16.5168 8.64163C16.3839 8.71445 16.2669 8.81312 16.1727 8.93182L11.2864 14.7943L8.75795 12.2648C8.54363 12.0578 8.25659 11.9432 7.95864 11.9458C7.66068 11.9484 7.37567 12.0679 7.16498 12.2786C6.95429 12.4893 6.83478 12.7743 6.83219 13.0723C6.8296 13.3702 6.94414 13.6573 7.15114 13.8716L10.5602 17.2807C10.6719 17.3923 10.8056 17.4794 10.9527 17.5364C11.0999 17.5935 11.2574 17.6193 11.4151 17.6121C11.5728 17.6049 11.7272 17.565 11.8686 17.4948C12.0101 17.4247 12.1353 17.3258 12.2364 17.2045L17.9182 10.3864Z"
+                  fill="#024340" />
+              </svg>
+              <div>
+                <span class="text-text-default font-medium">一份企业家的从容与安心：</span>
+                <span class="text-text-default">对未来的经营之路成竹在胸。</span>
+              </div>
+            </div>
+          </div>
+          
+          <!-- CTA Button -->
+          <div data-aos="fade-up-sm" data-aos-delay="300">
+            <a
+              href="/contact"
+              class="relative mt-8 flex items-center"
+            >
+              <span class="btn btn-outline btn-outline-primary has-text-flip-animation before:btn before:btn-outline-primary after:btn after:btn-outline-primary">
+                点击预约60分钟战略通话
+              </span>
+              <span class="icon">
+                <svg class="h-4 w-4 text-white" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+                </svg>
+              </span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  
+  <Footer />
+</Layout>
+
+<script>
+  // Initialize AOS (Animate On Scroll) library
+  document.addEventListener("DOMContentLoaded", async () => {
+    // @ts-ignore
+    const AOS = await import("aos");
+    
+    AOS.init({
+      duration: 500,
+      easing: "ease-out",
+      disable: "mobile", // Disable on mobile for better performance
+      once: true, // Animate only once
+      throttleDelay: 99,
+      debounceDelay: 50,
+    });
+  });
+</script>
+
