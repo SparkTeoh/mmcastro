@@ -63,7 +63,7 @@ const howItWorksData = {
       </div>
       <div class="container">
         {/* Header */}
-        <div class="mx-auto shrink-0 text-center lg:max-w-2xl mb-12 md:mb-16">
+        <div class="mx-auto shrink-0 text-center lg:max-w-2xl mb-12 md:mb-16" data-aos="fade-up-sm">
           {howItWorksData.subtitle && (
             <span class="bg-primary/5 border-secondary text-primary mb-2.5 inline-block rounded-full border px-5 py-px">
               {howItWorksData.subtitle}
@@ -77,9 +77,9 @@ const howItWorksData = {
         </div>
         
         {/* Steps */}
-        <div class="mt-12 grid space-y-10 md:mt-16">
+        <div class="mt-12 grid space-y-10 md:mt-16" data-aos="fade-up-sm" data-aos-delay="400">
           {howItWorksData.list.map((item, index) => (
-            <div class="border-secondary grid gap-5 border bg-white md:min-h-[27.75rem] lg:sticky lg:top-[calc(6vh_+_5rem)] lg:grid-cols-12">
+            <div class="border-secondary grid gap-5 border bg-white md:min-h-[27.75rem] lg:sticky lg:top-[calc(6vh_+_5rem)] lg:grid-cols-12" data-aos="fade-up-sm" data-aos-delay={600 + (index * 200)}>
               {/* Text Content */}
               <div class={`
                 px-8 py-10 md:flex md:flex-col md:justify-center md:px-16 md:py-16 lg:col-span-7

@@ -7,6 +7,7 @@ export interface Props {
 const { title, description = "MMC - 专业的现代化解决方案" } = Astro.props;
 
 import '../styles/globals.css';
+import 'aos/dist/aos.css';
 ---
 
 <!DOCTYPE html>
@@ -21,5 +22,22 @@ import '../styles/globals.css';
   </head>
   <body class="bg-body font-primary text-text-default leading-normal">
     <slot />
+    
+    <script>
+      // Initialize AOS (Animate On Scroll) library
+      document.addEventListener("DOMContentLoaded", async () => {
+        // @ts-ignore
+        const AOS = await import("aos");
+        
+        AOS.init({
+          duration: 500,
+          easing: "ease-out",
+          disable: "mobile", // Disable on mobile for better performance
+          once: true, // Animate only once
+          throttleDelay: 99,
+          debounceDelay: 50,
+        });
+      });
+    </script>
   </body>
 </html>

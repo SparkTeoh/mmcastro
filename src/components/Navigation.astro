@@ -4,7 +4,7 @@
 
 <header class="header">
   <nav class="nav">
-    <div class="nav-container">
+    <div class="container nav-container">
       <div class="nav-logo">
         <a href="/">
           <img src="/images/logo/MMCLOGO.png" alt="MMC Logo" class="logo-image" />
@@ -34,12 +34,24 @@
     backdrop-filter: blur(10px);
     z-index: 1000;
     border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, opacity 0.3s ease;
+  }
+
+  /* Hide header when scrolling down */
+  .header.scroll-down {
+    transform: translateY(-100%);
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  /* Show header when scrolling up */
+  .header.scroll-up {
+    transform: translateY(0);
+    opacity: 1;
+    pointer-events: auto;
   }
 
   .nav-container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 1rem 2rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -78,6 +90,7 @@
     color: #2563eb;
   }
 
+
   .nav-toggle {
     display: none;
     flex-direction: column;
@@ -102,3 +115,46 @@
     }
   }
 </style>
+
+<script>
+  function stickyHeader(): void {
+    const header = document.querySelector(".header") as HTMLElement | null;
+    if (!header) return;
+
+    let prevScrollPos = window.scrollY;
+    const startStickyAt = 200; // Start adding classes after scrolling this much
+    const minScrollDiff = 50; // Minimum scroll difference to toggle classes
+
+    window.addEventListener("scroll", () => {
+      const currentScrollPos = window.scrollY;
+      const scrollDiff = Math.abs(currentScrollPos - prevScrollPos);
+
+      // Reset at top of page
+      if (currentScrollPos === 0) {
+        header.classList.remove("scroll-up", "scroll-down");
+        prevScrollPos = currentScrollPos;
+        return;
+      }
+
+      // Only apply logic if we've scrolled past the threshold
+      if (currentScrollPos > startStickyAt) {
+        if (scrollDiff >= minScrollDiff) {
+          if (currentScrollPos > prevScrollPos) {
+            // Scrolling down - hide header
+            header.classList.remove("scroll-up");
+            header.classList.add("scroll-down");
+          } else {
+            // Scrolling up - show header
+            header.classList.remove("scroll-down");
+            header.classList.add("scroll-up");
+          }
+
+          prevScrollPos = currentScrollPos;
+        }
+      }
+    });
+  }
+
+  // Initialize when DOM is loaded
+  document.addEventListener("DOMContentLoaded", stickyHeader);
+</script>
