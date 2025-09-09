@@ -70,49 +70,62 @@ const howItWorksData = {
             </span>
           )}
           {howItWorksData.title && (
-            <h2 class="text-h3 text-inherit mt-4" style="color: #002528; font-size: 1.5rem;">
+            <h2 class="text-h3 text-inherit mt-4" style="color: #002528; font-size: 2.5rem; font-weight: 700;">
               {howItWorksData.title}
             </h2>
           )}
         </div>
         
-        {/* Steps */}
-        <div class="mt-12 grid space-y-10 md:mt-16" data-aos="fade-up-sm" data-aos-delay="400">
+        <div
+          class="how-it-works-container mt-12 grid md:mt-16"
+          data-aos="fade-up-sm"
+          data-aos-delay="400"
+          style="min-height: 300vh;">
           {howItWorksData.list.map((item, index) => (
-            <div class="border-secondary grid gap-5 border bg-white md:min-h-[27.75rem] lg:sticky lg:top-[calc(6vh_+_5rem)] lg:grid-cols-12" data-aos="fade-up-sm" data-aos-delay={600 + (index * 200)}>
+            <div 
+              class="how-it-works-step border-secondary grid gap-5 border bg-white md:min-h-[27.75rem] lg:sticky lg:top-20 lg:grid-cols-12 shadow-lg transition-all duration-300"
+              style={`z-index: ${100 - index}; margin-bottom: 2rem;`}>
               {/* Text Content */}
-              <div class={`
-                px-8 py-10 md:flex md:flex-col md:justify-center md:px-16 md:py-16 lg:col-span-7
-                ${index % 2 === 0 ? 'order-1' : 'order-1 lg:order-2'}
-              `}>
-                {item.number && (
-                  <span class="text-h2 from-primary font-secondary relative mb-5 inline-block bg-gradient-to-b via-white via-90% to-transparent bg-clip-text leading-tight font-bold text-transparent md:text-[4.0625rem]/none">
-                    {item.number}
-                  </span>
-                )}
-                {item.title && (
-                  <h3 class="text-h4 mb-8" set:html={item.title} />
-                )}
-                {item.description && (
-                  <div class="prose-styles" set:html={item.description} />
-                )}
-              </div>
+              {(item.title || item.description) && (
+                <div
+                  class:list={[
+                    "px-8 py-10 md:flex md:flex-col md:justify-center md:px-16 md:py-16 lg:col-span-7",
+                    { "order-1": index % 2 === 0 },
+                    { "order-1 lg:order-2": index % 2 !== 0 },
+                  ]}>
+                  {item.number && (
+                    <span
+                      class="text-h2 from-primary font-secondary relative mb-5 inline-block bg-gradient-to-b via-white via-90% to-transparent bg-clip-text leading-tight font-bold text-transparent md:text-[4.0625rem]/none"
+                      set:html={item.number}
+                    />
+                  )}
+                  {item.title && (
+                    <h3 class="text-h4 mb-8" set:html={item.title} />
+                  )}
+                  {item.description && (
+                    <div
+                      class="prose-styles"
+                      set:html={item.description}
+                    />
+                  )}
+                </div>
+              )}
 
               {/* Images */}
-              <div class={`
-                relative overflow-hidden px-10 lg:col-span-5
-                ${index % 2 === 0 ? 'order-2' : 'order-2 lg:order-1'}
-              `}>
-                {/* Step Background Pattern */}
-                {/* <div class="absolute inset-0 opacity-50">
-                  <img
-                    class="h-full w-full object-cover"
-                    src="/images/how-it-works/how-it-work-curl.svg"
-                    alt="step pattern"
-                  />
-                </div> */}
+              <div
+                class:list={[
+                  "relative overflow-hidden px-10 lg:col-span-5",
+                  // Right Side Images
+                  {
+                    "order-2": index % 2 === 0,
+                  },
+                  // Left Side Images
+                  {
+                    "order-2 lg:order-1": index % 2 !== 0,
+                  },
+                ]}>
                 <img
-                  class="translate-centered absolute h-full w-full object-contain z-10"
+                  class="translate-centered absolute h-full w-full object-contain"
                   src={item.image}
                   height={444}
                   alt={`${item.title}图片`}
@@ -125,3 +138,40 @@ const howItWorksData = {
     </section>
   )
 }
+
+<style>
+  /* 增强滚动覆盖效果的样式 */
+  .how-it-works-step {
+    position: relative;
+    border-radius: 12px;
+    overflow: hidden;
+  }
+  
+  .how-it-works-step:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* 确保sticky效果在大屏幕上工作 */
+  @media (min-width: 1024px) {
+    .how-it-works-step {
+      position: sticky !important;
+      top: 5rem !important;
+    }
+    
+    /* 移除默认的space-y间距，改用margin-bottom */
+    .how-it-works-container {
+      gap: 0 !important;
+    }
+  }
+  
+  /* 为第一个元素添加特殊效果 */
+  .how-it-works-step:first-child {
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+  }
+  
+  /* 确保容器有足够高度来展示sticky效果 */
+  .how-it-works-container {
+    position: relative;
+  }
+</style>

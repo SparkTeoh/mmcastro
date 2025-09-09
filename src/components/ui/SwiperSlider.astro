@@ -1,0 +1,210 @@
+---
+// SwiperSlider component for MMC Astro
+// Based on SparkAstro's SwiperSlider component but adapted for MMC's style
+
+interface Testimonial {
+  name: string;
+  role: string;
+  comment: string;
+  company?: string;
+}
+
+const testimonials: Testimonial[] = [
+  {
+    name: "张先生",
+    role: "财务总监",
+    company: "某制造企业",
+    comment: "MMC的专业服务帮助我们建立了完善的利润预算管理体系，利润提升了35%，效果超出预期。"
+  },
+  {
+    name: "李女士",
+    role: "总经理",
+    company: "某贸易公司",
+    comment: "通过MMC的预算优化方案，我们不仅提高了资金使用效率，还实现了收入增长30%的目标。"
+  },
+  {
+    name: "王先生",
+    role: "董事长",
+    company: "某科技公司",
+    comment: "MMC团队的专业能力和丰富经验，为我们的财务管理带来了质的飞跃，强烈推荐！"
+  }
+];
+
+const processedTestimonials = testimonials.map((item, index, array) => ({
+  ...item,
+  index: index + 1,
+  length: array.length
+}));
+---
+
+<div
+  id="TestimonialSlider"
+  class="swiper mt-10"
+  style={{
+    "--swiper-pagination-color": "#024340",
+    "--swiper-pagination-bullet-inactive-color": "#e5e7eb",
+    "--swiper-pagination-bullet-inactive-opacity": "1",
+    "--swiper-pagination-bullet-size": "12px",
+    "--swiper-pagination-bullet-horizontal-gap": "8px",
+  }}
+>
+  <div class="swiper-wrapper mt-16 mb-20" data-cursor="swipe">
+    {
+      processedTestimonials.map((item) => (
+        <div
+          class="swiper-slide text-gray flex flex-col"
+          role="group"
+          aria-label={`${item.index} / ${item.length}`}
+        >
+          <div class="flex flex-col justify-center items-center py-12 px-6 sm:px-12">
+            <p class="bubble">
+              "{item.comment}"
+            </p>
+          </div>
+          <div class="w-full px-10 sm:px-20">
+            <div class="text-primary font-semibold text-lg">{item.name}</div>
+            <div class="text-accent font-medium">{item.role}</div>
+            {item.company && (
+              <div class="text-gray-500 text-sm">{item.company}</div>
+            )}
+          </div>
+        </div>
+      ))
+    }
+  </div>
+  
+  <div class="flex justify-around lg:justify-center mb-12 lg:gap-48">
+    <div class="swiper-button-prev w-8 h-8 sm:w-10 sm:h-10">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+        <path
+          fill="#024340"
+          d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.2 288 416 288c17.7 0 32-14.3 32-32s-14.3-32-32-32l-306.7 0L214.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"
+        ></path>
+      </svg>
+    </div>
+    <div class="swiper-pagination"></div>
+    <div class="swiper-button-next w-8 h-8 sm:w-10 sm:h-10 rotate-180">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+        <path
+          fill="#024340"
+          d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.2 288 416 288c17.7 0 32-14.3 32-32s-14.3-32-32-32l-306.7 0L214.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"
+        ></path>
+      </svg>
+    </div>
+  </div>
+</div>
+
+<script>
+  import "swiper/css";
+  import "swiper/css/pagination";
+  import Swiper from "swiper";
+  import { Pagination, Navigation } from "swiper/modules";
+  import { register } from "swiper/element/bundle";
+  register();
+
+  Swiper.use([Pagination, Navigation]);
+
+  new Swiper("#TestimonialSlider", {
+    modules: [Pagination, Navigation],
+    pagination: {
+      el: ".swiper-pagination",
+      clickable: true,
+    },
+    navigation: {
+      nextEl: ".swiper-button-next",
+      prevEl: ".swiper-button-prev",
+    },
+    loop: true,
+    autoplay: {
+      delay: 5000,
+      disableOnInteraction: false,
+    },
+    grabCursor: true,
+    mousewheel: false,
+    slidesPerView: 1,
+    centeredSlides: true,
+    spaceBetween: 30,
+    breakpoints: {
+      1024: {
+        slidesPerView: 2,
+        spaceBetween: 50,
+      },
+      768: {
+        slidesPerView: 1,
+        spaceBetween: 30,
+      },
+      320: {
+        slidesPerView: 1,
+        spaceBetween: 20,
+      },
+    },
+  });
+</script>
+
+<style>
+  .bubble {
+    position: relative;
+    padding: 8%;
+    background-color: #f8fafc;
+    color: #374151;
+    border-radius: 24px;
+    border: 2px solid #024340;
+    font-size: 1.1rem;
+    line-height: 1.6;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  }
+  
+  .bubble:after {
+    content: "";
+    position: absolute;
+    bottom: -20px;
+    left: 50px;
+    border-width: 22px;
+    border-style: solid;
+    border-color: #f8fafc transparent transparent #f8fafc;
+  }
+  
+  .bubble:before {
+    content: "";
+    position: absolute;
+    bottom: -42px;
+    left: 48px;
+    border-width: 20px;
+    border-style: solid;
+    border-color: #024340 transparent transparent #024340;
+  }
+  
+  .swiper-wrapper {
+    position: relative;
+  }
+  
+  .swiper-slide {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 500ms ease-in-out;
+  }
+  
+  .swiper-pagination {
+    display: flex;
+    align-items: center;
+    width: auto !important;
+    position: static !important;
+  }
+  
+  .swiper-button-prev,
+  .swiper-button-next {
+    color: #024340 !important;
+    background: white;
+    border-radius: 50%;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+  }
+  
+  .swiper-button-prev:hover,
+  .swiper-button-next:hover {
+    background: #024340;
+    color: white !important;
+    transform: scale(1.1);
+  }
+</style>

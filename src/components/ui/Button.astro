@@ -1,0 +1,66 @@
+---
+// Button component for MMC Astro
+// Based on globals.css button styles
+
+interface Props {
+  variant?: 'primary' | 'outline' | 'outline-transparent' | 'secondary';
+  size?: 'sm' | 'md' | 'lg';
+  href?: string;
+  type?: 'button' | 'submit' | 'reset';
+  disabled?: boolean;
+  className?: string;
+  children?: any;
+}
+
+const { 
+  variant = 'primary', 
+  size = 'md', 
+  href, 
+  type = 'button',
+  disabled = false,
+  className = "",
+  children
+} = Astro.props;
+
+// Generate button classes based on variant and size
+function getButtonClasses(variant: string, size: string, disabled: boolean): string {
+  const baseClasses = "btn inline-flex items-center justify-center font-semibold transition-all duration-300";
+  
+  const sizeClasses: Record<string, string> = {
+    sm: "px-4 py-2 text-sm rounded-md",
+    md: "px-6 py-3 text-base rounded-lg", 
+    lg: "px-8 py-4 text-lg rounded-xl"
+  };
+  
+  const variantClasses: Record<string, string> = {
+    primary: "bg-primary text-white hover:bg-primary/90 focus:ring-4 focus:ring-primary/20",
+    outline: "btn-outline btn-outline-primary",
+    'outline-transparent': "btn-outline btn-outline-transparent",
+    secondary: "bg-gray-100 text-gray-900 hover:bg-gray-200 focus:ring-4 focus:ring-gray-200"
+  };
+  
+  const disabledClasses = disabled ? "opacity-50 cursor-not-allowed" : "";
+  
+  return `${baseClasses} ${sizeClasses[size] || sizeClasses['md']} ${variantClasses[variant] || variantClasses['primary']} ${disabledClasses}`.trim();
+}
+
+const buttonClasses = getButtonClasses(variant, size, disabled);
+---
+
+{href ? (
+  <a 
+    href={href} 
+    class={`${buttonClasses} ${className}`}
+    aria-disabled={disabled}
+  >
+    <slot />
+  </a>
+) : (
+  <button 
+    type={type}
+    disabled={disabled}
+    class={`${buttonClasses} ${className}`}
+  >
+    <slot />
+  </button>
+)}

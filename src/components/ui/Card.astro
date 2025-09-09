@@ -1,0 +1,18 @@
+---
+// Card component for MMC Astro
+// Based on SparkAstro's Card component
+
+const { isUnderline = false, className = "" } = Astro.props;
+---
+
+{
+  isUnderline ? (
+    <div class={`rounded-lg border border-gray-200 shadow-sm ${className}`}>
+      <slot />
+    </div>
+  ) : (
+    <div class={`rounded-lg ${className}`}>
+      <slot />
+    </div>
+  )
+}

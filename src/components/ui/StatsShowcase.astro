@@ -1,0 +1,71 @@
+---
+// StatsShowcase component for MMC Astro
+// 统计展示组件，用于展示公司的核心成就数据
+
+import StatsCard from "./StatsCard.astro";
+
+const statsData = [
+  {
+    number: "18年+",
+    title: "专业经验",
+    description: `2008年获得大马证监会(SC)
+Capital Market Services License
+合法提供财务规划服务,18年迭代的方法论。`,
+    highlight: "您面临的挑战,我们早有成熟解决方案。"
+  },
+  {
+    number: "500+",
+    title: "成功案例",
+    description: `为500+企业落地利润系统,
+重塑盈利模式,经验全覆盖。
+您面临的挑战,我们早有成熟解决方案。`,
+    highlight: "真实数据背书,效果经得起验证。"
+  },
+  {
+    number: "30%+",
+    title: "业绩提升",
+    description: `导入利润预算系统后,
+客户实测业绩增幅。
+真实数据背书,效果经得起验证。`,
+    highlight: "真实数据背书,效果经得起验证。"
+  }
+];
+---
+
+<section class="py-16 bg-gray-100">
+  <div class="container mx-auto px-4">
+    <div class="text-center mb-12 relative">
+      <!-- 金色装饰背景 -->
+      <div class="absolute top-0 left-1/2 transform -translate-x-1/2 w-24 h-1 bg-accent opacity-30 rounded-full"></div>
+      
+      <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4 relative">
+        <span class="relative">
+          我们的成就
+          <!-- 金色装饰点 -->
+          <div class="absolute -top-1 -right-8 w-2 h-2 bg-accent rounded-full opacity-60"></div>
+          <div class="absolute -bottom-1 -left-8 w-2 h-2 bg-accent rounded-full opacity-60"></div>
+        </span>
+      </h2>
+      
+      <p class="text-lg text-gray-600 max-w-2xl mx-auto relative">
+        <span class="relative">
+          18年专业经验，500+成功案例，30%+业绩提升，用数据证明我们的专业实力
+          <!-- 金色装饰线 -->
+          <div class="absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-16 h-0.5 bg-accent opacity-40"></div>
+        </span>
+      </p>
+    </div>
+    
+    <div class="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+      {statsData.map((stat, index) => (
+        <StatsCard 
+          number={stat.number}
+          title={stat.title}
+          description={stat.description}
+          highlight={stat.highlight}
+          className="hover:scale-105 transition-transform duration-300"
+        />
+      ))}
+    </div>
+  </div>
+</section>

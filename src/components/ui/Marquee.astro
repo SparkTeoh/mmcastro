@@ -1,0 +1,117 @@
+---
+// Marquee component for MMC Astro
+// Based on Customers component marquee functionality
+
+interface MarqueeItem {
+  name: string;
+  logo: string;
+  alt: string;
+  href?: string;
+}
+
+interface Props {
+  items: MarqueeItem[];
+  elementWidth?: string;
+  elementWidthSmall?: string;
+  duration?: string;
+  pauseOnHover?: boolean;
+  reverse?: boolean;
+  className?: string;
+}
+
+const { 
+  items,
+  elementWidth = "11.25rem",
+  elementWidthSmall = "7.5rem",
+  duration = "20s",
+  pauseOnHover = false,
+  reverse = false,
+  className = ""
+} = Astro.props;
+
+const marqueeConfig = {
+  elementWidth,
+  elementWidthSmall,
+  pauseOnHover,
+  reverse: reverse ? "reverse" : "",
+  duration
+};
+---
+
+<div class={`marquee ${className}`} style={`--marquee-elements:${items.length};--marquee-element-width-responsive:calc(${marqueeConfig.elementWidthSmall} / var(--marquee-elements) * ${items.length});--marquee-element-width:calc(${marqueeConfig.elementWidth} / var(--marquee-elements) * ${items.length});--marquee-duration:${marqueeConfig.duration};--marquee-reverse:${marqueeConfig.reverse};`}>
+  <div class="marquee-content flex items-center">
+    {items.map((item) => (
+      <div class="min-w-[var(--marquee-element-width-responsive)] px-0 md:min-w-[var(--marquee-element-width)] md:px-4">
+        <div class="px-4 flex items-center justify-center">
+          <div class="w-full h-20 flex items-center justify-center">
+            {item.href ? (
+              <a href={item.href} target="_blank" rel="noopener noreferrer" class="block">
+                <img 
+                  src={item.logo} 
+                  alt={item.alt}
+                  class="max-w-full max-h-full object-contain hover:opacity-80 transition-opacity"
+                  loading="lazy"
+                />
+              </a>
+            ) : (
+              <img 
+                src={item.logo} 
+                alt={item.alt}
+                class="max-w-full max-h-full object-contain"
+                loading="lazy"
+              />
+            )}
+          </div>
+        </div>
+      </div>
+    ))}
+    {items.map((item) => (
+      <div 
+        class="min-w-[var(--marquee-element-width-responsive)] px-0 md:min-w-[var(--marquee-element-width)] md:px-4"
+        aria-hidden="true"
+      >
+        <div class="px-4 flex items-center justify-center">
+          <div class="w-full h-20 flex items-center justify-center">
+            {item.href ? (
+              <a href={item.href} target="_blank" rel="noopener noreferrer" class="block">
+                <img 
+                  src={item.logo} 
+                  alt={item.alt}
+                  class="max-w-full max-h-full object-contain hover:opacity-80 transition-opacity"
+                  loading="lazy"
+                />
+              </a>
+            ) : (
+              <img 
+                src={item.logo} 
+                alt={item.alt}
+                class="max-w-full max-h-full object-contain"
+                loading="lazy"
+              />
+            )}
+          </div>
+        </div>
+      </div>
+    ))}
+  </div>
+</div>
+
+<style>
+  .marquee {
+    --marquee-width: 100%;
+    @apply mx-auto w-[var(--marquee-width)] overflow-x-hidden;
+  }
+
+  .marquee-content {
+    animation: marquee var(--marquee-duration) linear infinite var(--marquee-reverse);
+  }
+
+  @keyframes marquee {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(calc(-1 * var(--marquee-element-width) * var(--marquee-elements)));
+    }
+  }
+</style>

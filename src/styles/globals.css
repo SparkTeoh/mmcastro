@@ -22,6 +22,29 @@ body {
   overscroll-behavior: none;
   -webkit-overflow-scrolling: touch;
   overflow-x: hidden;
+  /* Performance optimizations for smooth scrolling */
+  scroll-behavior: smooth;
+}
+
+/* Ensure sticky elements work properly */
+.lg\:sticky {
+  position: -webkit-sticky; /* Safari support */
+  position: sticky;
+}
+
+/* HowItWorks specific sticky behavior */
+@media (min-width: 1024px) {
+  .how-it-works-container {
+    /* Ensure proper stacking context for sticky elements */
+    position: relative;
+  }
+  
+  .how-it-works-step {
+    /* Each step should stack on top of the previous one */
+    background: white;
+    position: sticky;
+    top: calc(6vh + 5rem);
+  }
 }
 
 /* Global Section Spacing */
@@ -243,6 +266,7 @@ button:not(:disabled),
 .icon {
   @apply ml-2 flex items-center justify-center;
 }
+
 
 /* AOS Animations */
 /* --------------------------------- */

@@ -1,0 +1,373 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navigation from '../components/ui/Navigation.astro';
+import Footer from '../components/ui/Footer.astro';
+import Accordion from '../components/ui/Accordion.astro';
+import ArticleCard from '../components/ui/ArticleCard.astro';
+import BusinessForm from '../components/ui/BusinessForm.astro';
+import SearchForm from '../components/ui/SearchForm.astro';
+import SwiperSlider from '../components/ui/SwiperSlider.astro';
+import TeamCard from '../components/ui/TeamCard.astro';
+import VideoCard from '../components/ui/VideoCard.astro';
+import StatsShowcase from '../components/ui/StatsShowcase.astro';
+import Button from '../components/ui/Button.astro';
+import Marquee from '../components/ui/Marquee.astro';
+import CustomerLogos from '../components/ui/CustomerLogos.astro';
+import LineAnimation from '../components/ui/LineAnimation.astro';
+import CallToAction from '../components/ui/CallToAction.astro';
+import SectionTitle from '../components/ui/SectionTitle.astro';
+
+// 示例数据
+const sampleArticles = [
+  {
+    title: "财务规划的重要性",
+    summary: "深入探讨企业财务规划在现代商业环境中的关键作用，以及如何制定有效的财务策略来推动业务增长。",
+    author: "MMC Financial",
+    pubDate: new Date('2024-01-15'),
+    tags: ['财务规划', '企业管理', '预算控制'],
+    type: '专业内容',
+    slug: 'financial-planning',
+    authImage: undefined
+  },
+  {
+    title: "预算优化策略指南",
+    summary: "学习如何通过科学的预算优化策略，提高企业运营效率，降低成本，实现利润最大化。",
+    author: "MMC Financial",
+    pubDate: new Date('2024-01-10'),
+    tags: ['预算优化', '成本控制', '效率提升'],
+    type: '案例分析',
+    slug: 'budget-optimization',
+    authImage: undefined
+  },
+  {
+    title: "现金流管理最佳实践",
+    summary: "掌握现金流管理的核心技巧，确保企业资金链健康，为业务发展提供强有力的财务支撑。",
+    author: "MMC Financial",
+    pubDate: new Date('2024-01-05'),
+    tags: ['现金流', '资金管理', '财务健康'],
+    type: '专业内容',
+    slug: 'cash-flow-management',
+    authImage: undefined
+  }
+];
+
+const sampleTeamMembers = [
+  {
+    pic: "/images/team/member1.jpg",
+    name: "张经理",
+    role: "财务顾问",
+    description: "拥有15年财务管理经验，专注于企业预算优化和利润提升。曾帮助多家企业实现30%以上的利润增长。",
+    link: "https://linkedin.com/in/zhang-manager"
+  },
+  {
+    pic: "/images/team/member2.jpg",
+    name: "李女士",
+    role: "高级分析师",
+    description: "专业的数据分析师，擅长财务建模和风险评估。在现金流管理和预算规划方面有丰富的实践经验。",
+    link: "https://linkedin.com/in/li-analyst"
+  },
+  {
+    pic: "/images/team/member3.jpg",
+    name: "王先生",
+    role: "项目经理",
+    description: "经验丰富的项目管理专家，专注于企业财务系统实施和流程优化。确保项目按时按质完成。",
+    link: "https://linkedin.com/in/wang-project"
+  }
+];
+
+const sampleVideos = [
+  {
+    title: "企业预算管理入门指南",
+    description: "本视频将为您详细介绍企业预算管理的基础知识和实践技巧，帮助您建立科学的预算管理体系。",
+    videoId: "dQw4w9WgXcQ",
+    duration: "15:30",
+    publishDate: "2024-01-15",
+    views: "1.2K"
+  },
+  {
+    title: "现金流管理最佳实践",
+    description: "深入讲解现金流管理的核心技巧，帮助企业建立健康的资金管理体系，确保业务稳定发展。",
+    videoId: "dQw4w9WgXcQ",
+    duration: "22:15",
+    publishDate: "2024-01-10",
+    views: "856"
+  }
+];
+---
+
+<Layout title="MMC Astro UI 组件展示中心" description="全面展示 MMC Astro 网站的所有 UI 组件，包括手风琴、文章卡片、商业表单、搜索功能、轮播组件、团队卡片和视频卡片等。">
+  <Navigation />
+  
+  <main>
+    <!-- Hero Section -->
+    <section class="py-16 bg-gradient-to-br from-primary/5 via-accent/5 to-background">
+      <div class="container mx-auto px-4">
+        <div class="text-center max-w-4xl mx-auto">
+          <h1 class="text-4xl md:text-5xl font-bold text-primary mb-6">
+            MMC Astro UI 组件展示中心
+          </h1>
+          <p class="text-xl text-text-default mb-8 leading-relaxed">
+            全面展示 MMC Astro 网站的所有 UI 组件，这些组件都基于现代设计理念，
+            采用 MMC 品牌风格，为用户提供优秀的交互体验。
+          </p>
+          <div class="flex flex-wrap justify-center gap-4">
+            <span class="bg-primary text-white px-4 py-2 rounded-full text-sm font-medium">UI组件</span>
+            <span class="bg-accent text-white px-4 py-2 rounded-full text-sm font-medium">设计系统</span>
+            <span class="bg-primary text-white px-4 py-2 rounded-full text-sm font-medium">用户体验</span>
+            <span class="bg-accent text-white px-4 py-2 rounded-full text-sm font-medium">前端开发</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+      <!-- Stats Showcase Section -->
+      <section class="py-16">
+        <div class="container mx-auto px-4">
+          <SectionTitle
+            sectionTitle="统计展示组件"
+            description="展示公司核心成就和关键数据的统计卡片组件"
+          />
+          <StatsShowcase />
+        </div>
+      </section>
+
+      <!-- Button Components Section -->
+      <section class="py-16 bg-gray-50">
+        <div class="container mx-auto px-4">
+          <SectionTitle
+            sectionTitle="按钮组件"
+            description="多种样式的按钮组件，支持不同尺寸和变体"
+          />
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div class="space-y-4">
+              <h3 class="text-lg font-semibold text-primary">主要按钮</h3>
+              <Button variant="primary" size="sm">小按钮</Button>
+              <Button variant="primary" size="md">中等按钮</Button>
+              <Button variant="primary" size="lg">大按钮</Button>
+            </div>
+            <div class="space-y-4">
+              <h3 class="text-lg font-semibold text-primary">轮廓按钮</h3>
+              <Button variant="outline" size="sm">小按钮</Button>
+              <Button variant="outline" size="md">中等按钮</Button>
+              <Button variant="outline" size="lg">大按钮</Button>
+            </div>
+            <div class="space-y-4">
+              <h3 class="text-lg font-semibold text-primary">透明按钮</h3>
+              <Button variant="outline-transparent" size="sm">小按钮</Button>
+              <Button variant="outline-transparent" size="md">中等按钮</Button>
+              <Button variant="outline-transparent" size="lg">大按钮</Button>
+            </div>
+            <div class="space-y-4">
+              <h3 class="text-lg font-semibold text-primary">链接按钮</h3>
+              <Button href="/contact" variant="primary" size="sm">联系我们</Button>
+              <Button href="/services" variant="outline" size="md">查看服务</Button>
+              <Button href="/about" variant="secondary" size="lg">关于我们</Button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Customer Logos Section -->
+      <section class="py-16">
+        <div class="container mx-auto px-4">
+          <SectionTitle
+            sectionTitle="客户标志展示"
+            description="展示合作客户标志的跑马灯组件"
+          />
+          <CustomerLogos />
+        </div>
+      </section>
+
+      <!-- Marquee Component Section -->
+      <section class="py-16 bg-gray-50">
+        <div class="container mx-auto px-4">
+          <SectionTitle
+            sectionTitle="跑马灯组件"
+            description="可自定义的跑马灯滚动组件"
+          />
+          <div class="relative flex items-center overflow-hidden before:absolute before:top-0 before:left-0 before:z-10 before:h-full before:w-20 before:bg-gradient-to-r before:from-gray-50 before:to-transparent after:absolute after:top-0 after:right-0 after:h-full after:w-20 after:bg-gradient-to-l after:from-gray-50 after:to-transparent">
+            <Marquee 
+              items={[
+                { name: "示例1", logo: "/images/customers/company-logo/rakan jaya.webp", alt: "示例1" },
+                { name: "示例2", logo: "/images/customers/company-logo/salamku.webp", alt: "示例2" },
+                { name: "示例3", logo: "/images/customers/company-logo/Teck Guan.webp", alt: "示例3" },
+                { name: "示例4", logo: "/images/customers/company-logo/anniks.webp", alt: "示例4" },
+                { name: "示例5", logo: "/images/customers/company-logo/LWL.webp", alt: "示例5" }
+              ]}
+              duration="15s"
+            />
+          </div>
+        </div>
+      </section>
+
+      <!-- Call to Action Section -->
+      <section class="py-16">
+        <div class="container mx-auto px-4">
+          <SectionTitle
+            sectionTitle="行动号召组件"
+            description="用于引导用户采取行动的营销组件"
+          />
+          <CallToAction />
+        </div>
+      </section>
+
+    <!-- Search Form Section -->
+    <section class="py-12 bg-white">
+      <div class="container mx-auto px-4">
+        <SectionTitle 
+          sectionTitle="搜索功能演示" 
+          description="体验我们的搜索表单组件，支持内容搜索功能"
+        />
+        <div class="max-w-md mx-auto">
+          <SearchForm />
+        </div>
+      </div>
+    </section>
+
+    <!-- Accordion Section -->
+    <section class="py-16 bg-gray-50">
+      <div class="container mx-auto px-4">
+        <SectionTitle 
+          sectionTitle="服务流程展示" 
+          description="手风琴组件用于展示步骤流程，支持展开/收起交互"
+        />
+        <div class="max-w-4xl mx-auto">
+          <Accordion />
+        </div>
+      </div>
+    </section>
+
+    <!-- Article Cards Section -->
+    <section class="py-16 bg-white">
+      <div class="container mx-auto px-4">
+        <SectionTitle 
+          sectionTitle="文章卡片展示" 
+          description="文章卡片组件用于内容中心展示文章，支持多种内容类型和标签"
+        />
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+          {sampleArticles.map((article) => (
+            <ArticleCard article={article} />
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Team Cards Section -->
+    <section class="py-16 bg-gray-50">
+      <div class="container mx-auto px-4">
+        <SectionTitle 
+          sectionTitle="团队成员展示" 
+          description="团队卡片组件用于展示团队成员信息，包括头像、职位和描述"
+        />
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+          {sampleTeamMembers.map((member) => (
+            <TeamCard {...member} />
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Video Cards Section -->
+    <section class="py-16 bg-white">
+      <div class="container mx-auto px-4">
+        <SectionTitle 
+          sectionTitle="视频内容展示" 
+          description="视频卡片组件用于展示视频内容，支持 YouTube 视频和视频信息"
+        />
+        <div class="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+          {sampleVideos.map((video) => (
+            <VideoCard {...video} />
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Swiper Slider Section -->
+    <section class="py-16 bg-gray-50">
+      <div class="container mx-auto px-4">
+        <SectionTitle 
+          sectionTitle="客户见证轮播" 
+          description="轮播组件用于展示客户见证，支持自动播放和响应式设计"
+        />
+        <div class="max-w-6xl mx-auto">
+          <SwiperSlider />
+        </div>
+      </div>
+    </section>
+
+    <!-- Business Form Section -->
+    <section class="py-16 bg-white">
+      <div class="container mx-auto px-4">
+        <SectionTitle 
+          sectionTitle="商业合作表单" 
+          description="专业的商业合作申请表单，支持多种合作类型和完整的项目信息收集"
+        />
+        <div class="max-w-2xl mx-auto">
+          <BusinessForm />
+        </div>
+      </div>
+    </section>
+
+    <!-- Summary Section -->
+    <section class="py-16 bg-gradient-to-br from-primary/5 via-accent/5 to-background">
+      <div class="container mx-auto px-4">
+        <div class="max-w-4xl mx-auto text-center">
+          <h2 class="text-3xl font-bold text-primary mb-6">组件使用总结</h2>
+          <p class="text-lg text-text-default mb-8">
+            以上展示的所有 UI 组件都遵循了 MMC 的设计规范，具有统一的设计语言和优秀的用户体验。
+          </p>
+          
+          <div class="grid md:grid-cols-3 gap-8 mb-12">
+            <div class="bg-white p-6 rounded-lg border border-primary/20 shadow-sm">
+              <h3 class="text-xl font-semibold text-primary mb-4">🎨 设计特点</h3>
+              <ul class="space-y-2 text-text-default text-left">
+                <li>• 统一的品牌色彩方案</li>
+                <li>• 现代化的圆角设计</li>
+                <li>• 优雅的阴影效果</li>
+                <li>• 响应式布局支持</li>
+                <li>• 流畅的动画过渡</li>
+              </ul>
+            </div>
+            
+            <div class="bg-white p-6 rounded-lg border border-accent/20 shadow-sm">
+              <h3 class="text-xl font-semibold text-accent mb-4">⚡ 功能特点</h3>
+              <ul class="space-y-2 text-text-default text-left">
+                <li>• 完整的交互功能</li>
+                <li>• 无障碍访问支持</li>
+                <li>• 移动端优化</li>
+                <li>• 易于定制和扩展</li>
+                <li>• 性能优化</li>
+              </ul>
+            </div>
+            
+            <div class="bg-white p-6 rounded-lg border border-primary/20 shadow-sm">
+              <h3 class="text-xl font-semibold text-primary mb-4">📊 组件统计</h3>
+              <ul class="space-y-2 text-text-default text-left">
+                <li>• 基础组件: 5个</li>
+                <li>• 表单组件: 3个</li>
+                <li>• 展示组件: 8个</li>
+                <li>• 交互组件: 3个</li>
+                <li>• 营销组件: 2个</li>
+                <li>• 总计: 21个UI组件</li>
+              </ul>
+            </div>
+          </div>
+          
+          <div class="bg-white p-8 rounded-lg border border-primary/20 shadow-sm">
+            <h3 class="text-2xl font-bold text-primary mb-4">🚀 开始使用</h3>
+            <p class="text-lg text-text-default mb-6">
+              这些组件已经集成到 MMC Astro 的设计系统中，您可以在任何页面中轻松使用它们。
+              每个组件都经过精心设计，确保与整体网站风格保持一致。
+            </p>
+            <p class="text-text-default">
+              如需了解更多技术细节或自定义选项，请参考 
+              <code class="bg-gray-100 px-2 py-1 rounded text-sm">UI_COMPONENTS_GUIDE.md</code> 文档。
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+  
+  <Footer />
+</Layout>

@@ -1,0 +1,17 @@
+---
+// Section Title component for MMC Astro
+// Based on SparkAstro's SectionTitle component
+
+const { sectionTitle, description, className = "" } = Astro.props;
+---
+
+<div class={`flex flex-col items-center gap-6 mb-12 text-center ${className}`}>
+  <h2 class="text-3xl sm:text-4xl font-bold text-primary">
+    {sectionTitle}
+  </h2>
+  {description && (
+    <p class="max-w-2xl text-text-default">
+      {description}
+    </p>
+  )}
+</div>

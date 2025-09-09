@@ -1,0 +1,99 @@
+---
+// CustomerLogos component for MMC Astro
+// Based on Customers section component
+
+import Marquee from "./Marquee.astro";
+
+interface CustomerLogo {
+  name: string;
+  logo: string;
+  alt: string;
+  href?: string;
+}
+
+interface Props {
+  title?: string;
+  description?: string;
+  customers?: CustomerLogo[];
+  className?: string;
+}
+
+const { 
+  title = "他们选择了MMC预算管理课程",
+  description = "与这些具有前瞻视野的企业一同，掌握驱动利润增长的预算罗盘。",
+  customers = [
+    {
+      name: "RakanJaya",
+      logo: "/images/customers/company-logo/rakan jaya.webp",
+      alt: "RakanJaya"
+    },
+    {
+      name: "Salamku Grocery",
+      logo: "/images/customers/company-logo/salamku.webp", 
+      alt: "Salamku Grocery"
+    },
+    {
+      name: "Teck Guan Group",
+      logo: "/images/customers/company-logo/Teck Guan.webp",
+      alt: "Teck Guan Group"
+    },
+    {
+      name: "Anniks Beauty",
+      logo: "/images/customers/company-logo/anniks.webp",
+      alt: "Anniks Beauty"
+    },
+    {
+      name: "LWL CONCEPTS",
+      logo: "/images/customers/company-logo/LWL.webp",
+      alt: "LWL CONCEPTS"
+    }
+  ],
+  className = ""
+} = Astro.props;
+---
+
+<section class={`py-16 bg-white ${className}`}>
+  <div class="container">
+    <!-- Section Content -->
+    <div class="flex flex-col lg:flex-row items-center justify-between gap-8 lg:gap-12">
+      <!-- Left side - Text content -->
+      <div class="flex-1 text-center lg:text-left">
+        <div class="shrink-0 opacity-80 md:w-80">
+          <p class="font-medium">
+            {title} ｜
+          </p>
+          <p>
+            {description}
+          </p>
+        </div>
+      </div>
+      
+      <!-- Right side - Customer logos marquee -->
+      <div class="flex-1 w-full">
+        <div class="relative flex items-center overflow-hidden before:absolute before:top-0 before:left-0 before:z-10 before:h-full before:w-20 before:bg-gradient-to-r before:from-white before:to-transparent after:absolute after:top-0 after:right-0 after:h-full after:w-20 after:bg-gradient-to-l after:from-white after:to-transparent before:md:w-32 after:md:w-32">
+          <Marquee items={customers} />
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+  }
+  
+  @media (min-width: 768px) {
+    .container {
+      padding: 0 2rem;
+    }
+  }
+  
+  @media (min-width: 1024px) {
+    .container {
+      padding: 0 3rem;
+    }
+  }
+</style>

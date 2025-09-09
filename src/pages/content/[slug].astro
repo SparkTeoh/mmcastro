@@ -1,0 +1,171 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Navigation from '../../components/UI/Navigation.astro';
+import Footer from '../../components/UI/Footer.astro';
+import fs from 'fs';
+import path from 'path';
+
+export async function getStaticPaths() {
+  const contentFilesPath = path.join(process.cwd(), 'src/pages/content');
+  const contentFiles = [];
+
+  try {
+    if (fs.existsSync(contentFilesPath)) {
+      const files = fs.readdirSync(contentFilesPath, { withFileTypes: true })
+        .filter(dirent => dirent.isFile() && dirent.name.endsWith('.astro') && dirent.name !== 'index.astro' && dirent.name !== '[slug].astro')
+        .map(dirent => dirent.name);
+      
+      contentFiles.push(...files);
+    }
+  } catch (error) {
+    console.warn('Error reading content files:', error);
+  }
+
+  return contentFiles.map(file => {
+    const slug = file.replace('.astro', '');
+    return {
+      params: { slug },
+      props: { fileName: file }
+    };
+  });
+}
+
+const { slug } = Astro.params;
+const { fileName } = Astro.props;
+
+// 读取对应的内容文件
+const contentFilePath = path.join(process.cwd(), 'src/pages/content', fileName);
+let contentData = null;
+let contentHtml = '';
+
+try {
+  if (fs.existsSync(contentFilePath)) {
+    const fileContent = fs.readFileSync(contentFilePath, 'utf-8');
+    
+    // 提取 frontmatter 中的 contentData
+    const frontmatterMatch = fileContent.match(/---([\s\S]*?)---/);
+    if (frontmatterMatch) {
+      const frontmatter = frontmatterMatch[1];
+      
+      // 提取 contentData 对象
+      const contentDataMatch = frontmatter.match(/const contentData = \{([\s\S]*?)\};/);
+      if (contentDataMatch) {
+        try {
+          // 构建一个可解析的 JavaScript 对象字符串
+          const contentDataStr = contentDataMatch[0]
+            .replace('const contentData = ', '')
+            .replace(/;$/, '')
+            .replace(/new Date\('([^']+)'\)/g, '"$1"') // 将 new Date() 转换为字符串
+            .replace(/new Date\(\)/g, `"${new Date().toISOString()}"`);
+          
+          // 使用 eval 来解析对象（注意：这在生产环境中需要谨慎使用）
+          contentData = eval('(' + contentDataStr + ')');
+          
+          // 确保 pubDate 是 Date 对象
+          if (contentData.pubDate && typeof contentData.pubDate === 'string') {
+            contentData.pubDate = new Date(contentData.pubDate);
+          }
+        } catch (error) {
+          console.warn(`Error parsing contentData from ${fileName}:`, error);
+        }
+      }
+      
+      // 提取内容部分（frontmatter 之后的内容）
+      const contentParts = fileContent.split('---');
+      if (contentParts.length >= 3) {
+        contentHtml = contentParts[2].trim();
+        // 确保内容正确编码
+        if (typeof contentHtml === 'string') {
+          contentHtml = contentHtml.replace(/\r\n/g, '\n').replace(/\r/g, '\n');
+        }
+      }
+    }
+  }
+} catch (error) {
+  console.warn('Error reading content file:', error);
+}
+
+// 如果没有找到内容数据，返回 404
+if (!contentData) {
+  return Astro.redirect('/404');
+}
+---
+
+<Layout title={contentData.title}>
+  <Navigation />
+  
+  <main class="min-h-screen bg-gradient-to-br from-theme-light to-white pt-20">
+    <article class="container mx-auto px-4 py-12">
+      <header class="text-center mb-12 bg-gradient-to-br from-primary/8 via-primary/5 to-theme-light rounded-3xl p-8 border border-primary/15 shadow-sm">
+        <!-- 返回按钮 -->
+        <div class="mb-6">
+          <a 
+            href="/content" 
+            class="inline-flex items-center text-primary hover:text-accent transition-colors duration-200"
+          >
+            <svg class="mr-2 w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z" clip-rule="evenodd"></path>
+            </svg>
+            返回内容中心
+          </a>
+        </div>
+
+        <!-- 类型标签 -->
+        <div class="mb-6">
+          <span class="bg-accent text-white text-sm font-medium px-4 py-2 rounded-full">
+            {contentData.type}
+          </span>
+        </div>
+
+        <!-- 标题 -->
+        <h1 class="text-4xl lg:text-5xl font-bold text-primary mb-6">{contentData.title}</h1>
+        
+        <!-- 摘要 -->
+        <p class="text-xl text-text-default max-w-3xl mx-auto mb-8">{contentData.summary}</p>
+        
+        <!-- 作者信息 -->
+        <div class="flex items-center justify-center space-x-4">
+          <div class="w-10 h-10 rounded-full bg-accent flex items-center justify-center">
+            <span class="text-white text-lg font-bold">{contentData.author.charAt(0)}</span>
+          </div>
+          <div class="text-left">
+            <p class="text-primary font-medium">{contentData.author}</p>
+            <p class="text-text-default text-sm">{contentData.pubDate.toLocaleDateString('zh-CN')}</p>
+          </div>
+        </div>
+
+        <!-- 推荐标签 -->
+        {contentData.featured && (
+          <div class="mt-6">
+            <span class="bg-yellow-100 text-yellow-800 text-sm font-medium px-3 py-1 rounded-full">
+              推荐内容
+            </span>
+          </div>
+        )}
+      </header>
+
+      <div class="prose prose-lg max-w-4xl mx-auto">
+        <Fragment set:html={contentHtml} />
+      </div>
+
+      <!-- 标签 -->
+      {contentData.tags && contentData.tags.length > 0 && (
+        <div class="mt-12 pt-8 border-t border-border-default">
+          <div class="flex flex-wrap gap-2 justify-center">
+            {contentData.tags.map((tag: string) => (
+              <a 
+                href={`/content?search=${encodeURIComponent(tag)}`}
+                class="px-3 py-1 bg-gray-100 hover:bg-accent hover:text-white text-primary text-sm font-medium rounded-full transition-colors duration-200"
+              >
+                {tag}
+              </a>
+            ))}
+          </div>
+        </div>
+      )}
+
+    </article>
+  </main>
+
+  <Footer />
+</Layout>

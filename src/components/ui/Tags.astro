@@ -1,0 +1,19 @@
+---
+// Tags component for MMC Astro
+// Based on SparkAstro's Tags component
+
+export interface Props {
+  tags: string[];
+  className?: string;
+}
+
+const { tags, className = "" } = Astro.props;
+---
+
+<div class={`flex flex-wrap gap-2 justify-center ${className}`}>
+  {tags.map((tag) => (
+    <span class="inline-block bg-gray-100 text-primary px-3 py-1 rounded-full text-sm font-medium hover:bg-primary hover:text-white transition-colors duration-200">
+      {tag}
+    </span>
+  ))}
+</div>

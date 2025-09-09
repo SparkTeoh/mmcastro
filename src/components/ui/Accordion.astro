@@ -1,0 +1,51 @@
+---
+// Accordion component for MMC Astro
+// Based on SparkAstro's Accordion component but adapted for MMC's style
+
+import AccordionItem from "./AccordionItem.astro";
+
+const content = [
+{
+  index: 1,
+  title: "需求分析",
+  description: "深入了解您的业务现状，分析财务结构，识别利润增长机会。我们通过专业的财务诊断工具，为您提供全面的业务分析报告。"
+},
+{
+  index: 2,
+  title: "方案设计", 
+  description: "基于分析结果，为您量身定制利润预算管理方案。包括预算框架设计、流程优化建议、以及具体的实施策略。"
+},
+{
+  index: 3,
+  title: "系统实施",
+  description: "协助您建立完善的利润预算管理体系，包括制度建立、人员培训、系统配置等。确保方案能够顺利落地执行。"
+},
+{
+  index: 4,
+  title: "监控优化",
+  description: "建立持续监控机制，定期评估预算执行效果，及时调整优化策略。确保您的利润预算管理持续改进和提升。"
+},
+{
+  index: 5,
+  title: "效果评估",
+  description: "定期评估项目实施效果，量化利润提升成果。我们提供详细的评估报告，让您清楚看到投资回报。"
+},
+{
+  index: 6,
+  title: "长期支持",
+  description: "提供持续的专业支持服务，包括定期回访、问题解答、系统升级等。确保您的利润预算管理长期稳定运行。"
+}
+];
+---
+
+{
+  content.map((item) => {
+    return (
+      <AccordionItem
+        index={item.index}
+        title={item.title}
+        description={item.description}
+      />
+    );
+  })
+}
