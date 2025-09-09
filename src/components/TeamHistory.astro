@@ -1,0 +1,223 @@
+---
+// TeamHistory component for displaying company heritage and leadership transition
+
+// Leadership team data
+const leadershipTeam = [
+  {
+    name: "PC Lim",
+    role: "Advisor and Former Shareholder",
+    image: "/images/about-us/team/PC Lim.webp",
+    social: {
+      enable: true,
+      list: [
+        {
+          enable: true,
+          label: "LinkedIn",
+          icon: "/images/icons/svg/linkedin.svg",
+          url: "https://www.linkedin.com/"
+        }
+      ]
+    }
+  },
+  {
+    name: "Phillip Tay",
+    role: "Licensed Director",
+    image: "/images/about-us/team/Phillip Tay.webp",
+    social: {
+      enable: true,
+      list: [
+        {
+          enable: true,
+          label: "LinkedIn",
+          icon: "/images/icons/svg/linkedin.svg",
+          url: "https://www.linkedin.com/"
+        }
+      ]
+    }
+  },
+  {
+    name: "Spark Liang",
+    role: "Managing Director",
+    image: "/images/about-us/team/Spark.webp",
+    social: {
+      enable: true,
+      list: [
+        {
+          enable: true,
+          label: "LinkedIn",
+          icon: "/images/icons/svg/linkedin.svg",
+          url: "https://www.linkedin.com/"
+        },
+        {
+          enable: true,
+          label: "Twitter",
+          icon: "/images/icons/svg/twitter.svg",
+          url: "https://twitter.com/"
+        }
+      ]
+    }
+  }
+];
+---
+
+<section class="team-history-section">
+  <div class="container">
+    <div class="grid place-items-stretch gap-10 lg:grid-cols-2">
+      <div class="flex flex-wrap items-center justify-between gap-6 overflow-x-hidden lg:flex-nowrap">
+        <div class="lg:max-w-2xl" data-aos="fade-right-sm">
+          {/* Subtitle */}
+          <span class="bg-primary/5 border-secondary text-primary mb-2.5 inline-block rounded-full border px-5 py-px">
+            三代传承，专注如一
+          </span>
+          {/* Main Title */}
+          <h2 class="text-h3 text-inherit">
+            始于1997年，<br>
+            我们只专注于一件事：<br>
+            透过财务规划<br>
+            实现可持续增长。
+          </h2>
+          {/* Description */}
+          <p class="mt-6">
+            MMC Financial Planning 始创于1997年，并于2008年获得马来西亚证券监督委员会（SC）的正式许可。二十余年来，在创始人 PC Lim 与 Phillip Tay 等前辈的带领下，我们始终扎根于企业财务规划领域，陪伴了上百家企业的成长。
+          </p>
+          <p class="mt-4">
+            如今，这份宝贵的经验与深刻的洞察力已传承至新一代领导者手中。我们完整地继承了那套历经市场考验、以"预算管理"为核心的经营哲学，并为其注入了更贴合当代商业环境的全新活力与视角。
+          </p>
+          <p class="mt-4">
+            我们坚信，真正有效的管理咨询，不是空泛的理论，而是源自实践、可以传承的智慧。这份智慧，正是我们助您企业<strong>从"偶然赚钱"走向"必然增长"</strong>的最大底气。
+          </p>
+          {/* Quote */}
+          <blockquote class="border-primary mt-5 max-w-xl border-l py-1 pl-5">
+            <p class="opacity-70">
+              "我的使命，就是将前辈们沉淀了二十余年的智慧，转化为您企业看得见的增长。"
+            </p>
+            <p class="mt-3 text-xs">
+              – Spark Liang, Managing Director
+            </p>
+          </blockquote>
+        </div>
+      </div>
+      
+      {/* Leadership Team Cards */}
+      <div class="grid gap-6 md:grid-cols-2 md:grid-rows-2 md:place-items-center">
+        {leadershipTeam.map((member, index) => (
+          <div 
+            class={`group after:from-primary/80 after:via-primary/30 to-primary/0 relative overflow-hidden rounded-xl via-10% after:absolute after:inset-0 after:z-10 after:bg-gradient-to-t after:transition-opacity ${index === 0 ? 'md:row-span-2' : ''}`}
+            data-aos="fade-up-sm"
+            data-aos-delay={index * 100}
+          >
+            <img
+              src={member.image}
+              alt={member.name}
+              class={`w-full rounded-xl object-cover ${index === 0 ? '!h-[25.25rem]' : '!h-[20rem]'}`}
+            />
+            <div class="absolute bottom-0 left-0 z-20 w-full p-8 text-white transition-all duration-300 md:-bottom-14 group-hover:md:bottom-0">
+              <h3 class="text-lg/snug text-inherit opacity-90">{member.name}</h3>
+              <p class="mt-2 text-sm text-inherit opacity-90">{member.role}</p>
+              {member.social && member.social.enable && (
+                <ul class="z-20 mt-6 flex gap-4 transition-all duration-300 md:opacity-0 md:group-hover:opacity-100">
+                  {member.social.list.map((social) => (
+                    <li>
+                      <a
+                        aria-label={social.label}
+                        href={social.url}
+                        target="_blank"
+                        rel="noopener noreferrer nofollow"
+                        class="group/link relative flex h-5 w-5 items-center justify-center transition duration-300"
+                      >
+                        <span class="sr-only">{social.label}</span>
+                        {social.icon && (
+                          <img
+                            src={social.icon}
+                            class="has-inherited-colors w-full relative z-10 h-full text-white transition duration-300 group-hover/link:scale-110"
+                            alt={social.label}
+                          />
+                        )}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  /* Team History Section */
+  .team-history-section {
+    padding: 120px 0 80px 0;
+    background: #f8fafc;
+  }
+
+  /* Container */
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+  }
+
+  @media (min-width: 768px) {
+    .container {
+      padding: 0 2rem;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .container {
+      padding: 0 3rem;
+    }
+  }
+
+  /* Typography */
+  .text-h3 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    line-height: 1.2;
+    color: #024340;
+  }
+
+  .text-primary {
+    color: #024340;
+  }
+
+  .text-secondary {
+    color: #036b66;
+  }
+
+  .bg-primary {
+    background-color: #024340;
+  }
+
+  .bg-primary\/5 {
+    background-color: rgba(2, 67, 64, 0.05);
+  }
+
+  .border-primary {
+    border-color: #024340;
+  }
+
+  .border-secondary {
+    border-color: #036b66;
+  }
+
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .text-h3 {
+      font-size: 2rem;
+    }
+    
+    .team-history-section {
+      padding: 100px 0 60px 0;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .text-h3 {
+      font-size: 1.75rem;
+    }
+  }
+</style>

@@ -2,9 +2,16 @@
 export interface Props {
   title: string;
   description?: string;
+  ogImage?: string;
+  ogUrl?: string;
 }
 
-const { title, description = "MMC - 专业的现代化解决方案" } = Astro.props;
+const { 
+  title, 
+  description = "MMC Financial - 专业的利润预算管理解决方案",
+  ogImage = "/images/contact/MMCOffice.webp",
+  ogUrl = Astro.url.href
+} = Astro.props;
 
 import '../styles/globals.css';
 import 'aos/dist/aos.css';
@@ -16,9 +23,73 @@ import 'aos/dist/aos.css';
     <meta charset="UTF-8" />
     <meta name="description" content={description} />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <!-- Favicon for different devices and sizes -->
+    <link rel="icon" type="image/png" sizes="32x32" href="/MMCFavicon.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/MMCFavicon.png" />
+    <link rel="shortcut icon" type="image/png" href="/MMCFavicon.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/MMCFavicon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
+    
+    <!-- SEO Meta Tags -->
+    <meta name="keywords" content="MMC Financial, 利润预算管理, 企业财务规划, 预算管理系统, 利润增长解决方案, 财务咨询服务, 马来西亚财务规划, 吉隆坡预算管理, 年度经营预算, 现金流管理, 经营激励系统" />
+    <meta name="author" content="MMC Financial" />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href={ogUrl} />
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={ogUrl} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={new URL(ogImage, Astro.site || Astro.url.origin).href} />
+    <meta property="og:site_name" content="MMC Financial" />
+    <meta property="og:locale" content="zh_CN" />
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content={ogUrl} />
+    <meta property="twitter:title" content={title} />
+    <meta property="twitter:description" content={description} />
+    <meta property="twitter:image" content={new URL(ogImage, Astro.site || Astro.url.origin).href} />
+    
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "MMC Financial",
+      "alternateName": "MMC",
+      "url": "https://mmcfin.com",
+      "logo": "https://mmcfin.com/MMCFavicon.png",
+      "description": "MMC Financial致力于为企业提供专业的利润预算管理系统，帮助企业实现收入利润双增长。18年专业认证，500+跨行业案例，30%+利润提升。",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "59.20, Exchange 106, Tun Razak Exchange (TRX)",
+        "addressLocality": "Kuala Lumpur",
+        "postalCode": "55188",
+        "addressCountry": "MY"
+      },
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "telephone": "+6011-27368039",
+        "contactType": "customer service",
+        "email": "admin@mmcfin.com"
+      },
+      "sameAs": [
+        "https://www.facebook.com/mmc",
+        "https://www.instagram.com/mmc",
+        "https://www.linkedin.com/company/mmc"
+      ],
+      "foundingDate": "2008",
+      "numberOfEmployees": "10-50",
+      "serviceArea": {
+        "@type": "Country",
+        "name": "Malaysia"
+      }
+    }
+    </script>
   </head>
   <body class="bg-body font-primary text-text-default leading-normal">
     <slot />
