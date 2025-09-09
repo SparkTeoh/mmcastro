@@ -20,11 +20,13 @@
   to = "/ui-showcase/"
   status = 200
 
-# 404 页面处理
+# Ensure FAQ page is accessible
 [[redirects]]
-  from = "/*"
-  to = "/404.html"
-  status = 404
+  from = "/faq"
+  to = "/faq/"
+  status = 200
+
+# 404 页面处理 - 移除全局404重定向以避免干扰正常页面访问
 
 # 静态资源缓存
 [[headers]]
@@ -36,6 +38,12 @@
   for = "/images/*"
   [headers.values]
     Cache-Control = "public, max-age=31536000"
+
+# FAQ page headers
+[[headers]]
+  for = "/faq/*"
+  [headers.values]
+    Cache-Control = "public, max-age=3600"
 
 # API 路由处理
 [[redirects]]
