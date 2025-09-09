@@ -1,0 +1,298 @@
+---
+interface FAQItem {
+  question: string;
+  answer: string;
+  featured?: boolean;
+  active?: boolean;
+}
+
+interface FAQCategory {
+  label: string;
+  list: FAQItem[];
+}
+
+interface Props {
+  faqs: FAQItem[];
+  showCategories?: boolean;
+  sectionLayout?: "vertical" | "horizontal";
+  minimalLayout?: boolean;
+  faqLayoutOnly?: boolean;
+}
+
+const { 
+  faqs, 
+  showCategories = true, 
+  sectionLayout = "vertical",
+  minimalLayout = false,
+  faqLayoutOnly = false 
+} = Astro.props;
+
+// 将 FAQ 数据转换为分类格式
+const faqCategories: FAQCategory[] = [
+  {
+    label: "关于我们",
+    list: faqs.slice(0, 4).map((faq, index) => ({
+      ...faq,
+      featured: index === 0,
+      active: index === 0
+    }))
+  },
+  {
+    label: "合作与流程",
+    list: faqs.slice(4, 6).map((faq, index) => ({
+      ...faq,
+      featured: index === 0,
+      active: index === 0
+    }))
+  },
+  {
+    label: "成果与保障",
+    list: faqs.slice(6).map((faq, index) => ({
+      ...faq,
+      featured: index === 0,
+      active: index === 0
+    }))
+  }
+];
+
+// 特色 FAQ
+const featuredFaqs = faqCategories.flatMap(category => 
+  category.list.filter(item => item.featured)
+);
+---
+
+<section class="pt-24 pb-16 md:pt-32 md:pb-20">
+  <div class="container">
+    <div class={`
+      grid place-items-start gap-12 md:gap-16
+      ${!faqLayoutOnly && sectionLayout === "horizontal" ? "lg:grid-cols-2" : "lg:grid-cols-1"}
+    `}>
+      
+      {!faqLayoutOnly && (
+        <div class={`
+          lg:max-w-2xl
+          ${sectionLayout === "vertical" ? "mx-auto text-center" : "lg:sticky lg:top-40"}
+        `}>
+          <div data-aos="fade-up-sm">
+            <span class="bg-primary/5 border-secondary text-primary mb-2.5 inline-block rounded-full border px-5 py-px text-sm">
+              常见问题
+            </span>
+            <h2 class="text-h3 text-primary mb-6">
+              关于<span class="text-gold">MMC Financial</span>的常见问题
+            </h2>
+            <p class="text-gray-600 leading-relaxed">
+              了解我们的专业服务、经验背景、服务流程等详细信息
+            </p>
+          </div>
+        </div>
+      )}
+
+      {faqCategories && faqCategories.length > 0 && (
+        <div 
+          data-aos="fade-up-sm" 
+          data-aos-delay="300"
+          class={`
+            w-full
+            ${sectionLayout === "vertical" ? "mx-auto w-full max-w-5xl" : ""}
+            ${!minimalLayout ? "bg-gray-50 rounded-3xl p-2.5 sm:p-7 lg:p-14" : ""}
+          `}
+        >
+          {showCategories && (
+            <nav
+              role="tablist"
+              aria-label="FAQ Categories"
+              aria-orientation="horizontal"
+              class="mb-8 flex flex-wrap gap-x-1 border-b border-gray-200 pb-8"
+            >
+              {faqCategories.map((category, index) => (
+                <button
+                  role="tab"
+                  type="button"
+                  id={`tab-item-${index + 1}`}
+                  data-hs-tab={`#tab-${index + 1}`}
+                  aria-controls={`tab-${index + 1}`}
+                  aria-selected={index === 0 ? "true" : "false"}
+                  class={`
+                    rounded-md px-6 py-3.5 text-lg/none transition-colors
+                    ${index === 0 
+                      ? "bg-white text-primary border-b-2 border-primary" 
+                      : "text-gray-600 hover:text-primary"
+                    }
+                  `}
+                >
+                  {category.label}
+                </button>
+              ))}
+            </nav>
+          )}
+
+          <div class={!minimalLayout ? "mt-3 rounded-lg bg-white p-6" : ""}>
+            {faqCategories.map((category, index) => (
+              <div
+                role="tabpanel"
+                class={index === 0 ? "block" : "hidden"}
+                id={`tab-${index + 1}`}
+                aria-labelledby={`tab-item-${index + 1}`}
+              >
+                <div class="hs-accordion-group divide-y divide-gray-200">
+                  {category.list.map((item, itemIndex) => {
+                    const uniqueId = `group-${index + 1}-${itemIndex + 1}`;
+                    
+                    return (
+                      <div
+                        class={`
+                          hs-accordion hs-accordion-active:opacity-100 opacity-70 transition-opacity
+                          ${itemIndex === category.list.length - 1 ? "[&:last-of-type_.hs-accordion-content>div]:pt-4 [&:last-of-type_.hs-accordion-toggle]:pb-0" : ""}
+                          ${itemIndex === 0 ? "[&:first-of-type_.hs-accordion-toggle]:pt-0" : ""}
+                          ${item.active ? "active" : ""}
+                        `}
+                        id={`faq-${uniqueId}`}
+                      >
+                        <button
+                          aria-expanded={item.active ? "true" : "false"}
+                          class="hs-accordion-toggle text-primary flex w-full items-center justify-between py-4 text-start text-lg font-medium hover:text-primary/80 transition-colors"
+                          aria-controls={`faq-content-${uniqueId}`}
+                        >
+                          <span>{item.question}</span>
+                          <span class="hs-accordion-active:rotate-180 transition duration-300">
+                            <svg class="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                            </svg>
+                          </span>
+                        </button>
+                        <div
+                          role="region"
+                          id={`faq-content-${uniqueId}`}
+                          aria-labelledby={`faq-${uniqueId}`}
+                          class={`
+                            hs-accordion-content overflow-hidden transition-[height] duration-300
+                            ${!item.active ? "hidden" : ""}
+                          `}
+                        >
+                          <div class="prose-styles pb-4">
+                            <div class="bg-gray-50 rounded-md px-4 py-4 [&>*:first-child]:mt-0 [&>*:last-child]:mb-0">
+                              <div class="text-gray-600 leading-relaxed space-y-3" set:html={item.answer.replace(/\n\n/g, '</p><p class="mb-3">').replace(/^/, '<p class="mb-3">').replace(/$/, '</p>')}></div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+    </div>
+  </div>
+</section>
+
+<script>
+  // 重新计算 AOS 元素位置当手风琴打开时
+  document.addEventListener("DOMContentLoaded", () => {
+    // 初始化手风琴功能
+    const accordions = document.querySelectorAll(".hs-accordion");
+
+    accordions.forEach((accordion) => {
+      const button = accordion.querySelector(".hs-accordion-toggle");
+      const content = accordion.querySelector(".hs-accordion-content");
+      
+      if (button && content) {
+        button.addEventListener("click", () => {
+          const isActive = accordion.classList.contains("active");
+          
+          // 关闭所有其他手风琴
+          accordions.forEach(otherAccordion => {
+            if (otherAccordion !== accordion) {
+              otherAccordion.classList.remove("active");
+              const otherContent = otherAccordion.querySelector(".hs-accordion-content");
+              const otherButton = otherAccordion.querySelector(".hs-accordion-toggle");
+              if (otherContent) otherContent.classList.add("hidden");
+              if (otherButton) otherButton.setAttribute("aria-expanded", "false");
+            }
+          });
+          
+          // 切换当前手风琴
+          if (isActive) {
+            accordion.classList.remove("active");
+            content.classList.add("hidden");
+            button.setAttribute("aria-expanded", "false");
+          } else {
+            accordion.classList.add("active");
+            content.classList.remove("hidden");
+            button.setAttribute("aria-expanded", "true");
+          }
+          
+          // 刷新 AOS 动画
+          // @ts-ignore
+          if (typeof window.AOS !== 'undefined') {
+            // @ts-ignore
+            window.AOS.refresh();
+          }
+        });
+      }
+    });
+
+    // 初始化选项卡功能
+    const tabButtons = document.querySelectorAll('[role="tab"]');
+    const tabPanels = document.querySelectorAll('[role="tabpanel"]');
+
+    tabButtons.forEach((button, index) => {
+      button.addEventListener("click", () => {
+        // 移除所有活动状态
+        tabButtons.forEach(btn => {
+          btn.classList.remove("bg-white", "text-primary", "border-b-2", "border-primary");
+          btn.classList.add("text-gray-600");
+          btn.setAttribute("aria-selected", "false");
+        });
+        
+        tabPanels.forEach(panel => {
+          panel.classList.add("hidden");
+          panel.classList.remove("block");
+        });
+        
+        // 激活当前选项卡
+        button.classList.remove("text-gray-600");
+        button.classList.add("bg-white", "text-primary", "border-b-2", "border-primary");
+        button.setAttribute("aria-selected", "true");
+        
+        const targetPanel = document.getElementById(button.getAttribute("aria-controls") || "");
+        if (targetPanel) {
+          targetPanel.classList.remove("hidden");
+          targetPanel.classList.add("block");
+        }
+      });
+    });
+  });
+</script>
+
+<style>
+  .text-gold {
+    color: #B4A180;
+  }
+  
+  .text-primary {
+    color: #024340;
+  }
+  
+  .bg-primary\/5 {
+    background-color: rgba(2, 67, 64, 0.05);
+  }
+  
+  .border-secondary {
+    border-color: #B4A180;
+  }
+  
+  .text-h3 {
+    font-size: 2rem;
+    font-weight: 700;
+    line-height: 1.2;
+  }
+  
+  @media (min-width: 768px) {
+    .text-h3 {
+      font-size: 2.5rem;
+    }
+  }
+</style>

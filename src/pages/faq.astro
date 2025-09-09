@@ -1,0 +1,120 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navigation from '../components/ui/Navigation.astro';
+import Footer from '../components/ui/Footer.astro';
+import FaqSeo from '../components/seo/FaqSeo.astro';
+import FaqList from '../components/sections/faqlist.astro';
+
+// FAQ data
+const faqs = [
+  {
+    question: "你们和其他管理咨询公司有什么不同？",
+    answer: "我们最大的不同在于专注和系统。我们不提供包罗万象的管理理论，而是专注于一个核心——以\"年度经营预算\"为核心，帮助企业建立一套从目标制定到利润增长的完整经营管理系统。\n\n我们的方法论传承了二十余年，历经市场考验，旨在帮助企业从\"偶然赚钱\"走向\"必然增长\"，这是我们最独特的价值。"
+  },
+  {
+    question: "我们的公司规模不大，适合你们的服务吗？",
+    answer: "非常适合。我们的服务正是为渴望成长、但又面临管理瓶颈的中小型企业（SME）量身定制的。\n\nSME老板往往需要身兼数职，最需要的就是一套能解放自己、激活团队、让增长可持续的系统。我们的\"预算管理\"体系，就是这样一个简单、有效、能快速落地的工具。"
+  },
+  {
+    question: "我们是服务业/制造业/贸易行业，你们的理论适用吗？",
+    answer: "完全适用。虽然不同行业的业务模式各异，但经营的底层逻辑是相通的——如何设定目标、如何控制成本、如何激励团队、如何管理现金流。\n\n我们的方法论抓住的是这些共通的经营本质，并且我们会根据您所在行业的具体特性，进行方案的定制化调整，确保方案能真正解决您的独特问题。"
+  },
+  {
+    question: "我没有财务背景，能听懂并使用你们的\"预算管理\"系统吗？",
+    answer: "当然可以。这正是我们设计的初衷。我们所说的\"预算\"，并非复杂的会计报表，而是一个简单直观的经营管理工具。\n\n我们会用最通俗易懂的商业语言（比如\"先画图再建屋\"），引导您和您的核心团队掌握这套工具，让您即便没有财务背景，也能像CEO一样思考，用数据做出更明智的决策。"
+  },
+  {
+    question: "咨询服务的流程是怎样的？大概需要多长时间？",
+    answer: "我们的咨询服务通常遵循四个步骤：\n\n1. 初步诊断：我们会与您进行深入沟通，了解您企业当前面临的核心挑战。\n\n2. 方案设计：基于诊断结果，我们为您量身定制一套以预算管理为核心的解决方案。\n\n3. 导入与培训：我们会通过工作坊、内训等形式，将这套系统导入您的企业，并对您的核心团队进行培训。\n\n4. 陪跑与落地：在接下来的3-6个月，我们会持续跟进，确保方案得到有效执行，并根据实际情况进行调整，直至看到成果。\n\n整个周期根据项目的复杂程度而定，一般在3到6个月之间。"
+  },
+  {
+    question: "你们的服务费用是如何计算的？",
+    answer: "我们的收费基于项目的深度、参与的顾问级别以及服务周期。在与您进行初步诊断并明确需求后，我们会为您提供一份详细的服务建议书和报价。\n\n我们追求的是高投资回报率（ROI），确保我们的服务为您创造的价值远超您支付的费用。"
+  },
+  {
+    question: "我如何能确定你们的服务是有效的？",
+    answer: "首先，我们的方法论已经成功帮助超过200家企业实现了增长。\n\n其次，在项目开始前，我们会与您共同设定清晰、可衡量的成功指标（KPIs），例如利润率提升、现金流改善、团队人效提升等。我们的工作将围绕这些指标展开，让项目成果清晰可见。"
+  },
+  {
+    question: "你们的团队成员都很年轻，经验足够吗？",
+    answer: "这是一个非常好的问题。我们的团队优势在于\"经典智慧 + 新生代活力\"的结合。\n\n我们的核心方法论，传承自拥有超过25年行业经验的前辈顾问，其有效性已得到充分验证。而我们的年轻团队，则能带来更贴近当前市场的创新视角和超强的执行力，确保这套经典智慧能以最高效的方式在您的企业落地。\n\n我们传承的是\"渔\"，而非\"鱼\"。"
+  }
+];
+---
+
+<Layout title="常见问题 - MMC Financial 管理咨询FAQ" description="MMC Financial常见问题解答，了解我们的管理咨询服务、年度经营预算系统、服务流程、合作方式等信息。专注SME企业成长，传承经典智慧。">
+  <FaqSeo faqs={faqs} />
+  <Navigation />
+  
+  <main class="min-h-screen bg-white">
+    <!-- FAQ Section -->
+    <FaqList 
+      faqs={faqs} 
+      showCategories={true}
+      sectionLayout="vertical"
+      minimalLayout={false}
+      faqLayoutOnly={false}
+    />
+
+    <!-- Contact CTA -->
+    <section class="bg-gray-50 py-16">
+      <div class="container">
+        <div class="text-center max-w-3xl mx-auto">
+          <h2 class="text-3xl md:text-4xl font-bold text-primary mb-6">
+            还有其他问题？
+          </h2>
+          <p class="text-lg text-gray-600 mb-8">
+            我们的专业团队随时为您解答疑问，提供个性化的管理咨询服务
+          </p>
+          <div class="flex flex-col sm:flex-row gap-4 justify-center">
+            <a href="/contact" class="btn-primary px-8 py-3 rounded-lg font-medium transition-colors">
+              联系我们
+            </a>
+            <a href="tel:+6011-27368039" class="btn-outline-primary px-8 py-3 rounded-lg font-medium transition-colors">
+              立即致电
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+  
+  <Footer />
+</Layout>
+
+<style>
+  .hero-subtitle {
+    background-color: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.1);
+  }
+  
+  .text-gold {
+    color: #B4A180;
+  }
+  
+  .btn-primary {
+    background-color: #024340;
+    color: white;
+    border: 2px solid #024340;
+  }
+  
+  .btn-primary:hover {
+    background-color: #012a28;
+    border-color: #012a28;
+  }
+  
+  .btn-outline-primary {
+    border: 2px solid #024340;
+    color: #024340;
+    background: transparent;
+  }
+  
+  .btn-outline-primary:hover {
+    background-color: #024340;
+    color: white;
+  }
+  
+  .text-primary {
+    color: #024340;
+  }
+</style>

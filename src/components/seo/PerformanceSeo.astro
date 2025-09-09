@@ -1,0 +1,84 @@
+---
+// Performance SEO component for MMC Astro
+// Optimizes Core Web Vitals and page performance
+
+type Props = {
+  preloadImages?: string[];
+  preloadFonts?: string[];
+  criticalCSS?: boolean;
+};
+
+const { 
+  preloadImages = [],
+  preloadFonts = [],
+  criticalCSS = true 
+} = Astro.props;
+
+// Critical images to preload
+const criticalImages = [
+  "/images/contact/MMCOffice.webp",
+  "/MMCFavicon.png",
+  ...preloadImages
+];
+
+// Critical fonts to preload
+const criticalFonts = [
+  "/fonts/inter-var.woff2",
+  ...preloadFonts
+];
+---
+
+<!-- Preload critical resources for better performance -->
+{criticalImages.map(image => (
+  <link rel="preload" as="image" href={image} />
+))}
+
+{criticalFonts.map(font => (
+  <link rel="preload" as="font" href={font} type="font/woff2" crossorigin />
+))}
+
+<!-- DNS prefetch for external resources -->
+<link rel="dns-prefetch" href="//fonts.googleapis.com" />
+<link rel="dns-prefetch" href="//www.google-analytics.com" />
+<link rel="dns-prefetch" href="//www.facebook.com" />
+<link rel="dns-prefetch" href="//www.instagram.com" />
+<link rel="dns-prefetch" href="//www.linkedin.com" />
+
+<!-- Preconnect to external domains -->
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+<!-- Resource hints for better performance -->
+<link rel="prefetch" href="/about" />
+<link rel="prefetch" href="/services" />
+<link rel="prefetch" href="/contact" />
+
+<!-- Performance meta tags -->
+<meta name="format-detection" content="telephone=no" />
+<meta name="mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+<!-- Critical CSS inline (if needed) -->
+{criticalCSS && (
+  <style>
+    /* Critical above-the-fold styles */
+    .hero-section {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    /* Prevent layout shift */
+    img {
+      max-width: 100%;
+      height: auto;
+    }
+    
+    /* Font loading optimization */
+    body {
+      font-display: swap;
+    }
+  </style>
+)}

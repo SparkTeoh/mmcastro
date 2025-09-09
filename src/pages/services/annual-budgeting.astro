@@ -1,11 +1,23 @@
 ---
 import Layout from '../../layouts/Layout.astro';
-  import Navigation from '../../components/ui/Navigation.astro';
-  import Footer from '../../components/ui/Footer.astro';
+  import Navigation from '../../components/UI/Navigation.astro';
+  import Footer from '../../components/UI/Footer.astro';
   import HowItWorks from '../../components/sections/HowItWorks.astro';
+  import ServiceSeo from '../../components/seo/ServiceSeo.astro';
 ---
 
-<Layout title="年度经营预算与战略蓝图 - MMC" description="告别凭感觉经营，让企业增长从偶然变为必然。科学的年度预算规划，将模糊愿景转化为清晰的收入、成本、现金三大目标。">
+<Layout title="年度经营预算与战略蓝图 - MMC Financial 专业预算规划服务" description="告别凭感觉经营，让企业增长从偶然变为必然。科学的年度预算规划，将模糊愿景转化为清晰的收入、成本、现金三大目标。MMC Financial 18年专业经验，500+成功案例。">
+  <ServiceSeo 
+    serviceName="年度经营预算与战略蓝图"
+    serviceDescription="告别凭感觉经营，让企业增长从偶然变为必然。科学的年度预算规划，将模糊愿景转化为清晰的收入、成本、现金三大目标。"
+    serviceUrl="https://mmcfin.com/services/annual-budgeting"
+    serviceCategory="年度经营预算服务"
+    breadcrumbs={[
+      {name: "主页", url: "/"},
+      {name: "服务", url: "/services"},
+      {name: "年度经营预算与战略蓝图", url: "/services/annual-budgeting"}
+    ]}
+  />
   <Navigation />
   
   <main>

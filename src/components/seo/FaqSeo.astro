@@ -1,0 +1,37 @@
+---
+// FAQ structured data component for MMC Astro
+// Provides FAQ schema markup for better search visibility
+
+type FAQItem = {
+  question: string;
+  answer: string;
+};
+
+type Props = {
+  faqs: FAQItem[];
+  pageTitle?: string;
+};
+
+const { faqs, pageTitle = "常见问题" } = Astro.props;
+
+// Generate FAQ structured data
+const faqJsonLD = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": faqs.map(faq => ({
+    "@type": "Question",
+    "name": faq.question,
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": faq.answer
+    }
+  }))
+};
+---
+
+<!-- FAQ structured data -->
+<script type="application/ld+json" set:html={JSON.stringify(faqJsonLD)} />
+
+<!-- FAQ page meta tags -->
+<meta property="og:type" content="article" />
+<meta name="article:section" content="FAQ" />

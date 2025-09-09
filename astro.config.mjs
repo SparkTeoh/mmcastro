@@ -5,7 +5,7 @@ import tailwind from '@astrojs/tailwind';
 // https://astro.build/config
 export default defineConfig({
   output: 'static', // 明确指定为静态站点生成
-  site: 'https://your-domain.netlify.app', // 替换为你的实际域名
+  site: 'https://mmcfin.com', // MMC Financial official domain
   integrations: [tailwind({
     applyBaseStyles: false, // 我们使用自定义的全局样式
   })],

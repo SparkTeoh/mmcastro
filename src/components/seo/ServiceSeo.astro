@@ -1,0 +1,99 @@
+---
+// Service-specific SEO component for MMC Astro
+// Provides enhanced structured data for service pages
+
+type Props = {
+  serviceName: string;
+  serviceDescription: string;
+  serviceUrl: string;
+  serviceImage?: string;
+  servicePrice?: string;
+  serviceCategory?: string;
+  breadcrumbs?: Array<{name: string, url: string}>;
+};
+
+const {
+  serviceName,
+  serviceDescription,
+  serviceUrl,
+  serviceImage = "/images/contact/MMCOffice.webp",
+  servicePrice,
+  serviceCategory = "财务咨询服务",
+  breadcrumbs = []
+} = Astro.props;
+
+// Generate breadcrumb structured data
+const breadcrumbJsonLD = breadcrumbs.length > 0 ? {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": breadcrumbs.map((crumb, index) => ({
+    "@type": "ListItem",
+    "position": index + 1,
+    "name": crumb.name,
+    "item": `https://mmcfin.com${crumb.url}`
+  }))
+} : null;
+
+// Generate service structured data
+const serviceJsonLD = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "name": serviceName,
+  "description": serviceDescription,
+  "url": serviceUrl,
+  "image": `https://mmcfin.com${serviceImage}`,
+  "provider": {
+    "@type": "Organization",
+    "name": "MMC Financial",
+    "url": "https://mmcfin.com",
+    "logo": "https://mmcfin.com/MMCFavicon.png",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "59.20, Exchange 106, Tun Razak Exchange (TRX)",
+      "addressLocality": "Kuala Lumpur",
+      "postalCode": "55188",
+      "addressCountry": "MY"
+    },
+    "contactPoint": {
+      "@type": "ContactPoint",
+      "telephone": "+6011-27368039",
+      "contactType": "customer service",
+      "email": "admin@mmcfin.com"
+    }
+  },
+  "serviceType": serviceCategory,
+  "areaServed": {
+    "@type": "Country",
+    "name": "Malaysia"
+  },
+  "hasOfferCatalog": {
+    "@type": "OfferCatalog",
+    "name": "MMC Financial Services"
+  }
+};
+
+// Add price if available
+if (servicePrice) {
+  (serviceJsonLD as any).offers = {
+    "@type": "Offer",
+    "price": servicePrice,
+    "priceCurrency": "MYR",
+    "availability": "https://schema.org/InStock",
+    "validFrom": new Date().toISOString().split('T')[0]
+  };
+}
+---
+
+<!-- Service-specific structured data -->
+<script type="application/ld+json" set:html={JSON.stringify(serviceJsonLD)} />
+
+<!-- Breadcrumb structured data -->
+{breadcrumbJsonLD && (
+  <script type="application/ld+json" set:html={JSON.stringify(breadcrumbJsonLD)} />
+)}
+
+<!-- Additional service meta tags -->
+<meta property="og:type" content="service" />
+<meta property="article:section" content={serviceCategory} />
+<meta name="service:name" content={serviceName} />
+<meta name="service:category" content={serviceCategory} />
