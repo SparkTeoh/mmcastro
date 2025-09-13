@@ -36,8 +36,12 @@ export const seoConfig = {
   keywords: {
     primary: [
       "MMC Financial",
-      "利润预算管理",
+      "MMC Financial Planning",
+      "MMC Financial Malaysia",
+      "马来西亚财务规划",
+      "吉隆坡财务顾问",
       "企业财务规划",
+      "利润预算管理",
       "预算管理系统",
       "利润增长解决方案",
       "财务咨询服务"
@@ -65,9 +69,9 @@ export const seoConfig = {
   
   pages: {
     home: {
-      title: "MMC Financial - 专业利润预算管理解决方案",
-      description: "MMC Financial致力于为企业提供专业的利润预算管理系统，帮助企业实现收入利润双增长。18年专业认证，500+跨行业案例，30%+利润提升。",
-      keywords: "MMC Financial, 利润预算管理, 企业财务规划, 预算管理系统, 利润增长解决方案"
+      title: "MMC Financial - 马来西亚领先的财务规划与预算管理专家",
+      description: "MMC Financial是马来西亚领先的财务规划公司，专业提供企业利润预算管理、财务规划咨询、现金流管理等服务。18年专业经验，500+成功案例，帮助客户实现30%+利润提升。",
+      keywords: "MMC Financial, MMC Financial Planning, 马来西亚财务规划, 吉隆坡财务顾问, 企业财务规划, 利润预算管理, 预算管理系统, 利润增长解决方案"
     },
     about: {
       title: "关于我们 - MMC Financial 财务规划",
