@@ -2,97 +2,79 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://mmcfin.com/</loc>
-    <lastmod>2024-12-19</lastmod>
+    <lastmod>2025-09-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>https://mmcfin.com/about</loc>
-    <lastmod>2024-12-19</lastmod>
+    <lastmod>2025-09-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://mmcfin.com/contact</loc>
-    <lastmod>2024-12-19</lastmod>
+    <lastmod>2025-09-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://mmcfin.com/team</loc>
-    <lastmod>2024-12-19</lastmod>
+    <lastmod>2025-09-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://mmcfin.com/services</loc>
-    <lastmod>2024-12-19</lastmod>
+    <lastmod>2025-09-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://mmcfin.com/offlineclass</loc>
-    <lastmod>2024-12-19</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://mmcfin.com/onlineclass</loc>
-    <lastmod>2024-12-19</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
     <loc>https://mmcfin.com/services/annual-budgeting</loc>
-    <lastmod>2024-12-19</lastmod>
+    <lastmod>2025-09-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://mmcfin.com/services/revenue-growth</loc>
-    <lastmod>2024-12-19</lastmod>
+    <lastmod>2025-09-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://mmcfin.com/services/profit-optimization</loc>
-    <lastmod>2024-12-19</lastmod>
+    <lastmod>2025-09-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://mmcfin.com/services/performance-incentive</loc>
-    <lastmod>2024-12-19</lastmod>
+    <lastmod>2025-09-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://mmcfin.com/services/cash-flow</loc>
-    <lastmod>2024-12-19</lastmod>
+    <lastmod>2025-09-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://mmcfin.com/services/business-review</loc>
-    <lastmod>2024-12-19</lastmod>
+    <lastmod>2025-09-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://mmcfin.com/case-study</loc>
-    <lastmod>2024-12-19</lastmod>
+    <lastmod>2025-09-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://mmcfin.com/ui-showcase</loc>
-    <lastmod>2024-12-19</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
     <loc>https://mmcfin.com/faq</loc>
-    <lastmod>2024-12-19</lastmod>
+    <lastmod>2025-09-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
