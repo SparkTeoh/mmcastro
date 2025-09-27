@@ -114,8 +114,77 @@ const paginatedContent = filteredContent.slice(startIndex, endIndex);
 const allTags = [...new Set(allContent.flatMap(item => item.tags || []))];
 ---
 
-<Layout title="内容中心 - MMC Financial">
+<Layout 
+  title="内容中心 - MMC Financial" 
+  description="探索MMC Financial的专业财务内容库，包括企业财务规划、预算管理、现金流控制等深度文章和实用指南。"
+  contentData={{
+    title: "MMC Financial 内容中心",
+    summary: "探索我们的专业财务内容，获取深度见解和实用知识",
+    author: "MMC Financial",
+    pubDate: new Date(),
+    tags: ["财务规划", "内容中心", "专业知识", "企业管理"],
+    type: "内容集合",
+    featured: false,
+    metaDescription: "探索MMC Financial的专业财务内容库，包括企业财务规划、预算管理、现金流控制等深度文章和实用指南。",
+    focusKeywords: ["财务内容", "企业财务规划", "预算管理", "财务知识库", "专业文章"],
+    schemaType: "Article"
+  }}
+>
   <Navigation />
+  
+  <!-- Schema markup for content collection -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    "name": "MMC Financial 内容中心",
+    "description": "探索MMC Financial的专业财务内容库，包括企业财务规划、预算管理、现金流控制等深度文章和实用指南。",
+    "url": Astro.url.href,
+    "publisher": {
+      "@type": "Organization",
+      "name": "MMC Financial",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://mmcfin.com/MMCFavicon.png"
+      }
+    },
+    "mainEntity": {
+      "@type": "ItemList",
+      "numberOfItems": allContent.length,
+      "itemListElement": allContent.slice(0, 10).map((item, index) => ({
+        "@type": "ListItem",
+        "position": index + 1,
+        "item": {
+          "@type": "Article",
+          "headline": item.title,
+          "description": item.summary,
+          "author": {
+            "@type": "Person",
+            "name": item.author
+          },
+          "datePublished": item.pubDate.toISOString(),
+          "url": new URL(item.link, Astro.site || Astro.url.origin).href,
+          "keywords": item.tags?.join(", ")
+        }
+      }))
+    },
+    "breadcrumb": {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "首页",
+          "item": new URL("/", Astro.site || Astro.url.origin).href
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "内容中心",
+          "item": Astro.url.href
+        }
+      ]
+    }
+  })} />
   
   <main class="min-h-screen bg-gradient-to-br from-theme-light to-white pt-20">
     <!-- 页面标题和搜索区域 -->
@@ -191,7 +260,7 @@ const allTags = [...new Set(allContent.flatMap(item => item.tags || []))];
       {filteredContent.length > 0 ? (
         <div id="content-grid" class="grid gap-8 lg:grid-cols-2 xl:grid-cols-3">
           {paginatedContent.map(item => (
-            <article class="p-6 bg-white rounded-[45px] hover:shadow-lg transition-all duration-300 hover:scale-105 border border-border-default">
+            <article class="p-6 bg-white rounded-[45px] hover:shadow-lg transition-all duration-300 hover:scale-105 border border-border-default" itemscope itemtype="https://schema.org/Article">
               <div class="flex items-center justify-between mb-4">
                 <span class="text-white text-xs font-medium px-3 py-1 rounded-full bg-accent">
                   {item.type} • 专业内容
@@ -203,11 +272,16 @@ const allTags = [...new Set(allContent.flatMap(item => item.tags || []))];
                 )}
               </div>
               
-              <h3 class="mb-3 text-xl font-bold tracking-tight text-primary hover:text-accent transition-colors">
+              <h3 class="mb-3 text-xl font-bold tracking-tight text-primary hover:text-accent transition-colors" itemprop="headline">
                 <a href={item.link} target={item.isExternal ? "_blank" : undefined} rel={item.isExternal ? "noopener noreferrer" : undefined}>{item.title}</a>
               </h3>
               
-              <p class="mb-4 text-text-default line-clamp-3">{item.summary || item.description}</p>
+              <p class="mb-4 text-text-default line-clamp-3" itemprop="description">{item.summary || item.description}</p>
+              
+              <!-- Hidden schema data -->
+              <meta itemprop="datePublished" content={item.pubDate.toISOString()} />
+              <meta itemprop="author" content={item.author} />
+              <meta itemprop="url" content={new URL(item.link, Astro.site || Astro.url.origin).href} />
               
               <div class="flex flex-wrap gap-2 mb-4">
                 {(item.tags || []).slice(0, 3).map((tag: string) => (

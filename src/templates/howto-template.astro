@@ -1,0 +1,249 @@
+---
+// MMC Astro How-To指南模板 - SEO & GEO 优化版
+import Layout from "../layouts/Layout.astro";
+import Navigation from "../components/ui/Navigation.astro";
+import Footer from "../components/ui/Footer.astro";
+import HowToSection from "../components/ui/HowToSection.astro";
+import FAQSection from "../components/ui/FAQSection.astro";
+import AnswerBlock from "../components/ui/AnswerBlock.astro";
+import type { EnhancedContentData } from "../types/content";
+
+const contentData: EnhancedContentData = {
+  // === 基础字段（必填） ===
+  title: "如何[具体操作]：完整指南",
+  summary: "详细的操作指南，帮助您掌握[具体技能或流程]",
+  author: "MMC Financial",
+  pubDate: new Date('2024-01-20'),
+  tags: ['操作指南', '实用技巧', '步骤教程'],
+  type: '操作指南',
+  featured: false,
+  
+  // === SEO 优化字段 ===
+  metaDescription: "学习如何[具体操作]的完整步骤指南。包含详细说明、实用技巧和常见问题解答。",
+  focusKeywords: ["如何操作", "步骤指南", "操作教程"],
+  
+  // === GEO 优化字段 ===
+  schemaType: "HowTo",
+  howToSteps: [
+    {
+      name: "第一步：准备阶段",
+      text: "详细说明第一步需要做什么，包括所需工具、材料或前置条件。"
+    },
+    {
+      name: "第二步：开始执行",
+      text: "详细说明第二步的具体操作，提供清晰的指导和注意事项。"
+    },
+    {
+      name: "第三步：验证结果",
+      text: "说明如何验证操作是否成功，以及如何处理可能出现的问题。"
+    },
+    {
+      name: "第四步：优化改进",
+      text: "提供进一步优化和改进的建议，帮助用户获得更好的结果。"
+    }
+  ],
+  faqSections: [
+    {
+      question: "这个操作需要多长时间？",
+      answer: "根据具体情况，整个过程通常需要[具体时间]。初次操作可能需要更长时间。"
+    },
+    {
+      question: "如果遇到问题怎么办？",
+      answer: "常见问题包括[列举问题]。解决方法是[提供解决方案]。"
+    },
+    {
+      question: "有什么注意事项？",
+      answer: "主要注意事项包括[列举注意事项]，确保操作安全和有效。"
+    }
+  ],
+  
+  // === E-E-A-T 信号字段 ===
+  authorCredentials: ["相关领域专家", "多年实践经验", "成功案例验证"],
+  sources: [
+    "行业最佳实践指南",
+    "官方操作手册",
+    "实际案例研究"
+  ]
+};
+---
+
+<Layout title={contentData.title} contentData={contentData}>
+  <Navigation />
+  
+  <main class="min-h-screen bg-gradient-to-br from-theme-light to-white pt-20">
+    <article class="container mx-auto px-4 py-12" itemscope itemtype="https://schema.org/HowTo">
+      <header class="text-center mb-12">
+        <h1 class="text-4xl lg:text-5xl font-bold text-primary mb-4" itemprop="name">
+          {contentData.title}
+        </h1>
+        <p class="text-xl text-text-default max-w-3xl mx-auto" itemprop="description">
+          {contentData.summary}
+        </p>
+        <div class="flex items-center justify-center space-x-4 mt-6">
+          <span class="text-sm text-gray-500">作者：<span itemprop="author">{contentData.author}</span></span>
+          <span class="text-sm text-gray-500">
+            发布时间：<time itemprop="datePublished" datetime={contentData.pubDate.toISOString()}>
+              {contentData.pubDate.toLocaleDateString("zh-CN")}
+            </time>
+          </span>
+        </div>
+        
+        <!-- How-To 元信息 -->
+        <div class="flex justify-center gap-6 mt-6 text-sm text-gray-600">
+          <div class="flex items-center gap-2">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+            </svg>
+            <span itemprop="totalTime" content="PT30M">预计时间：30分钟</span>
+          </div>
+          <div class="flex items-center gap-2">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+            </svg>
+            <span>难度：中等</span>
+          </div>
+        </div>
+      </header>
+
+      <div class="prose prose-lg max-w-4xl mx-auto">
+        <!-- Answer-First 内容块 -->
+        <AnswerBlock 
+          question="这个指南能帮我解决什么问题？"
+          directAnswer="这个指南将帮助您[具体解决的问题]，通过[数量]个详细步骤，让您能够[达成的目标]。"
+          detailedExplanation="详细说明这个指南的价值和适用场景，以及用户完成后能获得的具体收益。"
+        />
+
+        <!-- 准备工作部分 -->
+        <h2>开始之前的准备</h2>
+        <div class="bg-blue-50 border border-blue-200 rounded-lg p-6 my-6">
+          <h3 class="text-lg font-semibold text-blue-800 mb-3">📋 所需工具和材料</h3>
+          <ul class="text-blue-700 space-y-2">
+            <li>• 工具/材料1：具体说明</li>
+            <li>• 工具/材料2：具体说明</li>
+            <li>• 工具/材料3：具体说明</li>
+          </ul>
+        </div>
+
+        <div class="bg-yellow-50 border border-yellow-200 rounded-lg p-6 my-6">
+          <h3 class="text-lg font-semibold text-yellow-800 mb-3">⚠️ 重要提醒</h3>
+          <ul class="text-yellow-700 space-y-2">
+            <li>• 注意事项1</li>
+            <li>• 注意事项2</li>
+            <li>• 注意事项3</li>
+          </ul>
+        </div>
+
+        <!-- 详细步骤 - 使用HowToSection组件 -->
+        <HowToSection 
+          steps={contentData.howToSteps!}
+          title="详细操作步骤"
+          totalTime="30分钟"
+          difficulty="medium"
+          class="my-12"
+        />
+
+        <!-- 验证和测试 -->
+        <h2>验证操作结果</h2>
+        <p>完成上述步骤后，您可以通过以下方式验证操作是否成功：</p>
+        <ol>
+          <li><strong>检查项1</strong>：具体的验证方法</li>
+          <li><strong>检查项2</strong>：具体的验证方法</li>
+          <li><strong>检查项3</strong>：具体的验证方法</li>
+        </ol>
+
+        <!-- 故障排除 -->
+        <h2>常见问题和解决方案</h2>
+        <div class="bg-red-50 border border-red-200 rounded-lg p-6 my-6">
+          <h3 class="text-lg font-semibold text-red-800 mb-3">🔧 故障排除</h3>
+          <div class="space-y-4 text-red-700">
+            <div>
+              <h4 class="font-medium">问题1：[具体问题描述]</h4>
+              <p class="text-sm mt-1">解决方案：[详细的解决步骤]</p>
+            </div>
+            <div>
+              <h4 class="font-medium">问题2：[具体问题描述]</h4>
+              <p class="text-sm mt-1">解决方案：[详细的解决步骤]</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- FAQ部分 -->
+        {contentData.faqSections && (
+          <FAQSection 
+            faqs={contentData.faqSections} 
+            title="常见问题解答"
+            class="my-12"
+          />
+        )}
+
+        <!-- 进阶技巧 -->
+        <h2>进阶技巧和优化建议</h2>
+        <div class="bg-green-50 border border-green-200 rounded-lg p-6 my-6">
+          <h3 class="text-lg font-semibold text-green-800 mb-3">💡 专业提示</h3>
+          <ul class="text-green-700 space-y-2">
+            <li>• <strong>技巧1</strong>：具体的优化建议</li>
+            <li>• <strong>技巧2</strong>：具体的优化建议</li>
+            <li>• <strong>技巧3</strong>：具体的优化建议</li>
+          </ul>
+        </div>
+
+        <!-- E-E-A-T信号展示 -->
+        <div class="bg-gray-50 p-6 rounded-lg my-8">
+          <h3 class="text-lg font-semibold text-primary mb-4">专业背景与参考资料</h3>
+          <div class="grid md:grid-cols-2 gap-4">
+            <div>
+              <h4 class="font-medium text-gray-800 mb-2">专业资质</h4>
+              <ul class="text-sm text-gray-600 space-y-1">
+                {contentData.authorCredentials?.map(credential => (
+                  <li>• {credential}</li>
+                ))}
+              </ul>
+            </div>
+            <div>
+              <h4 class="font-medium text-gray-800 mb-2">参考来源</h4>
+              <ul class="text-sm text-gray-600 space-y-1">
+                {contentData.sources?.map(source => (
+                  <li>• {source}</li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- 总结 -->
+        <h2>总结</h2>
+        <div class="bg-gradient-to-r from-primary/5 to-accent/5 border border-primary/20 rounded-lg p-6 my-8">
+          <p class="text-dark/80 leading-relaxed mb-4">
+            通过遵循这个详细的指南，您应该能够成功完成[具体操作]。记住，实践是掌握任何技能的关键。
+          </p>
+          <p class="text-dark/80 leading-relaxed">
+            如果您在操作过程中遇到任何问题，或需要更专业的指导，请随时联系我们的专业团队。
+          </p>
+          
+          <div class="mt-6 text-center">
+            <a href="/contact" class="inline-flex items-center bg-primary text-white px-6 py-3 rounded-lg hover:bg-primary/90 transition-colors font-medium">
+              获取专业支持
+              <svg class="ml-2 w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </article>
+  </main>
+
+  <Footer />
+</Layout>
+
+<!-- 
+使用说明：
+1. 复制此模板到 src/pages/content/ 目录
+2. 重命名为您的指南文件名（如：how-to-create-budget.astro）
+3. 更新 contentData 中的所有字段，特别是 howToSteps 数组
+4. 替换所有模板内容为您的实际指导内容
+5. 确保每个步骤都清晰、可操作
+6. 添加相关的图片或截图（如果需要）
+7. 测试所有步骤的准确性
+8. 验证FAQ部分回答了用户真正关心的问题
+-->

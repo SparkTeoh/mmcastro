@@ -1,0 +1,42 @@
+---
+interface Props {
+  question: string;
+  directAnswer: string;
+  detailedExplanation?: string;
+  level?: 2 | 3 | 4 | 5 | 6;
+  class?: string;
+}
+
+const { 
+  question, 
+  directAnswer, 
+  detailedExplanation,
+  level = 2,
+  class: className = "" 
+} = Astro.props;
+
+const HeadingTag = `h${level}` as keyof HTMLElementTagNameMap;
+---
+
+<section class={`answer-block mb-8 ${className}`} itemscope itemtype="https://schema.org/Question">
+  <HeadingTag class="text-xl font-semibold text-primary mb-3" itemprop="name">
+    {question}
+  </HeadingTag>
+  
+  <!-- Direct answer for AI extraction -->
+  <div class="direct-answer mb-4 p-4 bg-theme-light rounded-lg border-l-4 border-primary" 
+       itemprop="acceptedAnswer" itemscope itemtype="https://schema.org/Answer">
+    <p class="font-medium text-text-default" itemprop="text">
+      {directAnswer}
+    </p>
+  </div>
+  
+  <!-- Detailed explanation if provided -->
+  {detailedExplanation && (
+    <div class="detailed-explanation">
+      <p class="text-text-default leading-relaxed">
+        {detailedExplanation}
+      </p>
+    </div>
+  )}
+</section>

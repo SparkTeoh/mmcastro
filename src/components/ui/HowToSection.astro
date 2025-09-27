@@ -1,0 +1,76 @@
+---
+interface HowToStep {
+  name: string;
+  text: string;
+  image?: string;
+}
+
+interface Props {
+  steps: HowToStep[];
+  title?: string;
+  totalTime?: string;
+  difficulty?: 'easy' | 'medium' | 'hard';
+  class?: string;
+}
+
+const { 
+  steps, 
+  title = "How To Guide", 
+  totalTime,
+  difficulty,
+  class: className = "" 
+} = Astro.props;
+
+const difficultyColors = {
+  easy: 'bg-green-100 text-green-800',
+  medium: 'bg-yellow-100 text-yellow-800',
+  hard: 'bg-red-100 text-red-800'
+};
+---
+
+<section class={`how-to-section ${className}`} itemscope itemtype="https://schema.org/HowTo">
+  <header class="mb-6">
+    <h2 class="text-2xl font-bold text-primary mb-2" itemprop="name">{title}</h2>
+    <div class="flex gap-4 text-sm text-gray-600">
+      {totalTime && (
+        <span class="flex items-center gap-1" itemprop="totalTime" content={totalTime}>
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+          </svg>
+          {totalTime}
+        </span>
+      )}
+      {difficulty && (
+        <span class={`px-2 py-1 rounded-full text-xs font-medium ${difficultyColors[difficulty]}`}>
+          {difficulty.charAt(0).toUpperCase() + difficulty.slice(1)}
+        </span>
+      )}
+    </div>
+  </header>
+
+  <ol class="space-y-4">
+    {steps.map((step, index) => (
+      <li class="how-to-step flex gap-4" itemprop="step" itemscope itemtype="https://schema.org/HowToStep">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary text-white rounded-full flex items-center justify-center text-sm font-semibold">
+          {index + 1}
+        </div>
+        <div class="flex-1">
+          <h3 class="font-semibold text-text-default mb-2" itemprop="name">
+            {step.name}
+          </h3>
+          <p class="text-text-default leading-relaxed" itemprop="text">
+            {step.text}
+          </p>
+          {step.image && (
+            <img 
+              src={step.image} 
+              alt={`Step ${index + 1}: ${step.name}`}
+              class="mt-3 rounded-lg max-w-full h-auto"
+              itemprop="image"
+            />
+          )}
+        </div>
+      </li>
+    ))}
+  </ol>
+</section>

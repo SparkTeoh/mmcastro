@@ -1,17 +1,117 @@
 ---
+interface FAQItem {
+  question: string;
+  answer: string;
+}
+
+interface HowToStep {
+  name: string;
+  text: string;
+}
+
+interface EnhancedContentData {
+  title: string;
+  summary: string;
+  author: string;
+  pubDate: Date;
+  tags: string[];
+  type: string;
+  featured: boolean;
+  
+  // SEO fields
+  metaDescription?: string;
+  focusKeywords?: string[];
+  
+  // GEO fields
+  faqSections?: FAQItem[];
+  howToSteps?: HowToStep[];
+  
+  // Schema type
+  schemaType?: 'Article' | 'HowTo' | 'FAQPage';
+  
+  // E-E-A-T signals
+  authorCredentials?: string[];
+  sources?: string[];
+}
+
 export interface Props {
   title: string;
   description?: string;
   ogImage?: string;
   ogUrl?: string;
+  contentData?: EnhancedContentData;
 }
 
 const { 
   title, 
   description = "MMC Financial - 马来西亚领先的财务规划与预算管理专家",
   ogImage = "/images/contact/MMCOffice.webp",
-  ogUrl = Astro.url.href
+  ogUrl = Astro.url.href,
+  contentData
 } = Astro.props;
+
+// Generate content-specific schema markup
+const generateContentSchema = (data: EnhancedContentData) => {
+  const baseSchema = {
+    "@context": "https://schema.org",
+    "@type": data.schemaType || "Article",
+    "headline": data.title,
+    "description": data.metaDescription || data.summary,
+    "author": {
+      "@type": "Person",
+      "name": data.author,
+      ...(data.authorCredentials && { "jobTitle": data.authorCredentials.join(", ") })
+    },
+    "datePublished": data.pubDate.toISOString(),
+    "dateModified": data.pubDate.toISOString(),
+    "publisher": {
+      "@type": "Organization",
+      "name": "MMC Financial",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://mmcfin.com/MMCFavicon.png"
+      }
+    },
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": ogUrl
+    },
+    "keywords": data.focusKeywords?.join(", ") || data.tags.join(", ")
+  };
+
+  // Add FAQ schema if present
+  if (data.faqSections && data.faqSections.length > 0) {
+    return {
+      ...baseSchema,
+      "@type": "FAQPage",
+      "mainEntity": data.faqSections.map(faq => ({
+        "@type": "Question",
+        "name": faq.question,
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": faq.answer
+        }
+      }))
+    };
+  }
+
+  // Add HowTo schema if present
+  if (data.howToSteps && data.howToSteps.length > 0) {
+    return {
+      ...baseSchema,
+      "@type": "HowTo",
+      "name": data.title,
+      "step": data.howToSteps.map((step, index) => ({
+        "@type": "HowToStep",
+        "position": index + 1,
+        "name": step.name,
+        "text": step.text
+      }))
+    };
+  }
+
+  return baseSchema;
+};
 
 import '../styles/globals.css';
 import 'aos/dist/aos.css';
@@ -22,7 +122,7 @@ import PerformanceSeo from '../components/seo/PerformanceSeo.astro';
 <html lang="zh-CN">
   <head>
     <meta charset="UTF-8" />
-    <meta name="description" content={description} />
+    <meta name="description" content={contentData?.metaDescription || description} />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <!-- Favicon for different devices and sizes -->
     <link rel="icon" type="image/png" sizes="32x32" href="/MMCFavicon.png" />
@@ -31,14 +131,24 @@ import PerformanceSeo from '../components/seo/PerformanceSeo.astro';
     <link rel="apple-touch-icon" sizes="180x180" href="/MMCFavicon.png" />
     <link rel="manifest" href="/site.webmanifest" />
     <meta name="generator" content={Astro.generator} />
-    <title>{title}</title>
+    <title>{contentData ? `${contentData.title} | MMC Financial` : title}</title>
     
-    <!-- SEO Meta Tags -->
-    <meta name="keywords" content="MMC Financial, MMC Financial Planning, 马来西亚财务规划, 吉隆坡财务顾问, 企业财务规划, 利润预算管理, 预算管理系统, 财务咨询服务, 年度经营预算, 现金流管理, 经营激励系统, 利润增长解决方案, 企业咨询, 预算规划, 利润优化, 财务规划专家" />
-    <meta name="author" content="MMC Financial" />
+    <!-- Enhanced SEO Meta Tags -->
+    <meta name="keywords" content={contentData?.focusKeywords?.join(", ") || "MMC Financial, MMC Financial Planning, 马来西亚财务规划, 吉隆坡财务顾问, 企业财务规划, 利润预算管理, 预算管理系统, 财务咨询服务, 年度经营预算, 现金流管理, 经营激励系统, 利润增长解决方案, 企业咨询, 预算规划, 利润优化, 财务规划专家"} />
+    <meta name="author" content={contentData?.author || "MMC Financial"} />
     <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
     <meta name="googlebot" content="index, follow" />
     <meta name="bingbot" content="index, follow" />
+    
+    <!-- AI Crawler specific meta tags -->
+    <meta name="GPTBot" content="index, follow" />
+    <meta name="ClaudeBot" content="index, follow" />
+    <meta name="PerplexityBot" content="index, follow" />
+    
+    <!-- GEO-specific meta tags -->
+    {contentData?.schemaType && <meta name="ai-content-type" content={contentData.schemaType} />}
+    {contentData?.focusKeywords && <meta name="target-queries" content={contentData.focusKeywords.join(", ")} />}
+    
     <link rel="canonical" href={ogUrl} />
     
     <!-- Additional SEO Meta Tags -->
@@ -62,22 +172,37 @@ import PerformanceSeo from '../components/seo/PerformanceSeo.astro';
     />
     
     <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="website" />
+    <meta property="og:type" content={contentData ? "article" : "website"} />
     <meta property="og:url" content={ogUrl} />
-    <meta property="og:title" content={title} />
-    <meta property="og:description" content={description} />
+    <meta property="og:title" content={contentData ? `${contentData.title} | MMC Financial` : title} />
+    <meta property="og:description" content={contentData?.metaDescription || description} />
     <meta property="og:image" content={new URL(ogImage, Astro.site || Astro.url.origin).href} />
     <meta property="og:site_name" content="MMC Financial" />
     <meta property="og:locale" content="zh_CN" />
+    {contentData && (
+      <>
+        <meta property="article:author" content={contentData.author} />
+        <meta property="article:published_time" content={contentData.pubDate.toISOString()} />
+        <meta property="article:section" content={contentData.type} />
+        {contentData.tags.map(tag => (
+          <meta property="article:tag" content={tag} />
+        ))}
+      </>
+    )}
     
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image" />
     <meta property="twitter:url" content={ogUrl} />
-    <meta property="twitter:title" content={title} />
-    <meta property="twitter:description" content={description} />
+    <meta property="twitter:title" content={contentData ? `${contentData.title} | MMC Financial` : title} />
+    <meta property="twitter:description" content={contentData?.metaDescription || description} />
     <meta property="twitter:image" content={new URL(ogImage, Astro.site || Astro.url.origin).href} />
     
-    <!-- Structured Data -->
+    <!-- Content-specific Structured Data -->
+    {contentData && (
+      <script type="application/ld+json" set:html={JSON.stringify(generateContentSchema(contentData))} />
+    )}
+    
+    <!-- Organization Structured Data -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",

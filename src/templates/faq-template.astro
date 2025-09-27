@@ -1,0 +1,259 @@
+---
+// MMC Astro FAQ页面模板 - SEO & GEO 优化版
+import Layout from "../layouts/Layout.astro";
+import Navigation from "../components/ui/Navigation.astro";
+import Footer from "../components/ui/Footer.astro";
+import FAQSection from "../components/ui/FAQSection.astro";
+import AnswerBlock from "../components/ui/AnswerBlock.astro";
+import type { EnhancedContentData } from "../types/content";
+
+const contentData: EnhancedContentData = {
+  // === 基础字段（必填） ===
+  title: "[主题]常见问题解答",
+  summary: "关于[主题]的常见问题和详细解答，帮助您快速找到所需信息",
+  author: "MMC Financial",
+  pubDate: new Date('2024-01-20'),
+  tags: ['常见问题', 'FAQ', '问题解答'],
+  type: '问题解答',
+  featured: false,
+  
+  // === SEO 优化字段 ===
+  metaDescription: "查找关于[主题]的常见问题解答。我们整理了用户最关心的问题和专业解答。",
+  focusKeywords: ["常见问题", "FAQ", "问题解答", "疑问"],
+  
+  // === GEO 优化字段 ===
+  schemaType: "FAQPage",
+  faqSections: [
+    {
+      question: "什么是[核心概念]？",
+      answer: "[核心概念]是指[详细定义和解释]。它的主要特点包括[列举特点]，对用户的价值在于[说明价值]。"
+    },
+    {
+      question: "如何开始使用[产品/服务]？",
+      answer: "开始使用[产品/服务]很简单：1) [第一步]；2) [第二步]；3) [第三步]。整个过程通常需要[时间]，我们的团队会全程协助您。"
+    },
+    {
+      question: "[产品/服务]的费用是多少？",
+      answer: "我们的[产品/服务]采用[定价模式]。基础服务从[价格]开始，具体费用取决于[影响因素]。我们提供免费咨询来确定最适合您的方案。"
+    },
+    {
+      question: "你们的服务有什么保障？",
+      answer: "我们提供[具体保障内容]，包括[保障项目1]、[保障项目2]和[保障项目3]。如果您不满意，我们承诺[退款/重做政策]。"
+    },
+    {
+      question: "需要多长时间才能看到效果？",
+      answer: "根据我们的经验，大多数客户在[时间范围]内开始看到初步效果。完整的效果通常在[时间范围]内显现。具体时间取决于[影响因素]。"
+    },
+    {
+      question: "你们与竞争对手相比有什么优势？",
+      answer: "我们的主要优势包括：1) [优势1]；2) [优势2]；3) [优势3]。我们已经帮助[数量]家企业实现了[具体成果]。"
+    },
+    {
+      question: "如果遇到问题，如何获得支持？",
+      answer: "我们提供多种支持渠道：电话([电话号码])、邮箱([邮箱地址])、在线客服。我们的支持团队在工作日[时间]内响应，紧急问题[响应时间]内处理。"
+    },
+    {
+      question: "是否提供定制化服务？",
+      answer: "是的，我们理解每个企业的需求都不同。我们提供完全定制化的解决方案，包括[定制内容]。我们会根据您的具体情况制定专属方案。"
+    },
+    {
+      question: "你们的客户主要来自哪些行业？",
+      answer: "我们服务过多个行业的客户，主要包括[行业1]、[行业2]、[行业3]等。我们在[特定行业]方面有特别丰富的经验。"
+    },
+    {
+      question: "如何评估服务效果？",
+      answer: "我们使用多个指标来评估服务效果，包括[指标1]、[指标2]、[指标3]。我们会定期提供详细的效果报告，确保您了解投资回报。"
+    }
+  ],
+  
+  // === E-E-A-T 信号字段 ===
+  authorCredentials: ["行业专家认证", "多年服务经验", "客户成功案例验证"],
+  sources: [
+    "行业最佳实践研究",
+    "客户反馈和案例分析",
+    "专业机构认证标准"
+  ]
+};
+---
+
+<Layout title={contentData.title} contentData={contentData}>
+  <Navigation />
+  
+  <main class="min-h-screen bg-gradient-to-br from-theme-light to-white pt-20">
+    <article class="container mx-auto px-4 py-12" itemscope itemtype="https://schema.org/FAQPage">
+      <header class="text-center mb-12">
+        <h1 class="text-4xl lg:text-5xl font-bold text-primary mb-4" itemprop="name">
+          {contentData.title}
+        </h1>
+        <p class="text-xl text-text-default max-w-3xl mx-auto" itemprop="description">
+          {contentData.summary}
+        </p>
+        <div class="flex items-center justify-center space-x-4 mt-6">
+          <span class="text-sm text-gray-500">更新时间：<time itemprop="dateModified" datetime={contentData.pubDate.toISOString()}>
+            {contentData.pubDate.toLocaleDateString("zh-CN")}
+          </time></span>
+        </div>
+      </header>
+
+      <div class="prose prose-lg max-w-4xl mx-auto">
+        <!-- 介绍部分 -->
+        <AnswerBlock 
+          question="这个FAQ页面包含什么内容？"
+          directAnswer="这个页面包含关于[主题]的[数量]个最常见问题和详细解答，涵盖了从基础概念到具体操作的各个方面。"
+          detailedExplanation="我们根据客户咨询和反馈整理了这些问题，确保您能快速找到所需信息。如果您的问题不在列表中，请随时联系我们。"
+        />
+
+        <!-- 快速导航 -->
+        <div class="bg-blue-50 border border-blue-200 rounded-lg p-6 my-8">
+          <h2 class="text-lg font-semibold text-blue-800 mb-4">📋 快速导航</h2>
+          <div class="grid md:grid-cols-2 gap-2 text-sm">
+            <a href="#基础概念" class="text-blue-600 hover:text-blue-800 transition-colors">• 基础概念</a>
+            <a href="#服务流程" class="text-blue-600 hover:text-blue-800 transition-colors">• 服务流程</a>
+            <a href="#费用相关" class="text-blue-600 hover:text-blue-800 transition-colors">• 费用相关</a>
+            <a href="#技术支持" class="text-blue-600 hover:text-blue-800 transition-colors">• 技术支持</a>
+            <a href="#效果评估" class="text-blue-600 hover:text-blue-800 transition-colors">• 效果评估</a>
+            <a href="#其他问题" class="text-blue-600 hover:text-blue-800 transition-colors">• 其他问题</a>
+          </div>
+        </div>
+
+        <!-- 主要FAQ部分 -->
+        <FAQSection 
+          faqs={contentData.faqSections!}
+          title="常见问题详细解答"
+          class="my-12"
+        />
+
+        <!-- 分类FAQ部分 -->
+        <h2 id="基础概念">基础概念</h2>
+        <FAQSection 
+          faqs={contentData.faqSections!.slice(0, 2)}
+          title=""
+          class="my-8"
+        />
+
+        <h2 id="服务流程">服务流程</h2>
+        <FAQSection 
+          faqs={contentData.faqSections!.slice(2, 4)}
+          title=""
+          class="my-8"
+        />
+
+        <h2 id="费用相关">费用相关</h2>
+        <FAQSection 
+          faqs={contentData.faqSections!.slice(4, 6)}
+          title=""
+          class="my-8"
+        />
+
+        <!-- 联系信息 -->
+        <div class="bg-gradient-to-r from-primary/5 to-accent/5 border border-primary/20 rounded-lg p-8 my-12">
+          <h2 class="text-2xl font-bold text-primary mb-4 text-center">还有其他问题？</h2>
+          <p class="text-center text-gray-700 mb-6">
+            如果您没有找到想要的答案，我们的专业团队随时为您提供帮助。
+          </p>
+          
+          <div class="grid md:grid-cols-3 gap-6 text-center">
+            <div class="bg-white p-6 rounded-lg shadow-sm">
+              <div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                <svg class="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
+                </svg>
+              </div>
+              <h3 class="font-semibold text-primary mb-2">电话咨询</h3>
+              <p class="text-sm text-gray-600 mb-3">工作日 9:00-18:00</p>
+              <a href="tel:+6011-27368039" class="text-primary font-medium hover:text-accent transition-colors">
+                +6011-27368039
+              </a>
+            </div>
+
+            <div class="bg-white p-6 rounded-lg shadow-sm">
+              <div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                <svg class="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                </svg>
+              </div>
+              <h3 class="font-semibold text-primary mb-2">邮件咨询</h3>
+              <p class="text-sm text-gray-600 mb-3">24小时内回复</p>
+              <a href="mailto:admin@mmcfin.com" class="text-primary font-medium hover:text-accent transition-colors">
+                admin@mmcfin.com
+              </a>
+            </div>
+
+            <div class="bg-white p-6 rounded-lg shadow-sm">
+              <div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                <svg class="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path>
+                </svg>
+              </div>
+              <h3 class="font-semibold text-primary mb-2">在线咨询</h3>
+              <p class="text-sm text-gray-600 mb-3">即时响应</p>
+              <a href="/contact" class="text-primary font-medium hover:text-accent transition-colors">
+                立即咨询
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- E-E-A-T信号展示 -->
+        <div class="bg-gray-50 p-6 rounded-lg my-8">
+          <h3 class="text-lg font-semibold text-primary mb-4">专业资质与信息来源</h3>
+          <div class="grid md:grid-cols-2 gap-4">
+            <div>
+              <h4 class="font-medium text-gray-800 mb-2">专业认证</h4>
+              <ul class="text-sm text-gray-600 space-y-1">
+                {contentData.authorCredentials?.map(credential => (
+                  <li>• {credential}</li>
+                ))}
+              </ul>
+            </div>
+            <div>
+              <h4 class="font-medium text-gray-800 mb-2">信息来源</h4>
+              <ul class="text-sm text-gray-600 space-y-1">
+                {contentData.sources?.map(source => (
+                  <li>• {source}</li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- 相关资源 -->
+        <div class="bg-white border border-gray-200 rounded-lg p-6 my-8">
+          <h3 class="text-lg font-semibold text-primary mb-4">相关资源</h3>
+          <div class="grid md:grid-cols-2 gap-4">
+            <div>
+              <h4 class="font-medium text-gray-800 mb-2">📚 延伸阅读</h4>
+              <ul class="text-sm space-y-2">
+                <li><a href="#" class="text-primary hover:text-accent transition-colors">• [相关文章1]</a></li>
+                <li><a href="#" class="text-primary hover:text-accent transition-colors">• [相关文章2]</a></li>
+                <li><a href="#" class="text-primary hover:text-accent transition-colors">• [相关文章3]</a></li>
+              </ul>
+            </div>
+            <div>
+              <h4 class="font-medium text-gray-800 mb-2">🎯 相关服务</h4>
+              <ul class="text-sm space-y-2">
+                <li><a href="#" class="text-primary hover:text-accent transition-colors">• [服务1]</a></li>
+                <li><a href="#" class="text-primary hover:text-accent transition-colors">• [服务2]</a></li>
+                <li><a href="#" class="text-primary hover:text-accent transition-colors">• [服务3]</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
+  </main>
+
+  <Footer />
+</Layout>
+
+<!-- 
+使用说明：
+1. 复制此模板到 src/pages/content/ 目录
+2. 重命名为您的FAQ文件名（如：financial-planning-faq.astro）
+3. 更新 contentData 中的所有字段，特别是 faqSections 数组
+4. 根据您的主题替换所有占位符内容
+5. 确保每个问题都有完整、准确的答案
+6. 按逻辑分组组织问题（如基础概念、操作流程等）
+7. 更新联系信息和相关资源链接
+8. 定期更新FAQ内容，保持信息的时效性
+-->

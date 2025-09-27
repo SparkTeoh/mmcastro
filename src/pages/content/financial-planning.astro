@@ -1,36 +1,336 @@
 ---
-const contentData = {
+import Layout from "../../layouts/Layout.astro";
+import Navigation from "../../components/ui/Navigation.astro";
+import Footer from "../../components/ui/Footer.astro";
+import FAQSection from "../../components/ui/FAQSection.astro";
+import HowToSection from "../../components/ui/HowToSection.astro";
+import AnswerBlock from "../../components/ui/AnswerBlock.astro";
+import type { EnhancedContentData } from "../../types/content";
+
+const contentData: EnhancedContentData = {
+  // Existing fields
   title: "企业财务规划的重要性",
   summary: "深入探讨企业财务规划在现代商业环境中的关键作用，以及如何制定有效的财务策略来推动业务增长。",
   author: "MMC Financial",
   pubDate: new Date('2024-01-15'),
   tags: ['财务规划', '企业管理', '预算控制'],
   type: '专业内容',
-  featured: true
+  featured: true,
+  
+  // Enhanced SEO fields
+  metaDescription: "了解企业财务规划的核心要素和最佳实践。MMC Financial专业团队分享如何通过科学的财务规划实现30%利润提升，包括预算管理、现金流控制和风险管理策略。",
+  focusKeywords: ["企业财务规划", "预算管理", "现金流管理", "财务策略", "利润提升"],
+  
+  // GEO fields
+  schemaType: "FAQPage",
+  faqSections: [
+    {
+      question: "什么是企业财务规划？",
+      answer: "企业财务规划是一个系统性的过程，包括预算管理、现金流控制、风险评估和投资决策，旨在帮助企业实现长期财务目标和可持续发展。"
+    },
+    {
+      question: "财务规划对企业有什么好处？",
+      answer: "有效的财务规划可以帮助企业控制成本、优化资源配置、降低财务风险、提高盈利能力。根据MMC的经验，科学的财务规划平均可以帮助企业实现30%的利润提升。"
+    },
+    {
+      question: "如何开始制定企业财务规划？",
+      answer: "首先需要评估企业当前的财务状况，设定明确的财务目标，然后制定详细的预算计划和现金流预测，最后建立定期审查和调整机制。"
+    },
+    {
+      question: "财务规划需要多长时间才能看到效果？",
+      answer: "通常在实施财务规划后的3-6个月内可以看到初步效果，如成本控制改善和现金流优化。长期效果如利润提升和风险降低通常在12-18个月内显现。"
+    },
+    {
+      question: "中小企业是否需要专业的财务规划服务？",
+      answer: "是的，中小企业更需要专业的财务规划服务。由于资源有限，中小企业需要更精准的财务管理来最大化效益和降低风险。专业服务可以提供系统性的解决方案。"
+    }
+  ],
+  
+  howToSteps: [
+    {
+      name: "评估当前财务状况",
+      text: "全面分析企业的资产负债表、损益表和现金流量表，了解企业的财务健康状况和存在的问题。"
+    },
+    {
+      name: "设定财务目标",
+      text: "根据企业发展战略，设定具体、可衡量的短期和长期财务目标，包括收入、利润和现金流目标。"
+    },
+    {
+      name: "制定预算计划",
+      text: "基于财务目标制定详细的年度预算，包括收入预算、成本预算和资本支出预算。"
+    },
+    {
+      name: "建立监控机制",
+      text: "设立财务指标监控体系，定期跟踪预算执行情况，及时发现偏差并采取纠正措施。"
+    },
+    {
+      name: "定期审查调整",
+      text: "每季度进行财务规划审查，根据市场变化和业务发展情况调整财务策略和预算计划。"
+    }
+  ],
+  
+  // E-E-A-T signals
+  authorCredentials: ["18年财务规划经验", "500+成功案例", "马来西亚注册财务顾问"],
+  sources: [
+    "马来西亚中小企业发展银行财务管理指南",
+    "亚洲企业财务规划最佳实践研究报告",
+    "MMC Financial内部客户成功案例分析"
+  ]
 };
 ---
 
-<h2>财务规划的核心要素</h2>
-<p>企业财务规划是确保长期成功的关键因素。它不仅仅是数字的堆砌，更是一个全面的战略框架，帮助企业实现可持续发展。</p>
+<Layout title={contentData.title} contentData={contentData}>
+  <Navigation />
 
-<h3>1. 预算管理</h3>
-<p>有效的预算管理是财务规划的基础。通过制定详细的预算计划，企业可以更好地控制成本，优化资源配置。</p>
+  <main class="min-h-screen bg-gradient-to-br from-theme-light to-white pt-20">
+    <article class="container mx-auto px-4 py-12">
+      <header class="text-center mb-12">
+        <h1 class="text-4xl lg:text-5xl font-bold text-primary mb-4">
+          {contentData.title}
+        </h1>
+        <p class="text-xl text-text-default max-w-3xl mx-auto">
+          {contentData.summary}
+        </p>
+        <div class="flex items-center justify-center space-x-4 mt-6">
+          <span class="text-sm text-gray-500">作者：{contentData.author}</span>
+          <span class="text-sm text-gray-500">
+            发布时间：{contentData.pubDate.toLocaleDateString("zh-CN")}
+          </span>
+        </div>
+      </header>
 
-<h3>2. 现金流管理</h3>
-<p>现金流是企业生存的血液。良好的现金流管理确保企业有足够的资金来维持日常运营和投资发展。</p>
+      <div class="prose prose-lg max-w-4xl mx-auto">
+        <!-- Answer-First Content Blocks for GEO Optimization -->
+        <AnswerBlock 
+          question="企业财务规划为什么如此重要？"
+          directAnswer="企业财务规划是确保长期成功的关键因素，它提供了一个全面的战略框架，帮助企业实现可持续发展，通过科学的预算管理和风险控制，平均可以帮助企业实现30%的利润提升。"
+          detailedExplanation="财务规划不仅仅是数字的堆砌，更是一个系统性的管理工具。它整合了预算管理、现金流控制、风险评估和投资决策等多个方面，为企业提供清晰的发展路径和决策依据。"
+        />
+        
+        <AnswerBlock 
+          question="财务规划包含哪些核心要素？"
+          directAnswer="财务规划的核心要素包括预算管理、现金流管理和风险管理三大支柱，这些要素相互关联，共同构成企业财务健康的基础。"
+          detailedExplanation="预算管理帮助企业控制成本和优化资源配置；现金流管理确保企业有足够资金维持运营；风险管理则识别和应对潜在的财务威胁。"
+        />
 
-<h3>3. 风险管理</h3>
-<p>识别和评估财务风险，制定相应的应对策略，是企业财务规划中不可忽视的重要环节。</p>
+        <div class="bg-primary/5 border border-primary/20 rounded-lg p-6 my-8">
+          <h3 class="text-xl font-semibold text-primary mb-3">💡 核心理念</h3>
+          <p class="text-dark/80">
+            企业财务规划是确保长期成功的关键因素。它不仅仅是数字的堆砌，更是一个全面的战略框架，帮助企业实现可持续发展。
+          </p>
+        </div>
 
-<h2>实施财务规划的最佳实践</h2>
-<p>成功的财务规划需要系统性的方法和持续的努力。以下是一些关键的最佳实践：</p>
+        <h2>财务规划的核心要素</h2>
+        
+        <!-- 使用手风琴样式展示核心要素 -->
+        <div class="my-8">
+          <div class="bg-gray-50 p-6 rounded-lg">
+            <div class="space-y-4">
+              <div class="bg-white p-6 rounded-lg border border-gray-200 shadow-sm">
+                <div class="flex items-center justify-between mb-4">
+                  <div class="flex items-center gap-4">
+                    <span class="text-2xl font-bold text-primary">01</span>
+                    <span class="text-xl font-semibold text-primary">预算管理</span>
+                  </div>
+                  <div class="bg-primary w-8 h-8 rounded-full flex items-center justify-center">
+                    <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
+                    </svg>
+                  </div>
+                </div>
+                <p class="text-gray-600 leading-relaxed">
+                  有效的预算管理是财务规划的基础。通过制定详细的预算计划，企业可以更好地控制成本，优化资源配置。
+                </p>
+              </div>
 
-<ul>
-  <li>建立清晰的财务目标</li>
-  <li>定期审查和调整计划</li>
-  <li>利用技术工具提高效率</li>
-  <li>培养专业的财务团队</li>
-</ul>
+              <div class="bg-white p-6 rounded-lg border border-gray-200 shadow-sm">
+                <div class="flex items-center justify-between mb-4">
+                  <div class="flex items-center gap-4">
+                    <span class="text-2xl font-bold text-primary">02</span>
+                    <span class="text-xl font-semibold text-primary">现金流管理</span>
+                  </div>
+                  <div class="bg-primary w-8 h-8 rounded-full flex items-center justify-center">
+                    <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1"></path>
+                    </svg>
+                  </div>
+                </div>
+                <p class="text-gray-600 leading-relaxed">
+                  现金流是企业生存的血液。良好的现金流管理确保企业有足够的资金来维持日常运营和投资发展。
+                </p>
+              </div>
 
-<h2>结论</h2>
-<p>企业财务规划是一个持续的过程，需要企业领导层的承诺和全体员工的参与。通过科学的财务规划，企业可以更好地应对市场变化，实现可持续发展。</p>
+              <div class="bg-white p-6 rounded-lg border border-gray-200 shadow-sm">
+                <div class="flex items-center justify-between mb-4">
+                  <div class="flex items-center gap-4">
+                    <span class="text-2xl font-bold text-primary">03</span>
+                    <span class="text-xl font-semibold text-primary">风险管理</span>
+                  </div>
+                  <div class="bg-primary w-8 h-8 rounded-full flex items-center justify-center">
+                    <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path>
+                    </svg>
+                  </div>
+                </div>
+                <p class="text-gray-600 leading-relaxed">
+                  识别和评估财务风险，制定相应的应对策略，是企业财务规划中不可忽视的重要环节。
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <h2>实施财务规划的最佳实践</h2>
+        <p>成功的财务规划需要系统性的方法和持续的努力。以下是一些关键的最佳实践：</p>
+
+        <!-- 使用卡片样式展示最佳实践 -->
+        <div class="my-8">
+          <div class="grid md:grid-cols-2 gap-6">
+            <div class="bg-white p-6 rounded-lg border border-gray-200 shadow-sm hover:shadow-lg transition-shadow">
+              <div class="flex items-center mb-4">
+                <div class="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mr-4">
+                  <svg class="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"></path>
+                  </svg>
+                </div>
+                <h3 class="text-lg font-semibold text-primary">建立清晰的财务目标</h3>
+              </div>
+              <p class="text-gray-600 leading-relaxed">
+                设定具体、可衡量、可实现的财务目标，为企业发展提供明确方向。
+              </p>
+            </div>
+
+            <div class="bg-white p-6 rounded-lg border border-gray-200 shadow-sm hover:shadow-lg transition-shadow">
+              <div class="flex items-center mb-4">
+                <div class="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mr-4">
+                  <svg class="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path>
+                  </svg>
+                </div>
+                <h3 class="text-lg font-semibold text-primary">定期审查和调整计划</h3>
+              </div>
+              <p class="text-gray-600 leading-relaxed">
+                建立定期审查机制，根据市场变化和业务发展及时调整财务策略。
+              </p>
+            </div>
+
+            <div class="bg-white p-6 rounded-lg border border-gray-200 shadow-sm hover:shadow-lg transition-shadow">
+              <div class="flex items-center mb-4">
+                <div class="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mr-4">
+                  <svg class="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                  </svg>
+                </div>
+                <h3 class="text-lg font-semibold text-primary">利用技术工具提高效率</h3>
+              </div>
+              <p class="text-gray-600 leading-relaxed">
+                采用现代化的财务管理软件和数据分析工具，提升财务管理效率和准确性。
+              </p>
+            </div>
+
+            <div class="bg-white p-6 rounded-lg border border-gray-200 shadow-sm hover:shadow-lg transition-shadow">
+              <div class="flex items-center mb-4">
+                <div class="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mr-4">
+                  <svg class="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
+                  </svg>
+                </div>
+                <h3 class="text-lg font-semibold text-primary">培养专业的财务团队</h3>
+              </div>
+              <p class="text-gray-600 leading-relaxed">
+                投资于财务团队的专业培训，建立具备现代财务管理能力的专业团队。
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- 专家见证轮播 -->
+        <div class="my-12">
+          <div class="bg-gray-50 p-8 rounded-lg">
+            <h3 class="text-center text-2xl font-bold text-primary mb-8">
+              专家观点
+            </h3>
+
+            <div class="max-w-4xl mx-auto">
+              <div class="bg-white p-8 rounded-2xl border-2 border-primary shadow-lg relative">
+                <div class="text-center mb-6">
+                  <p class="text-lg text-gray-700 leading-relaxed">
+                    "有效的财务规划不仅能帮助企业控制风险，更能为企业创造价值。通过系统性的财务管理，我们帮助客户实现了平均30%的利润提升。"
+                  </p>
+                </div>
+
+                <div class="flex justify-center items-center space-x-4">
+                  <div class="w-12 h-12 bg-primary rounded-full flex items-center justify-center">
+                    <span class="text-white font-bold">M</span>
+                  </div>
+                  <div class="text-center">
+                    <div class="text-primary font-semibold text-lg">MMC 财务专家团队</div>
+                    <div class="text-accent font-medium">高级财务顾问</div>
+                    <div class="text-gray-500 text-sm">MMC Financial</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- How-To Section for GEO Optimization -->
+        <HowToSection 
+          steps={contentData.howToSteps!}
+          title="如何制定有效的企业财务规划"
+          totalTime="4-6周"
+          difficulty="medium"
+          class="my-12"
+        />
+
+        <!-- FAQ Section for GEO Optimization -->
+        <FAQSection 
+          faqs={contentData.faqSections!}
+          title="财务规划常见问题"
+          class="my-12"
+        />
+
+        <!-- E-E-A-T Signals -->
+        <div class="bg-gray-50 p-6 rounded-lg my-8">
+          <h3 class="text-lg font-semibold text-primary mb-4">专业资质与经验</h3>
+          <div class="grid md:grid-cols-2 gap-4">
+            <div>
+              <h4 class="font-medium text-gray-800 mb-2">专业认证</h4>
+              <ul class="text-sm text-gray-600 space-y-1">
+                {contentData.authorCredentials?.map(credential => (
+                  <li>• {credential}</li>
+                ))}
+              </ul>
+            </div>
+            <div>
+              <h4 class="font-medium text-gray-800 mb-2">参考资料</h4>
+              <ul class="text-sm text-gray-600 space-y-1">
+                {contentData.sources?.map(source => (
+                  <li>• {source}</li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <h2>结论</h2>
+        <div class="bg-gradient-to-r from-primary/5 to-accent/5 border border-primary/20 rounded-lg p-6 my-8">
+          <p class="text-dark/80 leading-relaxed">
+            企业财务规划是一个持续的过程，需要企业领导层的承诺和全体员工的参与。通过科学的财务规划，企业可以更好地应对市场变化，实现可持续发展。
+          </p>
+          
+          <div class="mt-6 text-center">
+            <a href="/contact" class="inline-flex items-center bg-primary text-white px-6 py-3 rounded-lg hover:bg-primary/90 transition-colors font-medium">
+              联系我们获取专业咨询
+              <svg class="ml-2 w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </article>
+  </main>
+
+  <Footer />
+</Layout>

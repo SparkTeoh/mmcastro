@@ -17,12 +17,13 @@ MMC Astro 内容系统是一个专门为展示 .astro 内容文件而设计的�
 
 ```
 src/
-├── content/                    # 内容文件目录
-│   ├── financial-planning.astro
-│   ├── budget-optimization.astro
-│   └── cash-flow-management.astro
 ├── pages/
-│   ├── content.astro          # 内容中心主页面
+│   ├── content/               # 内容文件目录
+│   │   ├── index.astro        # 内容中心主页面
+│   │   ├── [slug].astro       # 动态路由处理器
+│   │   ├── financial-planning.astro
+│   │   ├── budget-optimization.astro
+│   │   └── cash-flow-management.astro
 │   └── api/
 │       └── content.js         # API 端点（分页支持）
 └── components/
@@ -33,7 +34,7 @@ src/
 
 ### 1. 创建内容文件
 
-在 `src/content/` 目录下创建新的 `.astro` 文件，例如 `my-article.astro`：
+在 `src/pages/content/` 目录下创建新的 `.astro` 文件，例如 `my-article.astro`：
 
 ```astro
 ---
@@ -96,7 +97,7 @@ const contentData = {
 - **具体内容页面**: `/content/[文件名]`（不包含 .astro 扩展名）
 
 例如：
-- 文件：`src/content/financial-planning.astro`
+- 文件：`src/pages/content/financial-planning.astro`
 - 访问地址：`/content/financial-planning`
 
 ## 搜索功能
@@ -128,10 +129,11 @@ const contentData = {
 
 系统通过以下方式解析内容：
 
-1. 扫描 `src/content/` 目录下的所有 `.astro` 文件
-2. 提取每个文件的 frontmatter 中的 `contentData` 对象
-3. 使用 `eval()` 解析 JavaScript 对象（生产环境需要谨慎使用）
-4. 按发布日期排序
+1. 扫描 `src/pages/content/` 目录下的所有 `.astro` 文件
+2. 过滤掉 `index.astro` 和 `[slug].astro` 等系统文件
+3. 提取每个文件的 frontmatter 中的 `contentData` 对象
+4. 使用 `eval()` 解析 JavaScript 对象（生产环境需要谨慎使用）
+5. 按发布日期排序
 
 ### API 端点
 
